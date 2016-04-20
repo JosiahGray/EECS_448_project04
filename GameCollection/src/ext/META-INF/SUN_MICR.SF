@@ -1,0 +1,1580 @@
+Signature-Version: 1.0
+Created-By: 1.5.0_11 (Sun Microsystems Inc.)
+SHA1-Digest-Manifest-Main-Attributes: cGS1MPffRAhySxZNSCrJbEYfPI8=
+SHA1-Digest-Manifest: 0r4K/aZuDjaBEmQuKZhKi8a6KUU=
+
+Name: com/sun/j3d/utils/behaviors/interpolators/TCBKeyFrame.class
+SHA1-Digest: JEK5ZjSIgiR/8fb3WjUWiwRBwh4=
+
+Name: com/sun/j3d/utils/behaviors/vp/WandViewBehavior$EchoReadListener
+ 6D.class
+SHA1-Digest: GOXEpmzitYoH7zHtpApy1iz321A=
+
+Name: com/sun/j3d/utils/timer/J3DTimer.class
+SHA1-Digest: n0vq5/JAuFxD9lQQTGMxO93XJ+M=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/DecalGroup
+ State.class
+SHA1-Digest: 1N0fWA4EKX5h6I8pY9abzr3whIM=
+
+Name: com/sun/j3d/utils/geometry/Primitive.class
+SHA1-Digest: Pl4ffvR+6FV/yfk+QPuzIGQeBrM=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/com/sun/j3d/utils/geometry
+ /CylinderState.class
+SHA1-Digest: G93ITs9s6fdjYotW+dwy9rVl8TY=
+
+Name: com/sun/j3d/utils/behaviors/mouse/MouseTranslate.class
+SHA1-Digest: ZrIKPo5Yj7y2tln8xi/uDCiaRek=
+
+Name: com/sun/j3d/utils/geometry/Orientation.class
+SHA1-Digest: MAQLcyFXuqGqsk44aeEzUOKuRX4=
+
+Name: com/sun/j3d/utils/compression/CompressedGeometryFile.class
+SHA1-Digest: 8MeO40XJhQWDHBheBIzpuiy0iLw=
+
+Name: com/sun/j3d/utils/behaviors/vp/WandViewBehavior$TranslationListe
+ ner2D.class
+SHA1-Digest: E+pnSKzPiuks68XkfN3+sPBAmGc=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/RotationPa
+ thInterpolatorState.class
+SHA1-Digest: vAn5RnFrXrSrz1Cb2I1vyiSe1iQ=
+
+Name: com/sun/j3d/utils/geometry/compression/CompressionStreamElement.
+ class
+SHA1-Digest: raPz7bmNmdwjhx3FpEcIR0I8dps=
+
+Name: com/sun/j3d/utils/geometry/compression/CompressedGeometryRetaine
+ d.class
+SHA1-Digest: 2SgFvvP9Q4riIdm+UJ7FjlXTw7w=
+
+Name: com/sun/j3d/internal/BufferWrapper.class
+SHA1-Digest: IE79ohZB/q2002s2KyDuvjjQMTg=
+
+Name: com/sun/j3d/audioengines/AuralParameters.class
+SHA1-Digest: ELxgJV4z9m3SDdC9lAbRD92fNc0=
+
+Name: com/sun/j3d/utils/behaviors/picking/PickRotateBehavior.class
+SHA1-Digest: PMV/GCzwPSSOPzOj2/8IifvFnHQ=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/ClipState.
+ class
+SHA1-Digest: MaMOTe4R/d9bQ6QQlVU6k+3AXOY=
+
+Name: com/sun/j3d/utils/behaviors/vp/WandViewBehavior$ListenerBase.cla
+ ss
+SHA1-Digest: HR9VBixnJkz8zXAFcz+R14TYeyg=
+
+Name: com/sun/j3d/loaders/lw3d/LwsLight.class
+SHA1-Digest: vINExr7/J93F7bajnW9FeobfF28=
+
+Name: com/sun/j3d/utils/universe/ConfigViewPlatform.class
+SHA1-Digest: lNTAqw3ejlHqX9ojp6B3TArlufU=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/TextureCub
+ eMapState.class
+SHA1-Digest: dOBmHyh2z6apZdIlJoRutkYh7oM=
+
+Name: com/sun/j3d/utils/behaviors/sensor/SensorEventAgent.class
+SHA1-Digest: xnMD6fkcsHNZcjOT797WwKuN8V8=
+
+Name: com/sun/j3d/utils/behaviors/interpolators/RotPosScaleTCBSplinePa
+ thInterpolator.class
+SHA1-Digest: patopd6kRE441AKQwd2BbMVtpuQ=
+
+Name: com/sun/j3d/utils/geometry/PntNode.class
+SHA1-Digest: +JkkGX9Mz/YcyJO87/S9feqMy0Q=
+
+Name: com/sun/j3d/utils/geometry/compression/CompressionStream.class
+SHA1-Digest: nnocEljCgpGs5tMSqRGBol5rqdk=
+
+Name: com/sun/j3d/loaders/lw3d/ParserObject.class
+SHA1-Digest: NNma0V3psuPrTW423IapOYOS2pM=
+
+Name: com/sun/j3d/exp/swing/impl/AutoOffScreenCanvas3D.class
+SHA1-Digest: IshvM6SUihmiXCt3uazty+MM3hg=
+
+Name: com/sun/j3d/utils/geometry/Quadrics.class
+SHA1-Digest: lgdWAm7Bpr/x9XtWFm+InCEYAh4=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/Interpolat
+ orState.class
+SHA1-Digest: DVgwfmu+pt245Y8aMSOd4DvruXs=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/com/sun/j3d/utils/geometry
+ /ConeState.class
+SHA1-Digest: aN7I615avQZ96yg7BkoGGjuoPZI=
+
+Name: com/sun/j3d/loaders/objectfile/ObjectFileMaterials.class
+SHA1-Digest: DGfeTvT6ai1YjAaij1xz28yf07A=
+
+Name: com/sun/j3d/utils/geometry/Bridge.class
+SHA1-Digest: FwAU+3G5Wsa04Vh3ePfsBsr7Jzw=
+
+Name: com/sun/j3d/utils/geometry/Degenerate.class
+SHA1-Digest: pZ0IvgrOCwLH6yXaxdTT+UWaorY=
+
+Name: com/sun/j3d/utils/geometry/GeomBuffer.class
+SHA1-Digest: jUz8xLofBaThSxYM35D/OXc8BdM=
+
+Name: com/sun/j3d/loaders/lw3d/FloatValueInterpolator.class
+SHA1-Digest: ndPiXgShVCdBzoTLJ6qrWIQAwAY=
+
+Name: com/sun/j3d/utils/universe/ViewInfo$CanvasInfo.class
+SHA1-Digest: uYeaQ8vWxJTjdUFEZ6FiY6E02Hk=
+
+Name: com/sun/j3d/audioengines/AudioEngine.class
+SHA1-Digest: ktHeRgzkbvd5iyOvkZnDIxjVnAU=
+
+Name: com/sun/j3d/loaders/lw3d/SwitchPathInterpolator.class
+SHA1-Digest: WLf/+TdVQ3C4G6OS/5Q63P3lDP4=
+
+Name: com/sun/j3d/utils/behaviors/vp/ViewPlatformBehavior.class
+SHA1-Digest: x0l/PSwhls1HFPi5hFn+tYzuwXs=
+
+Name: com/sun/j3d/utils/geometry/compression/CompressionStream$Positio
+ nQuant.class
+SHA1-Digest: p4WBgbIbduONsnUPXeG5qLjsRnE=
+
+Name: com/sun/j3d/utils/geometry/compression/HuffmanTable.class
+SHA1-Digest: 3K0exlzojXzAB4xP6s3gtjlEsIA=
+
+Name: com/sun/j3d/exp/swing/JCanvas3D$ResizeThread.class
+SHA1-Digest: RgHRx9UEfWomPfhX0Az+tfBqfVc=
+
+Name: com/sun/j3d/utils/behaviors/interpolators/KBRotPosScaleSplinePat
+ hInterpolator.class
+SHA1-Digest: P8BugrFUlpPgsl44EWJpG5zjI98=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/IndexedGeo
+ metryArrayState.class
+SHA1-Digest: VwZ4jMsHfJygPNLuPrpLfuG/rDk=
+
+Name: com/sun/j3d/utils/applet/JMainFrame.class
+SHA1-Digest: CXd7XuE5Ka3Bv8yHNwM8eBzz6JE=
+
+Name: com/sun/j3d/utils/behaviors/mouse/MouseRotate.class
+SHA1-Digest: 9JQH+cvGeIISrDBqB+p2g0O4Cfo=
+
+Name: com/sun/j3d/utils/universe/ConfigCommand.class
+SHA1-Digest: Dkjn74U1fSh3mxrwghwdU9Ha9nk=
+
+Name: com/sun/j3d/utils/geometry/Stripifier$Vertex.class
+SHA1-Digest: RVIcNsSFUN4eNU4M6Ge+K3M153I=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/ColoringAt
+ tributesState.class
+SHA1-Digest: crhsUTWmKrqhyV1FaSYZzvMyS+c=
+
+Name: com/sun/j3d/utils/geometry/Simple.class
+SHA1-Digest: jAvYEZIQuWauAZXVaEwCCJ9o85A=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/SwitchValu
+ eInterpolatorState.class
+SHA1-Digest: zEMeA7oc7DivMU+Wva/OYBoUWC8=
+
+Name: com/sun/j3d/utils/scenegraph/io/UnresolvedBehavior.class
+SHA1-Digest: 3jtVCBZkpD4oxbQXTLt+bYL9ugM=
+
+Name: com/sun/j3d/loaders/LoaderBase.class
+SHA1-Digest: W6Gj/DZYPOHefktIxC4f1Cf7s2M=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/RotPosPath
+ InterpolatorState.class
+SHA1-Digest: voWqAGRytLmDO4kq1saL85L36YI=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/IndexedQua
+ dArrayState.class
+SHA1-Digest: yTu2949MYXjfodpF3xavh0ycS5w=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/IndexedTri
+ angleArrayState.class
+SHA1-Digest: U2ZPITHYTLzT8OuJCpLl37ZTQ3I=
+
+Name: com/sun/j3d/utils/compression/CompressionStream$VertexIndices.cl
+ ass
+SHA1-Digest: pMd+Mfj9Vzbr+yCVW2WmabeIhv0=
+
+Name: com/sun/j3d/utils/geometry/Stripifier$Node.class
+SHA1-Digest: 0qN635fHp2jqLLd8fYtYCyF53a0=
+
+Name: com/sun/j3d/utils/scenegraph/io/retained/SGIORuntimeException.cl
+ ass
+SHA1-Digest: 8qweqmRaK8jGlW8vrikH/jTFQt8=
+
+Name: com/sun/j3d/utils/geometry/compression/GeneralizedStripFlags.cla
+ ss
+SHA1-Digest: upI5eFyP4dWEE3RVU8DjfSDEisk=
+
+Name: com/sun/j3d/utils/universe/Viewer$3.class
+SHA1-Digest: HTdj3D8x31+aXshWiGiMyn1bxTI=
+
+Name: com/sun/j3d/utils/behaviors/sensor/SensorButtonListener.class
+SHA1-Digest: WzNK6Fxl8eeGV4JdVy9f1By/m1U=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/Transparen
+ cyAttributesState.class
+SHA1-Digest: YotUQWGT4ZkRay2i/bto1MCh/G8=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/GroupState
+ .class
+SHA1-Digest: RcfRtsL3QT+Zz9w3YUJvjcizUWg=
+
+Name: com/sun/j3d/loaders/lw3d/ImageScaler.class
+SHA1-Digest: oz2m0BZNxkY5gUlIhcUN4LPQ6Zc=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/TextureUni
+ tStateState.class
+SHA1-Digest: 5ngULFCPf+zfuCrMllHsJm7X9Yw=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/AlternateA
+ ppearanceState.class
+SHA1-Digest: Dib0tkv7/Ib8gzcQh1I8eKx8B8Y=
+
+Name: com/sun/j3d/utils/behaviors/sensor/SensorBeamEcho.class
+SHA1-Digest: nCMp1B70Oi1F7ppl/nySpAmqN/s=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/SpotLightS
+ tate.class
+SHA1-Digest: UUKWR5M1+Uq5FozP7yhNey/4MsE=
+
+Name: com/sun/j3d/utils/behaviors/vp/WandViewBehavior$TranslationListe
+ ner6D.class
+SHA1-Digest: i6Udb1gcZ+O9ksXyyi8vimhcvl8=
+
+Name: com/sun/j3d/utils/universe/ConfigContainer.class
+SHA1-Digest: oru34J/CfQqTqMj3IsYS/Is2+BI=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/com/sun/j3d/utils/image/Im
+ ageComponent2DURLIOListener.class
+SHA1-Digest: EG063yw6TKeK8P10tQG0v40BSMU=
+
+Name: com/sun/j3d/utils/scenegraph/io/SceneGraphFileReader.class
+SHA1-Digest: p5jTv4orQqlQnMh/Zi50IExrcAY=
+
+Name: com/sun/j3d/utils/compression/GeometryCompressor.class
+SHA1-Digest: nMpQEMwWKbtPwboNoeplh56idmg=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/NullSceneG
+ raphObjectState.class
+SHA1-Digest: 42GGtukfV8YonokoheGMuam4pAo=
+
+Name: com/sun/j3d/utils/behaviors/picking/PickZoomBehavior.class
+SHA1-Digest: EQzJ4EJrJoQ9UNHez2IdQWLI078=
+
+Name: com/sun/j3d/utils/geometry/compression/CompressionStream$1.class
+SHA1-Digest: 6PuZST37ZEz5UeuS55Lr/S25SE8=
+
+Name: com/sun/j3d/utils/pickfast/PickTool.class
+SHA1-Digest: Bsqy5dFZfKsVO7BdUWLPkNH70eA=
+
+Name: com/sun/j3d/loaders/lw3d/LwsEnvelope.class
+SHA1-Digest: KBuFOcSnbTbnzqVU0R4j7yiAwDc=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/SceneGraph
+ ObjectState.class
+SHA1-Digest: qjU+hNb0jvZDUtE5WbPrzjqnrsA=
+
+Name: com/sun/j3d/utils/geometry/StripifierStats.class
+SHA1-Digest: koBdnKlARYMbavB05wk2myXg6so=
+
+Name: com/sun/j3d/utils/picking/behaviors/PickZoomBehavior.class
+SHA1-Digest: nOmNcwxYfvuKIMBVjhIe3tGjxL0=
+
+Name: com/sun/j3d/utils/scenegraph/io/retained/SymbolTableData.class
+SHA1-Digest: XfZQZa9BMwu8UP6xZqZ7UBvMqwk=
+
+Name: com/sun/j3d/utils/scenegraph/io/SceneGraphStreamWriter.class
+SHA1-Digest: nYzsey/MnP9q+2ZMWWXyZ2pL+SQ=
+
+Name: com/sun/j3d/utils/compression/HuffmanTable.class
+SHA1-Digest: 997HJPOj7aL6ib7agGISx/ilL24=
+
+Name: com/sun/j3d/utils/compression/CompressionStream$InterleavedGeome
+ tryFloat.class
+SHA1-Digest: lLzN3mS41bS2/IYWGYcfhPXMQ1g=
+
+Name: com/sun/j3d/utils/pickfast/behaviors/PickRotateBehavior.class
+SHA1-Digest: h58LpEF3BfVZyVYGGkgawni+n5U=
+
+Name: com/sun/j3d/utils/compression/CompressionStreamVertex.class
+SHA1-Digest: PPUYu6Jk+oSKwcKR6T+zRnPw/X8=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/RasterStat
+ e.class
+SHA1-Digest: mrIbgmFJ/W8uXOfavZlmplsHHM4=
+
+Name: com/sun/j3d/utils/geometry/compression/GeneralizedVertexList$Ver
+ tex.class
+SHA1-Digest: 5eBolFA7lvL9ujZ877KZA0XveEc=
+
+Name: com/sun/j3d/audioengines/javasound/JSDirectionalSample.class
+SHA1-Digest: v0/F3f7HiP6Zc7VCgoQbI0LM6Ls=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/MaterialSt
+ ate.class
+SHA1-Digest: V1P+JMKVWdgiHTCzoeF3jZ296Sg=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/TriangleSt
+ ripArrayState.class
+SHA1-Digest: G3HU1J2V6UTWxxqQd5xmelclOK8=
+
+Name: com/sun/j3d/utils/behaviors/vp/WandViewBehavior$RotationListener
+ 6D.class
+SHA1-Digest: etRfdAaA2sodCP9CElO1HXq3I0U=
+
+Name: com/sun/j3d/utils/behaviors/sensor/SensorEvent.class
+SHA1-Digest: VF2G28NECRtfR0ccyb3q5DBPWAE=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/ViewPlatfo
+ rmState.class
+SHA1-Digest: G+tmCc4DHfCDKDIRdCeCUMf4Jso=
+
+Name: com/sun/j3d/utils/geometry/compression/HuffmanNode$TagLengthComp
+ arator.class
+SHA1-Digest: UynRbYyLLr/A7SakIVZUTQEhLFA=
+
+Name: com/sun/j3d/utils/geometry/compression/CompressionStream$Indexed
+ ByCopyGeometry.class
+SHA1-Digest: w4fvAwCFMcQ6mRAcJWSKM07FH+o=
+
+Name: com/sun/j3d/exp/swing/JCanvas3D$InternalCanvas3D.class
+SHA1-Digest: ZaTJxHAHvBleUpLM2mJANvefPXk=
+
+Name: com/sun/j3d/utils/compression/CompressionStreamNormal.class
+SHA1-Digest: 4dnNXnXdT3G9l+ybdgph2M6glJA=
+
+Name: com/sun/j3d/utils/geometry/compression/CompressionStream$ByRefGe
+ ometry.class
+SHA1-Digest: PAoGkO8KeDiGiM5s7lJufIySwAs=
+
+Name: com/sun/j3d/utils/geometry/Triangle.class
+SHA1-Digest: ICc0DFPP8O26oqnAFKe+/ewjZxo=
+
+Name: com/sun/j3d/utils/universe/ConfigContainer$ReadOnlySet.class
+SHA1-Digest: bL0MCW41sLSgse/ulhlcsX7BUJk=
+
+Name: com/sun/j3d/loaders/lw3d/LWOBFileReader.class
+SHA1-Digest: lxHe+Xv9GiTlij+u2IrxUZPV6UM=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/MorphState
+ .class
+SHA1-Digest: LesHaagtleIQInlyHwPypLo7X1c=
+
+Name: com/COPYRIGHT.txt
+SHA1-Digest: 4GrIX3KQTDfCrl9fgToUiDnBkAs=
+
+Name: com/sun/j3d/utils/applet/JMainFrame$1.class
+SHA1-Digest: Oz4Mw/GaBQd+z6eF+D3l+AFRstM=
+
+Name: com/sun/j3d/utils/geometry/compression/CompressedGeometryData.cl
+ ass
+SHA1-Digest: pjR9TLvCHZlQqyVgW1L6JlNZFVA=
+
+Name: com/sun/j3d/utils/pickfast/behaviors/PickMouseBehavior.class
+SHA1-Digest: x2gVVmyuDgs5mjCf+uKFgu580iA=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/com/sun/j3d/utils/geometry
+ /BoxState.class
+SHA1-Digest: 28e6Wg0UNI2dXSfqRu3JRS2QRrE=
+
+Name: com/sun/j3d/utils/geometry/compression/CompressionStream$VertexI
+ ndices.class
+SHA1-Digest: Ij0VdqmAendyHLrS/rGvcA0C1pM=
+
+Name: com/sun/j3d/utils/universe/ConfigSexpression.class
+SHA1-Digest: umMr7+lTAJNlKMAHnLZHTaJnnEo=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/ScaleInter
+ polatorState.class
+SHA1-Digest: CgYCn9y3FHYc/KoRpD4EgLzVMhA=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/TextureAtt
+ ributesState.class
+SHA1-Digest: gyUaSzWm5pPb5oTVY8wzclzwDjQ=
+
+Name: com/sun/j3d/utils/audio/DistanceAttenuation.class
+SHA1-Digest: PTbufLiIXc23RBmsV8wsGLwYFSQ=
+
+Name: com/sun/j3d/utils/universe/ConfiguredUniverse.class
+SHA1-Digest: IK+WvILwpImGvRuoHoBiZxjqkKU=
+
+Name: com/sun/j3d/utils/scenegraph/io/retained/PositionOutputStream.cl
+ ass
+SHA1-Digest: y7bh4yfRpViV+uny3ySwJlixUtI=
+
+Name: com/sun/j3d/internal/FloatBufferWrapper.class
+SHA1-Digest: FNKC6I4Iq/giVbk2cjsPEfxqlG8=
+
+Name: com/sun/j3d/utils/geometry/Stripifier$Face.class
+SHA1-Digest: lUNIG4I1INC9LWRwmrK99m82hIU=
+
+Name: com/sun/j3d/loaders/lw3d/ShapeHolder.class
+SHA1-Digest: FEiiLh0EjWxdWDLfvtKqV4Np/Es=
+
+Name: com/sun/j3d/utils/compression/CompressionStream$InterleavedGeome
+ try.class
+SHA1-Digest: uDbqI+7T4uvtZZaWOP835wyr+wM=
+
+Name: com/sun/j3d/utils/compression/CompressionStream$PositionQuant.cl
+ ass
+SHA1-Digest: iL9dQ3one1Ss9/f7QvvH8gRT9XQ=
+
+Name: com/sun/j3d/utils/geometry/Basic.class
+SHA1-Digest: Bdlko+AUH5EHeeK3/c+Vh5/gRSY=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/IndexedPoi
+ ntArrayState.class
+SHA1-Digest: hhjff567/PFe49+NBqcQrtr6hN8=
+
+Name: com/sun/j3d/utils/behaviors/interpolators/KBKeyFrame.class
+SHA1-Digest: KSwIi9sT9IfgwnJvAwF2A1B3Ivo=
+
+Name: com/sun/j3d/internal/FastVector.class
+SHA1-Digest: LL8cP0vHRi6zgP9iaZScnX1u3io=
+
+Name: com/sun/j3d/utils/geometry/compression/CompressionStream$ByCopyG
+ eometry.class
+SHA1-Digest: d7qGdnXA7I9xLF0S5l2YQxvPZEw=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/NodeState.
+ class
+SHA1-Digest: 23ATNZqepsmuUj2ugEJdUMN06xo=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/SharedGrou
+ pState.class
+SHA1-Digest: ASM33HCU7p2ImNtsLzfDxI0RXGs=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/LODState.c
+ lass
+SHA1-Digest: rUHgkqj3sXoeiOqUqeWRjyRKu5M=
+
+Name: com/sun/j3d/loaders/Scene.class
+SHA1-Digest: QdafckVeq4TwdcIszTQQBHhzIgg=
+
+Name: com/sun/j3d/utils/geometry/compression/GeneralizedStrip$StripArr
+ ay.class
+SHA1-Digest: JzjHivJuXiYko7wYwYNP1UpSOKI=
+
+Name: com/sun/j3d/utils/behaviors/interpolators/TCBSplinePathInterpola
+ tor.class
+SHA1-Digest: zds3nn0XAFMX3VqMN3KSikWNHXs=
+
+Name: com/sun/j3d/utils/compression/CompressionStream$IndexedByRefGeom
+ etryNIO.class
+SHA1-Digest: dTByjXv8iU4EgbZpkN3OrR3gZYY=
+
+Name: com/sun/j3d/utils/pickfast/PickCanvas.class
+SHA1-Digest: hOMsEM+4mErSQz0l1OlyxctZuv4=
+
+Name: com/sun/j3d/utils/compression/HuffmanNode$FrequencyComparator.cl
+ ass
+SHA1-Digest: jqmNiPg8aXjhSEIwaTjBJpdSv5A=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/TransformG
+ roupState.class
+SHA1-Digest: kv4T0ipXSa3XSkYS5sqizOFhpTU=
+
+Name: com/sun/j3d/utils/universe/ConfigPhysicalEnvironment.class
+SHA1-Digest: RIXM1S+zQqtKLg8jigti9N+MYiQ=
+
+Name: com/sun/j3d/utils/behaviors/sensor/Mouse6DPointerBehavior.class
+SHA1-Digest: U1Akric7SEaEnK14PG6fQLDSZQQ=
+
+Name: com/sun/j3d/internal/HashCodeUtil.class
+SHA1-Digest: fXG5CdE6bJDusmQ2CiCwkDhhVvk=
+
+Name: com/sun/j3d/utils/compression/CompressionStreamColor.class
+SHA1-Digest: M4E8t2iiTcYrJVB2fWS6fd4wa58=
+
+Name: com/sun/j3d/utils/picking/behaviors/PickingCallback.class
+SHA1-Digest: wNB25s+KqU/YiyWRr8OJq+Y0v0A=
+
+Name: com/sun/j3d/audioengines/AudioEngineThread.class
+SHA1-Digest: GP7itV7+JJLCgmM5GzOYahAjBnI=
+
+Name: com/sun/j3d/utils/geometry/compression/CompressedGeometryData$He
+ ader.class
+SHA1-Digest: zOXvQi7nVzWUxTTEVNPAorm0d8Q=
+
+Name: com/sun/j3d/utils/compression/CompressionStream$ByRefGeometryNIO
+ .class
+SHA1-Digest: /GAPK8pYXQyBQgJkZ0TYpG+7+rQ=
+
+Name: com/sun/j3d/utils/behaviors/picking/Intersect.class
+SHA1-Digest: lN2k6p1eG72eXTUsYZ3EUVgJdlY=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/SwitchStat
+ e.class
+SHA1-Digest: JeTHgyde9bTee9MntC4qeeed7zY=
+
+Name: com/sun/j3d/loaders/lw3d/LwoSurface.class
+SHA1-Digest: qMrMOW7DTaO2oqaYEvqlqIHJaf0=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/GeometryAr
+ rayState.class
+SHA1-Digest: I9pJXTqIMsCrDcTvE4Uv3ljJBxA=
+
+Name: com/sun/j3d/loaders/objectfile/ObjectFile.class
+SHA1-Digest: iH92vM0xyF6Kl/aYtrqNtKwnyhs=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/RenderingA
+ ttributesState.class
+SHA1-Digest: rx+koEAbMx6hrpTeF8sKPZEjf7Y=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/BoundingLe
+ afState.class
+SHA1-Digest: aSQoTq/6oQLbOmV3LGinrZvTOJM=
+
+Name: com/sun/j3d/utils/pickfast/behaviors/PickZoomBehavior.class
+SHA1-Digest: djGTkIRApvxeOJZcsfAgRG0gpR4=
+
+Name: com/sun/j3d/utils/compression/CompressionStream$1.class
+SHA1-Digest: 0HTCvzDMybtZs4S6qq7f/eD3zFQ=
+
+Name: com/sun/j3d/utils/universe/ViewingPlatform.class
+SHA1-Digest: vmdSiLEVAJ2NbDGbT07ZQLkO9U0=
+
+Name: com/sun/j3d/utils/geometry/Left.class
+SHA1-Digest: HOcsbnJtchbWHx2KFhBQGsweU5w=
+
+Name: com/sun/j3d/utils/geometry/compression/GeometryDecompressor$Huff
+ manTableEntry.class
+SHA1-Digest: m5Df3SgDXNceGLGt4aS/3QXOTL4=
+
+Name: com/sun/j3d/utils/geometry/compression/CompressionStream$Geometr
+ yAccessor.class
+SHA1-Digest: vBcr1tdoBOLy5ZPnznrcLiX/vGE=
+
+Name: com/sun/j3d/loaders/objectfile/ObjectFileMaterials$ObjectFileMat
+ erial.class
+SHA1-Digest: CEfbN6cJQ5KmqRJYy+M1P87tysg=
+
+Name: com/sun/j3d/utils/behaviors/sensor/SensorGnomonEcho.class
+SHA1-Digest: zZakSBSpgR5ZZtvynesN1VQmhSw=
+
+Name: com/sun/j3d/utils/geometry/GeometryInfo$IndexRow.class
+SHA1-Digest: HP3W3iCI1uFf+wBgCA/p20eQmY8=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/IndexedLin
+ eArrayState.class
+SHA1-Digest: jKI5qlBsuRrZsbvkhHNZqIbbmOc=
+
+Name: com/sun/j3d/utils/geometry/Numerics.class
+SHA1-Digest: SuxVo/VT8uus2gXu9V7mtYQaa+s=
+
+Name: com/sun/j3d/utils/geometry/compression/HuffmanNode.class
+SHA1-Digest: v25+CSESGRReps+SkMHYNh1OrWw=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/AlphaState
+ .class
+SHA1-Digest: Vw45bUUTI6JbkQkLiYAZBRfuQB0=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/TriangleFa
+ nArrayState.class
+SHA1-Digest: HXahKDs0Bp8h/AyP1rHreQwovlw=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/IndexedTri
+ angleFanArrayState.class
+SHA1-Digest: rtT72ZhemyDvRgaJagT25SPY7Ec=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/Texture3DS
+ tate.class
+SHA1-Digest: XDfcI0APUtRYncfst/Icav3OZUA=
+
+Name: com/sun/j3d/exp/swing/JCanvas3D.class
+SHA1-Digest: 3iK1dmM7PJEdzSYdvbpCAoekJIQ=
+
+Name: com/sun/j3d/loaders/lw3d/LwLightObject.class
+SHA1-Digest: OhfVhP4HZAjDdM27Kvn9/jE5LPc=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/com/sun/j3d/utils/image/Im
+ ageComponent2DURLState.class
+SHA1-Digest: i3CzFNSZBU10qiiAqTynrWYCAqY=
+
+Name: com/sun/j3d/utils/geometry/GeometryInfoGenerator.class
+SHA1-Digest: hMLzBgUyhj++uqH/JpJawTIGOJY=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/DistanceLO
+ DState.class
+SHA1-Digest: 7gCWiH1+dHqGnX7P5iuGel4tp0Y=
+
+Name: com/sun/j3d/utils/pickfast/behaviors/PickingCallback.class
+SHA1-Digest: B46xTbktENHx3MN0gX7b4DDLfF4=
+
+Name: com/sun/j3d/utils/compression/CompressionStream$IndexedByCopyGeo
+ metry.class
+SHA1-Digest: wRtZr90zY+JrTWK4mP+QJxGXIao=
+
+Name: com/sun/j3d/utils/geometry/compression/GeneralizedVertexList.cla
+ ss
+SHA1-Digest: AJGgPGlkLUQNzhEDhx0/58sdfi0=
+
+Name: com/sun/j3d/utils/geometry/compression/GeneralizedStrip$IntList.
+ class
+SHA1-Digest: TdkIniNwIKaFgL2+k2QzO63AGT0=
+
+Name: com/sun/j3d/utils/scenegraph/io/retained/RandomAccessFileControl
+ .class
+SHA1-Digest: 18L6WFvihTILEybusfUgRVQaAbY=
+
+Name: com/sun/j3d/loaders/objectfile/RgbFile.class
+SHA1-Digest: QaakmiIG+tij8KoFbA1UTPNxUuE=
+
+Name: com/sun/j3d/utils/universe/ConfigDevice.class
+SHA1-Digest: qlmAzaV++6GSa7IOq3ofvnC4YP0=
+
+Name: com/sun/j3d/utils/scenegraph/io/retained/PositionInputStream.cla
+ ss
+SHA1-Digest: YK9J9kCp+39efwayHqPFdmB7ok4=
+
+Name: com/sun/j3d/utils/scenegraph/io/SceneGraphIO.class
+SHA1-Digest: hg5x1S2m7vHfDRF/UGb5CnywxLk=
+
+Name: com/sun/j3d/loaders/Loader.class
+SHA1-Digest: webkGEpXEpP6sMIWhKU8fOLTEuo=
+
+Name: com/sun/j3d/utils/geometry/Desperate.class
+SHA1-Digest: RfuHdsE51Flci1TzvKLdwq5mfpc=
+
+Name: com/sun/j3d/utils/geometry/compression/CompressionStream$Indexed
+ InterleavedGeometryNIO.class
+SHA1-Digest: IQJ9FEt6afi2nBErJqoZrrnT5tg=
+
+Name: com/sun/j3d/utils/geometry/Heap.class
+SHA1-Digest: IuqdZFdbybiKzNkv5mlyMSAeFPg=
+
+Name: com/sun/j3d/utils/compression/CompressionStream$IndexArrays.clas
+ s
+SHA1-Digest: Gql5Fa3/K1oUMb3+BxZ2XB4g6Rg=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/Transparen
+ cyInterpolatorState.class
+SHA1-Digest: YoHowyJ7pSFwia028idk7HeUc64=
+
+Name: com/sun/j3d/loaders/lw3d/SequenceReader.class
+SHA1-Digest: QlYD9WJMY47W7f8bhCR5KUHyUUE=
+
+Name: com/sun/j3d/utils/compression/CompressionStream$InterleavedGeome
+ tryNIO.class
+SHA1-Digest: AtsApn82t5bekuwWMVi4Es2sMbw=
+
+Name: com/sun/j3d/utils/universe/ConfigContainer$ReadOnlyIterator.clas
+ s
+SHA1-Digest: yeauG0muYJogFZumqsSJ90FEHpE=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/Soundscape
+ State.class
+SHA1-Digest: +6rGw3IlZiog5+ECaT/c3Ebyi7I=
+
+Name: com/sun/j3d/utils/universe/Viewer$1.class
+SHA1-Digest: Tn0E5ge8PcPMHvzSjDo2iv3kfFc=
+
+Name: com/sun/j3d/loaders/lw3d/LwsObject.class
+SHA1-Digest: cXmgndBtg+EkCd/XjxVE5TVZ4F8=
+
+Name: com/sun/j3d/utils/geometry/compression/CompressionStream$NormalQ
+ uant.class
+SHA1-Digest: aorhpJhv7ZYaaRfF/hwNECErwoE=
+
+Name: com/sun/j3d/utils/picking/PickTool.class
+SHA1-Digest: Rkk4UcAL39Vqz9qfebqEp5PxsFY=
+
+Name: com/sun/j3d/utils/geometry/compression/MeshBuffer.class
+SHA1-Digest: A9AxL4zjiCVzJJzYtFu708EceL0=
+
+Name: com/sun/j3d/utils/universe/SimpleUniverse$1.class
+SHA1-Digest: ShtQNBLKOKoDsy/L2EcN8OUUVV4=
+
+Name: com/sun/j3d/utils/picking/behaviors/PickMouseBehavior.class
+SHA1-Digest: chFI6+hT1ZDrWWihwUTczq4VOko=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/TexCoordGe
+ nerationState.class
+SHA1-Digest: JPPlXuSk8p73pOD8JIUhjkbVsik=
+
+Name: com/sun/j3d/utils/universe/ConfigObject.class
+SHA1-Digest: nS6cdxXJVBDB21HqbxEYtRF6hBQ=
+
+Name: com/sun/j3d/utils/geometry/Stripifier$Istream.class
+SHA1-Digest: 8TeLTI5Q8ELgi5DmOwM83bZ2/9M=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/ImageCompo
+ nent3DState.class
+SHA1-Digest: BWYjjhdA0asD/OnYDqZ88b9qEW8=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/TriangleAr
+ rayState.class
+SHA1-Digest: fubgVsztIx0nNArpoyJP6QHGbJ4=
+
+Name: com/sun/j3d/utils/geometry/compression/CompressionStreamColor.cl
+ ass
+SHA1-Digest: aYopcBpxMT3hb01Dmqw1YOe2Nhk=
+
+Name: com/sun/j3d/utils/compression/HuffmanNode.class
+SHA1-Digest: TMXxBjDc76lDqH/eDJKA/3nUI0I=
+
+Name: com/sun/j3d/utils/applet/MainFrame.class
+SHA1-Digest: A+ZSBYOVvEa99//eh1AgvfsOElU=
+
+Name: com/sun/j3d/utils/universe/SimpleUniverse.class
+SHA1-Digest: Mli3PRrv03Luo3ndB90U6681Gsk=
+
+Name: com/sun/j3d/utils/universe/ViewerAvatar.class
+SHA1-Digest: 7EW63Ru1qbpSLZB/esNUIIU+3CY=
+
+Name: com/sun/j3d/utils/shader/StringIO.class
+SHA1-Digest: K1OQpmzAsVbHeJNMkKnu/E/Aqx8=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/Appearance
+ State.class
+SHA1-Digest: nbygsfSAjYTTPcm3rtWQBA2ijVQ=
+
+Name: com/sun/j3d/loaders/objectfile/ObjectFileParser.class
+SHA1-Digest: j7KV0aE2mMPur6YhwECSSyOm9FA=
+
+Name: com/sun/j3d/utils/behaviors/vp/WandViewBehavior$ScaleListener2D.
+ class
+SHA1-Digest: WERSgE87wJKQOed77qQwtSHAbXY=
+
+Name: com/sun/j3d/utils/universe/ConfigCommand$2.class
+SHA1-Digest: JIA4hjspvgy7Fzf41V7u11pcKrY=
+
+Name: com/sun/j3d/audioengines/javasound/JSMidi.class
+SHA1-Digest: Vbsih3x4uOmMKzZ3Q0iE5OhBwug=
+
+Name: com/sun/j3d/utils/behaviors/interpolators/KBSplinePathInterpolat
+ or.class
+SHA1-Digest: m8ZHAcITcMy7YSNSMsOeFOfNwjs=
+
+Name: com/sun/j3d/utils/geometry/Project.class
+SHA1-Digest: m3EQdZH4qlzZG11E+4gk1uNICXE=
+
+Name: com/sun/j3d/utils/universe/ViewInfo$ScreenInfo.class
+SHA1-Digest: mrFLo9Rd3q6N3nsDbN8DS0KeEto=
+
+Name: com/sun/j3d/utils/scenegraph/io/retained/J3fOutputStream.class
+SHA1-Digest: izs9F/BI/cXp+ogjLKI0T9ABRSI=
+
+Name: com/sun/j3d/utils/universe/ConfigPhysicalBody.class
+SHA1-Digest: ttEDwRKIJV+CgKqkYaNN7+AyeUU=
+
+Name: com/sun/j3d/utils/geometry/Clean.class
+SHA1-Digest: K3QXWOYx4ZEpRWAvh1SUeM/LmhA=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/RotationIn
+ terpolatorState.class
+SHA1-Digest: Xzir7DncLnoV4RxZQUEp2vch5vY=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/ImageCompo
+ nentState.class
+SHA1-Digest: /aDZRhj+2UE3izguQm5gKBhCGv0=
+
+Name: com/sun/j3d/utils/universe/ViewInfo.class
+SHA1-Digest: M8m0uFBwzXVViwNNXp7no1Rkv6w=
+
+Name: com/sun/j3d/utils/universe/ConfigView.class
+SHA1-Digest: Wqju3HsWnGqHrmyDsrX5/wD3T3I=
+
+Name: com/sun/j3d/utils/behaviors/picking/PickMouseBehavior.class
+SHA1-Digest: Q4nTCGts2iSnShlKtv5U4iYG27Q=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/ColorInter
+ polatorState.class
+SHA1-Digest: NJ4GDHHsvrVslKXomTj0lvLD3+c=
+
+Name: com/sun/j3d/utils/geometry/compression/CompressionStream$Indexed
+ InterleavedGeometryFloat.class
+SHA1-Digest: b4QjVXjhe16ZJaQXQh17gXQElsk=
+
+Name: com/sun/j3d/utils/geometry/compression/CompressionStream$Interle
+ avedGeometryFloat.class
+SHA1-Digest: ILjJAY2jsOxJcPKoWrLe+/gavpc=
+
+Name: com/sun/j3d/utils/behaviors/picking/PickingCallback.class
+SHA1-Digest: FDXzNlwgqbKe+Z7ZDMPMc4dMgzE=
+
+Name: com/sun/j3d/utils/geometry/compression/GeometryDecompressor.clas
+ s
+SHA1-Digest: uqqZbq9prCUIcRLILXbbgQGrXqU=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/Compressed
+ GeometryState.class
+SHA1-Digest: HS6AWcUYIxQfrClhx/T5REXLW9E=
+
+Name: com/sun/j3d/loaders/objectfile/ObjectFileMaterials$1.class
+SHA1-Digest: C72zvxGKVfVGsqhQbqSR1mLYDuA=
+
+Name: com/sun/j3d/utils/geometry/compression/GeometryCompressor.class
+SHA1-Digest: myQbctHb2Z8yb3xHk4uUFHzjjYI=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/com/sun/j3d/utils/universe
+ /ViewerAvatarState.class
+SHA1-Digest: zEj2tOKi8UeG6y9ZVFmu7/b86KU=
+
+Name: com/sun/j3d/utils/compression/CompressionStream$IndexedInterleav
+ edGeometryFloat.class
+SHA1-Digest: +MxLmhMQDiX4QvLT8gt/pv+CHKs=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/com/sun/j3d/utils/image/Im
+ ageComponent2DURL.class
+SHA1-Digest: Smf1GbXwlgS5M6nik6P4cGFesSg=
+
+Name: com/sun/j3d/loaders/lw3d/LwsMotion.class
+SHA1-Digest: ZCBVhsZo2mhi75sEHQT9Lq5MF/U=
+
+Name: com/sun/j3d/loaders/lw3d/LightIntensityPathInterpolator.class
+SHA1-Digest: 0kn8paemImP9y13SXGs6wJiNvC4=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/LightState
+ .class
+SHA1-Digest: d1nAZOw7octEbzUDbDQdpdQUVGU=
+
+Name: com/sun/j3d/utils/geometry/NoHash.class
+SHA1-Digest: 1jBwlVCJnNYbKTD9V09CI9KZ5PE=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/QuadArrayS
+ tate.class
+SHA1-Digest: Lv+/6mi8oVttu1qaKMavp821weA=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/com/sun/j3d/utils/behavior
+ s/interpolators/KBRotPosScaleSplinePathInterpolatorState.class
+SHA1-Digest: 7aJq/15pPLbqeqxI9r98zGAqnyY=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/ConeSoundS
+ tate.class
+SHA1-Digest: +M6wnP12gcDTq9E2u2l7FKRDQu8=
+
+Name: com/sun/j3d/utils/image/TextureLoader$1.class
+SHA1-Digest: Ln0TV6fRUQDqPudw7hYLXtzBR6s=
+
+Name: com/sun/j3d/utils/geometry/compression/CompressionStreamVertex.c
+ lass
+SHA1-Digest: X7I9nfAH9EpTtXS7Dq7Sph6QTQo=
+
+Name: com/sun/j3d/utils/compression/CompressionStream$GeometryAccessor
+ .class
+SHA1-Digest: 5FHShmeNY1cTm7jaHSfZ0ShNxUo=
+
+Name: com/sun/j3d/utils/scenegraph/io/SceneGraphStreamReader.class
+SHA1-Digest: 3tZyTgR+x7OfCSwVD/hAMIDfMX8=
+
+Name: com/sun/j3d/loaders/objectfile/DefaultMaterials.class
+SHA1-Digest: xIqUzoO78jDPkcNz5+ZhS14imxo=
+
+Name: com/sun/j3d/loaders/IncorrectFormatException.class
+SHA1-Digest: fvf68hEXLHmmaDx1dQDKjQeiyT8=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/Background
+ State.class
+SHA1-Digest: hk4vWBnmjBjo/y3RBvayNCUXx14=
+
+Name: com/sun/j3d/internal/J3dUtilsI18N.class
+SHA1-Digest: qMb06QnY30KT08ABl8Kff00MSL4=
+
+Name: com/sun/j3d/utils/pickfast/PickIntersection.class
+SHA1-Digest: AnIedzJjDKN8AUK7XoMDrhzg0gE=
+
+Name: com/sun/j3d/utils/behaviors/keyboard/KeyNavigatorBehavior.class
+SHA1-Digest: ngCRWOr8dDnNQuMvA4bnDO+o/+o=
+
+Name: com/sun/j3d/utils/universe/ConfigViewPlatformBehavior.class
+SHA1-Digest: y9t8hDUtyJDnzyq3CFJzFNh3vlo=
+
+Name: com/sun/j3d/loaders/lw3d/LwsEnvelopeFrame.class
+SHA1-Digest: Q5ohPPNgZ1AkOKlNJc5+w5JgCGM=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/LineArrayS
+ tate.class
+SHA1-Digest: 2THZ/r5zEi2JUDgK9JkYepPV5AU=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/Text3DStat
+ e.class
+SHA1-Digest: wQvHeFkEaUTJc1lf8MML4th0yZY=
+
+Name: com/sun/j3d/utils/universe/ViewInfo$ViewPlatformInfo.class
+SHA1-Digest: MxJCGxCdlpaJ9OFg36DvprrsMqY=
+
+Name: com/sun/j3d/loaders/lw3d/Lw3dLoader.class
+SHA1-Digest: w8EjLKQCDDUs0akeUn99bR5mYug=
+
+Name: com/sun/j3d/utils/geometry/GeometryInfo.class
+SHA1-Digest: Fr2yiniEm1p1wVX1MWibsdhGJ2w=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/PointAttri
+ butesState.class
+SHA1-Digest: ssOg8nzwtj99kMbpZzNrY0AcqLc=
+
+Name: com/sun/j3d/utils/geometry/EarClip.class
+SHA1-Digest: QzIy9Ji9bP5Dm947j/TqY72p9VE=
+
+Name: com/sun/j3d/utils/universe/ConfigContainer$1.class
+SHA1-Digest: gFoLNBBGAA40V5qj5jEeNmXZzP8=
+
+Name: com/sun/j3d/utils/scenegraph/io/retained/Controller$J3dIOObjectI
+ nputStream.class
+SHA1-Digest: lAtpvUuYIQubcgYOSqFXQ+pdqNw=
+
+Name: com/sun/j3d/loaders/lw3d/LwsFrame.class
+SHA1-Digest: 6F256WuXEWki25LDDaqFAGSNSrg=
+
+Name: com/sun/j3d/utils/geometry/Text2D.class
+SHA1-Digest: A74hjkMYn10P06llvEWVY/Vk8M8=
+
+Name: com/sun/j3d/utils/behaviors/sensor/Mouse6DPointerBehavior$EchoRe
+ adListener.class
+SHA1-Digest: 02JD2SlXPbXz2BEOBPGpBQE+JKM=
+
+Name: com/sun/j3d/loaders/lw3d/TextfileParser.class
+SHA1-Digest: f4GuHBat27v9/pKkLOHZri0xlDk=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/BranchGrou
+ pState.class
+SHA1-Digest: c0ABpz3M49aoIHVnPQ1CMuZJV4Y=
+
+Name: com/sun/j3d/utils/picking/PickResult.class
+SHA1-Digest: FW8hLH1r18F3XbR3MO2CUDFHu1s=
+
+Name: com/sun/j3d/loaders/SceneBase.class
+SHA1-Digest: QHXvXNDT2FghaWtWHStsJcWZrLs=
+
+Name: com/sun/j3d/audioengines/AudioEngine3D.class
+SHA1-Digest: eu0mOnbfX4KWbHy9t77CFeMo9Rc=
+
+Name: com/sun/j3d/utils/picking/behaviors/PickRotateBehavior.class
+SHA1-Digest: EfC3kZmWXCSWUR6Xau48YAquBVg=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/Shape3DSta
+ te.class
+SHA1-Digest: gNcCkxX6xxUPHtxHMEyizANbDc8=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/IndexedLin
+ eStripArrayState.class
+SHA1-Digest: ZGCK1al7z5XfGHXlQRejXBsBSBY=
+
+Name: com/sun/j3d/utils/geometry/compression/CompressionStream$Indexed
+ ByRefGeometryNIO.class
+SHA1-Digest: bLmktwGDaZu+Prmxh9q4nLFgylk=
+
+Name: com/sun/j3d/loaders/lw3d/LwsPrimitive.class
+SHA1-Digest: hSNU48xhvfjW0LCpk29iGyc5Ny8=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/PolygonAtt
+ ributesState.class
+SHA1-Digest: wSoI0bKh2itG+43BIuAMSyP9b8E=
+
+Name: com/sun/j3d/utils/compression/CompressionStream$ColorQuant.class
+SHA1-Digest: pEgzjePGBcQfObgT+aZC20TxMrA=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/PositionPa
+ thInterpolatorState.class
+SHA1-Digest: Zl6EbghGRuttZaH7muR2cjC9f8I=
+
+Name: com/sun/j3d/utils/geometry/compression/CompressionStream$VertexC
+ opy.class
+SHA1-Digest: 1m944WwCJZKrMh1zkb3Ewka5dO4=
+
+Name: com/sun/j3d/utils/behaviors/interpolators/CubicSplineSegment.cla
+ ss
+SHA1-Digest: IzW7fgthvXVzBlODLLlHHgTB1hM=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/IndexedGeo
+ metryStripArrayState.class
+SHA1-Digest: B39brb8CnPDwpfNyM2A2DyNmXqQ=
+
+Name: com/sun/j3d/utils/behaviors/keyboard/KeyNavigator.class
+SHA1-Digest: t08YkFGh6JfiMM94+QRTU3G1qXM=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/BillboardS
+ tate.class
+SHA1-Digest: GJs8nfe7LoRMBxNii8ISV1vvitg=
+
+Name: com/sun/j3d/utils/universe/ConfigSensor.class
+SHA1-Digest: 20DeYmbNuZ8PaVQmGth5j26sNZI=
+
+Name: com/sun/j3d/utils/geometry/compression/CompressionStream$Interle
+ avedGeometry.class
+SHA1-Digest: CM2/+88NXm8ofasSylJ4UdxXbaQ=
+
+Name: com/sun/j3d/utils/geometry/EdgeTable.class
+SHA1-Digest: hU1oqU9abrZ8lYN1zYwkgfryMik=
+
+Name: com/sun/j3d/utils/geometry/Cone.class
+SHA1-Digest: 8MeOAp/wZNfR9ANzU9NoznKcsbQ=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/com/sun/j3d/utils/geometry
+ /SphereState.class
+SHA1-Digest: t4hoNOzPE/r1/jXu1Gp+g4mz6ms=
+
+Name: com/sun/j3d/utils/picking/behaviors/PickTranslateBehavior.class
+SHA1-Digest: AzNRI4beIpbobC8dYp3I9NF88FE=
+
+Name: com/sun/j3d/utils/compression/CommandStream.class
+SHA1-Digest: JyABpHedhZxfXgWTV8NgBlLLAC4=
+
+Name: com/sun/j3d/utils/geometry/compression/CompressionStream$ByRefGe
+ ometryNIO.class
+SHA1-Digest: uTEkFDhbnlUpVXceDLGEexIffQQ=
+
+Name: com/sun/j3d/loaders/lw3d/DebugOutput.class
+SHA1-Digest: RQD4al4zJN9Crik1ggNviPQGhi4=
+
+Name: com/sun/j3d/utils/geometry/ColorCube.class
+SHA1-Digest: HdMSl9ru4eKuSsplTbxHng0R1zg=
+
+Name: com/sun/j3d/utils/compression/CompressionStream$MeshReference.cl
+ ass
+SHA1-Digest: syctMbgI2VCPOUKwK9nYeQWxs6U=
+
+Name: com/sun/j3d/exp/swing/JCanvas3D$ResizeSwingRunnable.class
+SHA1-Digest: y4kJmbN4ELn75wZEHR9TDzN+oLM=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/OrderedGro
+ upState.class
+SHA1-Digest: keHBxp4CLICGfsxNE/HTFaHHw+0=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/LineStripA
+ rrayState.class
+SHA1-Digest: S6vWuZIZic/X1N03nfwG88mLR7Y=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/SoundState
+ .class
+SHA1-Digest: sFFe9jNh2WfNHIECCmSJC9RUNns=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/PathInterp
+ olatorState.class
+SHA1-Digest: O93H2b+yxoiFQPQ4+oljX07mhzA=
+
+Name: com/sun/j3d/utils/geometry/ListNode.class
+SHA1-Digest: 0TS77jJNMQXn9FJnVMqSNkNj5YI=
+
+Name: com/sun/j3d/utils/geometry/compression/CompressionStream$IndexAr
+ rays.class
+SHA1-Digest: ERnk0TrTDs/HOzQlkYqfCpCBPng=
+
+Name: com/sun/j3d/utils/scenegraph/io/retained/J3fInputStream.class
+SHA1-Digest: POkEnexldbv/5QGkJ1THSLmcwZg=
+
+Name: com/sun/j3d/internal/DoubleBufferWrapper.class
+SHA1-Digest: FJNv2JJ7G4xSqrst7KQVoR6SWa4=
+
+Name: com/sun/j3d/utils/geometry/Box.class
+SHA1-Digest: rPzPUFasG27C5KMVK6VjbxvBiS8=
+
+Name: com/sun/j3d/utils/geometry/Cylinder.class
+SHA1-Digest: hbtb0Mv5z17K3Ljr/bsmMZwKP4Q=
+
+Name: com/sun/j3d/utils/behaviors/picking/PickObject.class
+SHA1-Digest: zugoQd2lu12+7lYuPgHmUSxHHJA=
+
+Name: com/sun/j3d/utils/geometry/BottleNeck.class
+SHA1-Digest: +isY+vYlL0Tquno1MaS0H4bOFq4=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/com/sun/j3d/utils/behavior
+ s/mouse/MouseBehaviorState.class
+SHA1-Digest: uBHMu+wNjRS7XgIRCuUq+4mkfyk=
+
+Name: com/sun/j3d/utils/image/ImageException.class
+SHA1-Digest: ZTpPhA1aKNr2f63fzbb0KSmZfWY=
+
+Name: com/sun/j3d/utils/compression/HuffmanNode$TagLengthComparator.cl
+ ass
+SHA1-Digest: mI01qUg66DJ1oWIcsPpmkGm8q8g=
+
+Name: com/THIRDPARTY-LICENSE-DISTANCE.txt
+SHA1-Digest: jfWUCkgwpg9KROsRGafQvMxFpTU=
+
+Name: com/sun/j3d/utils/geometry/BBox.class
+SHA1-Digest: QVm4w+TT31UiCEZvugkf0cLEHgg=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/ModelClipS
+ tate.class
+SHA1-Digest: hgyblIMgs/Q1+lO+foZAVgvjMX4=
+
+Name: com/sun/j3d/utils/behaviors/interpolators/CubicSplineCurve.class
+SHA1-Digest: mixDji7UaLOyolIM6lJZYq5HKeY=
+
+Name: com/sun/j3d/utils/compression/CompressionStreamElement.class
+SHA1-Digest: j6xcDwNOkcbuTyhCRzfz9XaufmI=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/GeometrySt
+ ripArrayState.class
+SHA1-Digest: DChmgtG9ZqEwQQmOapLYsKFXVQo=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/LinkState.
+ class
+SHA1-Digest: dwb2w4+wNn6aaWvZqt4NiVOtGSY=
+
+Name: com/sun/j3d/loaders/lw3d/EnvelopeHandler.class
+SHA1-Digest: 4i7km7fi9ZjfqFO9Yf5FQ0QQ0GY=
+
+Name: com/sun/j3d/audioengines/javasound/JSThread.class
+SHA1-Digest: sGTFOAyT6XxWw3X64dHP1UvHlyA=
+
+Name: com/sun/j3d/utils/universe/PlatformGeometry.class
+SHA1-Digest: VRt0FnJnzfnqk8kyeNEFWeUchEY=
+
+Name: com/sun/j3d/utils/behaviors/vp/WandViewBehavior$RotationListener
+ 2D.class
+SHA1-Digest: qW1GRhgiOdpEcI4oAKkVPpfSfKQ=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/com/sun/j3d/utils/geometry
+ /PrimitiveState.class
+SHA1-Digest: MXqpS9A2lqUBk9+VdJSQkgdeV/g=
+
+Name: com/sun/j3d/utils/behaviors/sensor/SensorReadListener.class
+SHA1-Digest: oz641/BauE+UMYTLVEie1xp72ZA=
+
+Name: com/sun/j3d/utils/geometry/Triangulator.class
+SHA1-Digest: ZCPwTo9JgnpIkDQVM8fF7Ul+om8=
+
+Name: com/sun/j3d/loaders/lw3d/TargaReader.class
+SHA1-Digest: BCngbbCfHknjta5s01QIngT9izo=
+
+Name: com/sun/j3d/loaders/lw3d/LwsMotion$FrameHolder.class
+SHA1-Digest: OEFQWWvEhWnFnZ54smFnVZePKTU=
+
+Name: com/sun/j3d/utils/picking/PickIntersection.class
+SHA1-Digest: rpmTbGS87FlrieIP+rUtwq2MtVA=
+
+Name: com/sun/j3d/utils/scenegraph/io/NamedObjectException.class
+SHA1-Digest: iUwM/g+8lWjSBX5LkHoDxjjKADc=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/OrientedSh
+ ape3DState.class
+SHA1-Digest: i4Ilp5xoIRhiYjJ7Brxwm4ptcns=
+
+Name: com/sun/j3d/loaders/lw3d/LwsFog.class
+SHA1-Digest: O5h+BiKSkG+h+RH+KppG/sCzRtk=
+
+Name: com/sun/j3d/utils/geometry/HeapNode.class
+SHA1-Digest: xGEUaSMYocQD9qyjg9Kf1kyYJh8=
+
+Name: com/sun/j3d/utils/behaviors/picking/PickTranslateBehavior.class
+SHA1-Digest: y7toPsAqsGrZmv0zJmdF0skDMUE=
+
+Name: com/sun/j3d/loaders/lw3d/LwsEnvelopeLightIntensity.class
+SHA1-Digest: bQ/QWThXiS2E+Pq5P/7nR+1/M8Y=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/RotPosScal
+ ePathInterpolatorState.class
+SHA1-Digest: 06cIn57yse0/YQPEu6bvh6upgbU=
+
+Name: com/sun/j3d/utils/behaviors/mouse/MouseWheelZoom.class
+SHA1-Digest: 2Ur7DLhrzpWRqmi0hMv+TGa1icE=
+
+Name: com/sun/j3d/loaders/lw3d/LwsCamera.class
+SHA1-Digest: uvkMqWuDyzWBwBXckW/y59lYddc=
+
+Name: com/sun/j3d/utils/geometry/compression/CompressionStreamNormal.c
+ lass
+SHA1-Digest: 5CNVZ+M3+1fes48Mh6KyeyV67ng=
+
+Name: com/sun/j3d/audioengines/Sample.class
+SHA1-Digest: 0DojRMhs+7R9b77mgRU4aqh5KjE=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/PointLight
+ State.class
+SHA1-Digest: L2gfAv8WQWsB+6wvcZejW14CnNM=
+
+Name: com/sun/j3d/utils/scenegraph/transparency/TransparencySortContro
+ ller.class
+SHA1-Digest: WenI4PVAWId1oSfxxVSpp8nOoBI=
+
+Name: com/sun/j3d/utils/universe/ConfigCommand$1.class
+SHA1-Digest: wGhJlKIJuVYLNlyIi8RZqnZpnE4=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/FogState.c
+ lass
+SHA1-Digest: X/lMVIN5khAbTwW8iCVBmM/UijU=
+
+Name: com/sun/j3d/utils/geometry/compression/CompressionStream$Interle
+ avedGeometryNIO.class
+SHA1-Digest: TaArpT/GvaWDTBivnzrVDRb/KT0=
+
+Name: com/sun/j3d/audioengines/javasound/JavaSoundMixer.class
+SHA1-Digest: FYEcSKXSeNnq6O+wYUbTxl/kyxw=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/Directiona
+ lLightState.class
+SHA1-Digest: 51xGhKEGbw5ET1k90rKq2P3705g=
+
+Name: com/sun/j3d/loaders/ParsingErrorException.class
+SHA1-Digest: RP+EWy+jxHeYeGKfI395TPnhOnA=
+
+Name: com/sun/j3d/utils/geometry/Stripifier.class
+SHA1-Digest: NYurv8O5UKC4ibVjho9uhpt+sS4=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/LeafState.
+ class
+SHA1-Digest: XdvHAKHjLCWZWCf4vO1DSv9oG2A=
+
+Name: com/sun/j3d/utils/geometry/compression/GeometryDecompressor$Mesh
+ BufferEntry.class
+SHA1-Digest: snvGPIBQEFfVC70R0DcjsKsy+jw=
+
+Name: com/sun/j3d/utils/compression/CompressionStream$VertexCopy.class
+SHA1-Digest: v9oD4g8VXiTxVYay2zJJ/GF9XoQ=
+
+Name: com/sun/j3d/utils/geometry/Sphere.class
+SHA1-Digest: 7g7Q0N0/vQZ8d9GUiDJ9zDKTVKU=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/com/sun/j3d/utils/image/Im
+ ageComponent2DURLState$DefaultListener.class
+SHA1-Digest: ayttbp0SnI0CCUn5oPkwpVaydkU=
+
+Name: com/THIRDPARTY-LICENSE-MAINFRAME.txt
+SHA1-Digest: IMSkSPdk3ZYbSEi+XmKa8nTMbgU=
+
+Name: com/sun/j3d/utils/geometry/compression/CompressedGeometryFile.cl
+ ass
+SHA1-Digest: XBTssDFEAFw1COhPMUPl1IoC2zw=
+
+Name: com/sun/j3d/utils/geometry/compression/CompressionStream$ColorQu
+ ant.class
+SHA1-Digest: hUT7BzF+zkdHnOoq+CaNCHkEJXY=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/com/sun/j3d/utils/universe
+ /PlatformGeometryState.class
+SHA1-Digest: fUmO448rJCHry2aL+67AlbO29lc=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/Background
+ SoundState.class
+SHA1-Digest: uejRSYHIfr7E1Nfb5yGKy8Hqv4c=
+
+Name: com/sun/j3d/utils/geometry/compression/GeneralizedStrip.class
+SHA1-Digest: QB8ZxyjpkoQU4IdfYqWaxtg2a0Q=
+
+Name: com/sun/j3d/utils/universe/ConfigContainer$ReadOnlyMap.class
+SHA1-Digest: sGOJ9W2abwdgxDQl5RBugqChHoo=
+
+Name: com/sun/j3d/utils/geometry/Stripifier$Edge.class
+SHA1-Digest: EWBvbXGeL12iMaSkyGPHbcBUwQc=
+
+Name: com/sun/j3d/utils/geometry/compression/HuffmanNode$FrequencyComp
+ arator.class
+SHA1-Digest: Z80OWSV6kqvmqppRaPK+qxwBTF0=
+
+Name: com/sun/j3d/ExceptionStrings.properties
+SHA1-Digest: /KxBrLtwKTXrsVLb5wOZv/0dSBo=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/com/sun/j3d/utils/behavior
+ s/interpolators/RotPosScaleTCBSplinePathInterpolatorState.class
+SHA1-Digest: bCI725KebyUreWEZhHVduswhfDw=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/com/sun/j3d/utils/geometry
+ /ColorCubeState.class
+SHA1-Digest: pbNEv+qGn2wCBfm9+elon4UyK8Y=
+
+Name: com/sun/j3d/utils/universe/Viewer$2.class
+SHA1-Digest: Cxx1pWVZ3A/goV/vjTulycIRBZE=
+
+Name: com/sun/j3d/utils/scenegraph/io/ObjectNotLoadedException.class
+SHA1-Digest: 7OYy5RTkfgu7kCq6zxr3Uf7uF2g=
+
+Name: com/sun/j3d/utils/image/TextureLoader.class
+SHA1-Digest: oQ+f4L17wBAWRj1az5T9tnY9f54=
+
+Name: com/sun/j3d/utils/universe/ViewInfo$1.class
+SHA1-Digest: x5uMBPKsBGl3F51jE/aSLHn4Y9E=
+
+Name: com/sun/j3d/audioengines/javasound/JSAuralParameters.class
+SHA1-Digest: V+tWLt/EngBjNTtahFvK8YXEm3E=
+
+Name: com/sun/j3d/utils/behaviors/mouse/MouseBehavior.class
+SHA1-Digest: uHXhQqnc123k/xjBuIEQJlldLuM=
+
+Name: com/sun/j3d/utils/behaviors/vp/WandViewBehavior$GrabViewListener
+ 6D.class
+SHA1-Digest: GERVA9ILVUl80tLMgO00s+yM9SU=
+
+Name: com/sun/j3d/utils/compression/CompressionStream$NormalQuant.clas
+ s
+SHA1-Digest: LFTJYJsY+Wog13JDkHzGZv0+LYM=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/Texture2DS
+ tate.class
+SHA1-Digest: xfbgqEFjJFddM1doXTVB3BfIjbQ=
+
+Name: com/sun/j3d/utils/behaviors/sensor/SensorEventAgent$SensorBindin
+ g.class
+SHA1-Digest: Xvf0crnSxOcW03CXpC28SwMn5PM=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/Font3DStat
+ e.class
+SHA1-Digest: jQ5AqGgngORANxuzzE0R5a+SXjM=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/com/sun/j3d/utils/geometry
+ /Text2DState.class
+SHA1-Digest: 4gKG9CGw13iaRbFHrArT0j0fpOo=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/com/sun/j3d/utils/universe
+ /SimpleUniverseState.class
+SHA1-Digest: 1vOtIqjryFGW9OswPX3aOEg4Ugo=
+
+Name: com/sun/j3d/utils/geometry/Distance.class
+SHA1-Digest: a6ScnV7LOmgv9lrCSMWjNZANX54=
+
+Name: com/sun/j3d/audioengines/javasound/JSPositionalSample.class
+SHA1-Digest: kQhqHl8m+614iXf8E34dmSMVb/U=
+
+Name: com/sun/j3d/utils/behaviors/mouse/MouseBehaviorCallback.class
+SHA1-Digest: 4wg/H08JLBVTOEANODNv0k+d2FU=
+
+Name: com/sun/j3d/utils/compression/MeshBuffer.class
+SHA1-Digest: tjkvqvK8mWA341Iv/c9I5x9S1C4=
+
+Name: com/sun/j3d/internal/ByteOrderWrapper.class
+SHA1-Digest: eo3/WeY2Yb1zJmKYo6lgV9/hx0Y=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/DepthCompo
+ nentIntState.class
+SHA1-Digest: 30Aog+gdAL4bSWRyi16dPLK6JXo=
+
+Name: com/sun/j3d/utils/universe/ConfigContainer$ConfigAlias.class
+SHA1-Digest: zSosAR/mFoPAy7dyac0k+fYBOuk=
+
+Name: com/sun/j3d/utils/behaviors/interpolators/KBCubicSplineSegment.c
+ lass
+SHA1-Digest: DIuIvfLV1B9DZvwJoECKFOpSkNM=
+
+Name: com/sun/j3d/utils/scenegraph/io/UnsupportedUniverseException.cla
+ ss
+SHA1-Digest: Ant86gQ8KRc82ydBZwnskd79aZ4=
+
+Name: com/sun/j3d/utils/applet/MainFrame$1.class
+SHA1-Digest: SHJWTAW3UF5m33B9hEXjhvj/mjg=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/DepthCompo
+ nentNativeState.class
+SHA1-Digest: 76Z0z6oxXCqXzkefODcU/rdvcLU=
+
+Name: com/sun/j3d/internal/Distance.class
+SHA1-Digest: GJ6a5s76KKlCZAK9TkZpJkS0ChM=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/TransformI
+ nterpolatorState.class
+SHA1-Digest: nGGIQF3TxsVKSdHa6945Nhl+HYo=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/AmbientLig
+ htState.class
+SHA1-Digest: f2l/ucUv3SsJh20hrC2vA90P3C8=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/LinearFogS
+ tate.class
+SHA1-Digest: w8H+UG5MhReUsfjstxai1/mYoMw=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/GeometrySt
+ ate.class
+SHA1-Digest: zwEgjWRSR6pPwF75/3/8djYCt8k=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/NodeCompon
+ entState.class
+SHA1-Digest: jYVP9FZTQPEBjZOHL/Iuqin33x0=
+
+Name: com/sun/j3d/utils/geometry/Edge.class
+SHA1-Digest: bnFHlhzmotz2/sOgzZX6Q/TtopU=
+
+Name: com/sun/j3d/loaders/lw3d/LwsBackground.class
+SHA1-Digest: i7m9aix1pEQ2NB8k3d9u0MqQCuM=
+
+Name: com/sun/j3d/audioengines/javasound/JSStream.class
+SHA1-Digest: moAxzTnqTAos6GQjDtku0kMLXhU=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/ImageCompo
+ nent2DState.class
+SHA1-Digest: i7XnY+CTt+6kOdmxexHKGX05Gpw=
+
+Name: com/sun/j3d/audioengines/javasound/JSChannel.class
+SHA1-Digest: RfvhOxhmg13dEoW6BJQyZIwX6yQ=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/AuralAttri
+ butesState.class
+SHA1-Digest: MxaJPp+kR8Gm8hX0rJ6X4ehxxRw=
+
+Name: com/sun/j3d/utils/scenegraph/io/SceneGraphFileWriter.class
+SHA1-Digest: YBpuxpC++O9MO9FnCf3a/Qxcwnw=
+
+Name: com/sun/j3d/utils/compression/CompressionStream$ByRefGeometry.cl
+ ass
+SHA1-Digest: cnkKbot4YYSWLxL9II4fGsmxZ0I=
+
+Name: com/sun/j3d/utils/compression/CompressionStream$IndexedInterleav
+ edGeometryNIO.class
+SHA1-Digest: Vdj+cHVBN5oLIcrSNkReqaaE5G0=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/PositionIn
+ terpolatorState.class
+SHA1-Digest: wVDLFFwcdT7SCfN11/vTNIWzOow=
+
+Name: com/sun/j3d/loaders/lw3d/LwoTexture.class
+SHA1-Digest: YA3qVo5xvxySL3joMyFzHQA94E0=
+
+Name: com/sun/j3d/utils/compression/CompressionStream$IndexedByRefGeom
+ etry.class
+SHA1-Digest: zQmnObWeLGsohUsCCGCROM2GKWM=
+
+Name: com/sun/j3d/utils/geometry/compression/GeometryDecompressorShape
+ 3D.class
+SHA1-Digest: u0uQ8sUlC8TZrAmAcOsfdYJJvqA=
+
+Name: com/sun/j3d/loaders/lw3d/J3dLwoParser.class
+SHA1-Digest: 0NntzXFkv7HgpLqbBjSMs0xMkco=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/TextureSta
+ te.class
+SHA1-Digest: h3VHAUlgu6ehBthAIsL6l14wxfw=
+
+Name: com/sun/j3d/audioengines/javasound/JSSample.class
+SHA1-Digest: qywT+VPhAzb+W0t+AqzWih0e2o0=
+
+Name: com/sun/j3d/utils/scenegraph/io/SceneGraphObjectReferenceControl
+ .class
+SHA1-Digest: 4RT/0AQIPmrvvrncOhyk2jFHTng=
+
+Name: com/sun/j3d/utils/behaviors/mouse/MouseZoom.class
+SHA1-Digest: GgqplPmMa4Z95/7DrvV8glsnOwk=
+
+Name: com/LICENSE.txt
+SHA1-Digest: Zt+8qPNBVccWPuwHN29Zx2LlkYA=
+
+Name: com/sun/j3d/utils/behaviors/vp/WandViewBehavior.class
+SHA1-Digest: Q5BAagHYKCeqPMwWyLYNX6UKnp4=
+
+Name: com/sun/j3d/utils/geometry/compression/CompressionStream$MeshRef
+ erence.class
+SHA1-Digest: g1j5XUj2tG5zx8kwS5Q5nXX2uO4=
+
+Name: com/sun/j3d/utils/compression/CompressionStream.class
+SHA1-Digest: M3o9i2VvxSaniidEiQw/hb++V+8=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/BehaviorSt
+ ate.class
+SHA1-Digest: oTndIuVf1QP6VSUgVNBXK5Oc99E=
+
+Name: com/sun/j3d/utils/universe/ConfigScreen.class
+SHA1-Digest: EyOAPU1CV6fmyvQ4KQUYdwWdpC0=
+
+Name: com/sun/j3d/utils/behaviors/vp/WandViewBehavior$ScaleListener6D.
+ class
+SHA1-Digest: wpDweTjSipwBofpFrthbj8AwqY0=
+
+Name: com/sun/j3d/utils/behaviors/vp/WandViewBehavior$ResetViewListene
+ r.class
+SHA1-Digest: cqJZhvL/lZnVqtKiie8P3TbW3JY=
+
+Name: com/sun/j3d/utils/geometry/Stripifier$SortedList.class
+SHA1-Digest: +IBKSfaIA4plBniF60YzsBOxtiU=
+
+Name: com/sun/j3d/utils/behaviors/sensor/SensorInputAdaptor.class
+SHA1-Digest: aup1HWBJa5Bx+BnLAzLHHUx29ms=
+
+Name: com/sun/j3d/utils/scenegraph/io/retained/Controller.class
+SHA1-Digest: smf3QARzCoz7QlirqZ4td9iyq3k=
+
+Name: com/sun/j3d/utils/geometry/compression/CommandStream.class
+SHA1-Digest: yxcKlxQGgP/XhLKqGGioDvRIEmk=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/LineAttrib
+ utesState.class
+SHA1-Digest: T3U7bd4gC3YBshMsMJKNvP5qSeM=
+
+Name: com/sun/j3d/utils/scenegraph/io/SceneGraphStateProvider.class
+SHA1-Digest: h2uGDEBM/yLNm5QIQ8JU8yjULbI=
+
+Name: com/sun/j3d/utils/universe/LocaleFactory.class
+SHA1-Digest: zKbF7i6lhFWSTWstmOdRzz13f4M=
+
+Name: com/sun/j3d/loaders/lw3d/LwoParser.class
+SHA1-Digest: q9K//54532yRBWPzCzM8sSxl4Q8=
+
+Name: com/sun/j3d/utils/universe/Viewer.class
+SHA1-Digest: VX28tOfFr90CN5qYnzbdx8b0puc=
+
+Name: com/sun/j3d/utils/compression/CompressionStream$ByCopyGeometry.c
+ lass
+SHA1-Digest: vtzPASBoM6OIeeQHyBgdaG324ek=
+
+Name: com/sun/j3d/utils/scenegraph/io/retained/SymbolTable.class
+SHA1-Digest: +xnXroQYbmH2EFyNQPtKKMGCJNo=
+
+Name: com/sun/j3d/utils/behaviors/interpolators/KBCubicSplineCurve.cla
+ ss
+SHA1-Digest: zK9ehORcxqHJxxjnEgHNDXZrZOg=
+
+Name: com/sun/j3d/audioengines/javasound/JSClip.class
+SHA1-Digest: YXYyHhngIPQ5hc1INVnbcybyoKI=
+
+Name: com/sun/j3d/utils/scenegraph/transparency/TransparencySortGeom.c
+ lass
+SHA1-Digest: W0PeR5zHX7ZTr1/EoOEDj5mr2Mw=
+
+Name: com/sun/j3d/utils/behaviors/vp/ViewPlatformAWTBehavior.class
+SHA1-Digest: EeTAR1nZFZcoMeUKQvs9xu65R2g=
+
+Name: com/sun/j3d/utils/scenegraph/transparency/SimpleDistanceComparat
+ or.class
+SHA1-Digest: EcJaf59VRqdMLooWRpOvPjbqEZ0=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/Exponentia
+ lFogState.class
+SHA1-Digest: Ubrxms6HRh+x6HVARFqUaDq9Ogo=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/PointSound
+ State.class
+SHA1-Digest: gqFMj8bjCDRwUBjgco4nk9BHYLg=
+
+Name: com/sun/j3d/internal/ByteBufferWrapper.class
+SHA1-Digest: EtWaVBIETc6CskcgkUS9rYGDu5c=
+
+Name: com/sun/j3d/utils/behaviors/vp/OrbitBehavior.class
+SHA1-Digest: 4pnH96ahq9vf9xvfo8L6qMnaxpc=
+
+Name: com/sun/j3d/audioengines/AudioEngine3DL2.class
+SHA1-Digest: UxPATNPsEV281VosYfzTvUJfR0o=
+
+Name: com/sun/j3d/loaders/lw3d/SequenceLine.class
+SHA1-Digest: 0hoiF8wRrCZ3ecJCMB7vQeIXR4c=
+
+Name: com/sun/j3d/utils/universe/MultiTransformGroup.class
+SHA1-Digest: uY+RuOCNzf0kj+CuSyGWk+byseg=
+
+Name: com/sun/j3d/utils/image/TextureLoader$2.class
+SHA1-Digest: ajMFwHF3EP5DmwnM54dfbHJTtRQ=
+
+Name: com/sun/j3d/utils/scenegraph/io/retained/StreamControl.class
+SHA1-Digest: V7TXdvtu6sYcsyR5Wu7xhc9RNa4=
+
+Name: com/THIRDPARTY-LICENSE-FIST.txt
+SHA1-Digest: f28OgWm/lXWOklaY7JqJBc+K/bU=
+
+Name: com/sun/j3d/utils/geometry/compression/CompressionStream$Indexed
+ ByRefGeometry.class
+SHA1-Digest: 15GgBScmiBTbcSLnhtS0U96Jn7k=
+
+Name: com/sun/j3d/utils/pickfast/behaviors/PickTranslateBehavior.class
+SHA1-Digest: GksLrMWDQkljc5sU05LTiOk3leM=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/DepthCompo
+ nentFloatState.class
+SHA1-Digest: Vhr8O8s6+gxEBzATj6JlZ4Ut6zs=
+
+Name: com/sun/j3d/utils/behaviors/sensor/SensorEventAgent$SensorButton
+ Binding.class
+SHA1-Digest: Jeze7jaGEyH5qMB+pHIyzr+dEaM=
+
+Name: com/sun/j3d/utils/picking/PickCanvas.class
+SHA1-Digest: RekrKAGxIt0cRZrdk3T05DHTH1s=
+
+Name: com/sun/j3d/utils/geometry/NormalGenerator.class
+SHA1-Digest: lOn9DWi/LMz8d4idaHl4E54GTGE=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/MediaConta
+ inerState.class
+SHA1-Digest: EfIJsG/ddAjYZotowTqJjw2Nia0=
+
+Name: com/sun/j3d/utils/scenegraph/io/state/javax/media/j3d/IndexedTri
+ angleStripArrayState.class
+SHA1-Digest: 6ZzhzjljatmXz+J5EHEziw84ZJU=
+
