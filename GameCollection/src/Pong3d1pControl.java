@@ -1,15 +1,11 @@
 import com.sun.j3d.utils.geometry.*;
 import com.sun.j3d.utils.universe.*;
-
 import javax.media.j3d.*;
 import javax.vecmath.*;
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.Component;
-
 import javax.swing.*;
-
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
@@ -20,7 +16,6 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GraphicsConfiguration;
-
 import javax.media.j3d.Alpha;
 import javax.media.j3d.AmbientLight;
 import javax.media.j3d.Appearance;
@@ -46,24 +41,18 @@ import javax.vecmath.Point3d;
 import javax.vecmath.Point3f;
 import javax.vecmath.Vector3d;
 import javax.vecmath.Vector3f;
-
 import com.sun.j3d.utils.behaviors.vp.OrbitBehavior;
 import com.sun.j3d.utils.geometry.ColorCube;
 import com.sun.j3d.utils.universe.SimpleUniverse;
 import com.sun.j3d.utils.universe.ViewingPlatform;
-
 import java.applet.Applet;
 import java.awt.*;
 import java.awt.event.*;
-
 import com.sun.j3d.utils.applet.MainFrame;
 import com.sun.j3d.utils.universe.*;
-
 import javax.media.j3d.*;
 import javax.vecmath.*;
-
 import com.sun.j3d.utils.geometry.Sphere;
-
 import javax.swing.Timer;
 
 public class Pong3d1pControl extends Applet implements ActionListener, KeyListener {
@@ -73,6 +62,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	TransformGroup humanTrans;
 	TransformGroup computerTrans;
 	Transform3D bTrans = new Transform3D();
+	Transform3D hTrans = new Transform3D();
 	float depth=0.0f;
 	float sign = 1.0f; // going up or down
 	Timer timer;
@@ -214,6 +204,8 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 			}
 			bTrans.setTranslation(new Vector3f(xloc,0.0f,depth));
 			ballTrans.setTransform(bTrans);
+			hTrans.setTranslation(new Vector3f(hxloc, 0.0f, 1.0f));
+			humanTrans.setTransform(hTrans);
 			
 
 		}
