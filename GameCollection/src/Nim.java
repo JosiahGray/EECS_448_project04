@@ -21,12 +21,18 @@ public class Nim
 	private JButton button1;
 	private JButton button2;
 	private JButton button3;
+	private JLabel difficultyLabel;
+	private JPanel difficultyPanel;
+	private JButton buttonEasy;
+	private JButton buttonNormal;
+	private JButton buttonHard;
 	private JButton newGameButton;
 
 	private int stones;
 	private boolean gameOver;
 	private boolean isPlayerTurn;
 	private Random rand;
+	private String difficulty;
 
 	private String nextLastMove;
 	private String lastMove;
@@ -63,6 +69,7 @@ public class Nim
 		//create and set up GUI components
 		gamePanel = new JPanel(new GridLayout(0,1));
 		buttonPanel = new JPanel(new GridLayout(1,3));
+		difficultyPanel = new JPanel(new GridLayout(1,3));
 
 		instrLabel = new JLabel("<html> Welcome to Nim!<br>"
 				+ "You and the computer will take turns<br>"
@@ -70,22 +77,40 @@ public class Nim
 				+ "Whoever takes the last stone loses!</html>");
 		stonesLabel = new JLabel("");
 		movesLabel = new JLabel("");
+		
 		buttonLabel = new JLabel("Pick a number of stones to take:");
 		button1 = new JButton("1");
 		button2 = new JButton("2");
 		button3 = new JButton("3");
+		
+		difficulty = "Normal";
+		difficultyLabel = new JLabel("Current difficulty level is: " + difficulty);
+		buttonEasy = new JButton("Easy");
+		buttonNormal = new JButton("Normal");
+		buttonHard = new JButton("Hard");
+		
 		newGameButton = new JButton("New Game");
 
 		//attach listeners to buttons
 		button1.addActionListener(button1Listener());
 		button2.addActionListener(button2Listener());
 		button3.addActionListener(button3Listener());
+		
+		buttonEasy.addActionListener(buttonEasyListener());
+		buttonNormal.addActionListener(buttonNormalListener());
+		buttonHard.addActionListener(buttonHardListener());
+		
 		newGameButton.addActionListener(newGame());
 
 		//add buttons to button panel
 		buttonPanel.add(button1);
 		buttonPanel.add(button2);
 		buttonPanel.add(button3);
+		
+		//add dificulty buttons to a button panel
+		difficultyPanel.add(buttonEasy);
+		difficultyPanel.add(buttonNormal);
+		difficultyPanel.add(buttonHard);
 
 		//add components to game panel
 		gamePanel.add(instrLabel);
@@ -93,6 +118,8 @@ public class Nim
 		gamePanel.add(movesLabel);
 		gamePanel.add(buttonLabel);
 		gamePanel.add(buttonPanel);
+		gamePanel.add(difficultyLabel);
+		gamePanel.add(difficultyPanel);
 		gamePanel.add(newGameButton);
 	}
 
@@ -302,6 +329,63 @@ public class Nim
 			public void actionPerformed(ActionEvent e)
 			{
 				playerTurn(3);
+			}
+		};
+
+		return listener;
+	}
+	
+	/**
+	 * Sets up the action listener for buttonEasy
+	 * @return action listener for buttonEasy
+	 */
+	private ActionListener buttonEasyListener()
+	{
+		ActionListener listener = new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				//change difficulty variable and display change in label
+				difficulty = "Easy";
+				difficultyLabel.setText("Current difficulty level is: " + difficulty);
+			}
+		};
+
+		return listener;
+	}
+	
+	/**
+	 * Sets up the action listener for buttonNormal
+	 * @return action listener for buttonNormal
+	 */
+	private ActionListener buttonNormalListener()
+	{
+		ActionListener listener = new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				//change difficulty variable and display change in label
+				difficulty = "Normal";
+				difficultyLabel.setText("Current difficulty level is: " + difficulty);
+			}
+		};
+
+		return listener;
+	}
+	
+	/**
+	 * Sets up the action listener for buttonHard
+	 * @return action listener for buttonHard
+	 */
+	private ActionListener buttonHardListener()
+	{
+		ActionListener listener = new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				//change difficulty variable and display change in label
+				difficulty = "Hard";
+				difficultyLabel.setText("Current difficulty level is: " + difficulty);
 			}
 		};
 
