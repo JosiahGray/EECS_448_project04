@@ -233,10 +233,123 @@ public class Nim
 	}
 
 	/**
+	 * Executes a single round of the game (when button is pressed to call this function).
+	 * playerChoice is the number of stones the player intends to take this round.
+	 * @param playerChoice
+	 */
+	private void playRound(int playerChoice)
+	{
+		//execute player's turn if game is not over
+		if(!gameOver)
+		{
+			if(isPlayerTurn)
+			{
+				playersTurn(playerChoice);
+				
+				//execute computer's turn if game is not over
+				if(!gameOver)
+				{
+					computersTurn();
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Executes player's turn. Takes stones from the pile, updates moves, and determines if game is over.
+	 * @param playerStones
+	 */
+	private void playersTurn(int playerStones)
+	{
+		//player's turn to take stones
+		gameOver = takeStones(playerStones);
+		updateMoves("You took " + playerStones + " stones.");
+
+		//add a delay between turns
+		//delay(1000);
+
+		//check if player lost this turn
+		if(gameOver)
+		{
+			updateMoves("You took the last stone.");
+			updateMoves("You Lose...");
+		}
+		
+		isPlayerTurn = false;
+	}
+	
+	/**
+	 * Executes computer's turn. Takes stones from the pile, updates moves, and determines if game is over.
+	 * Determines number of stones to take based on difficulty level
+	 */
+	private void computersTurn()
+	{
+		//decide number of stones the computer will take based on difficulty
+		int compStones = 0;
+		
+		if(difficulty.equals("Easy"))
+		{
+			//computer only takes 1 stone
+			compStones = 1;
+		}
+		else if(difficulty.equals("Normal"))
+		{
+			//computer takes random number of stones (1-3)
+			compStones = rand.nextInt(3) + 1;
+		}
+		else if(difficulty.equals("Hard"))
+		{
+			//computer will take the optimum number of stones to put the player at a disadvantage.
+			//The turn player is in a "losing state" if the number of stones in the pile at the start of their turn is n, where
+			// n = (z*4)+1, for z = 0,1,2,... 
+			switch((stones - 1) % 4)
+			{
+			case 1:
+				compStones = 1;
+				break;
+			case 2:
+				compStones = 2;
+				break;
+			case 3:
+				compStones = 3;
+				break;
+			default:
+				//computer takes random number of stones (1-3)
+				compStones = rand.nextInt(3) + 1;
+				break;
+			}
+		}
+		else
+		{
+			//if difficulty is ever NOT one of the above,
+			//set difficulty to Easy and call computersTurn again
+			difficulty = "Easy";
+			difficultyLabel.setText("Current difficulty level is: " + difficulty);
+			computersTurn();
+		}
+		
+		gameOver = takeStones(compStones);
+		updateMoves("The computer took " + compStones + " stones.");
+
+		//add a delay between turns
+		//delay(1000);
+
+		//check if computer just lost
+		if(gameOver)
+		{	
+			updateMoves("The computer took the last stone.");
+			updateMoves("You Win!");
+		}
+		
+		isPlayerTurn = true;
+	}
+	
+/* Older method for executing player's turn and then computer's turn (called from button listeners)
+	/**
 	 * Execute player's turn and then follow with the computer's turn if the game is still going.
 	 * @param stonesTaken
 	 */
-	private void playerTurn(int stonesTaken)
+/*	private void playerTurn(int stonesTaken)
 	{
 		//only active if game is not over and it's the player's turn
 		if(!gameOver && isPlayerTurn)
@@ -252,7 +365,7 @@ public class Nim
 			if(gameOver)
 			{
 				isPlayerTurn = false;
-				//updateMoves("You took the last stone.");
+				updateMoves("You took the last stone.");
 				updateMoves("You Lose...");
 			}
 			else
@@ -272,7 +385,7 @@ public class Nim
 				if(gameOver)
 				{
 					isPlayerTurn = false;
-					//updateMoves("The computer took the last stone.");
+					updateMoves("The computer took the last stone.");
 					updateMoves("You Win!");
 				}
 				else
@@ -283,7 +396,8 @@ public class Nim
 			}
 		}
 	}
-
+*/	
+	
 	/**
 	 * Sets up the action listener for button1
 	 * @return action listener for button1
@@ -294,7 +408,7 @@ public class Nim
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				playerTurn(1);
+				playRound(1);
 			}
 		};
 
@@ -311,7 +425,7 @@ public class Nim
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				playerTurn(2);
+				playRound(2);
 			}
 		};
 
@@ -328,7 +442,7 @@ public class Nim
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				playerTurn(3);
+				playRound(3);
 			}
 		};
 
