@@ -9,7 +9,7 @@ public class Coordinates {
 		z = 0;
 	
 	}
-	public setCoordinates(float x1, float y1, float z1){
+	public void  setCoordinates(float x1, float y1, float z1){
 		x = x1;
 		y = y1;
 		z = z1;
