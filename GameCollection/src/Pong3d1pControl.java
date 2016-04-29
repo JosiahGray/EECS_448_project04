@@ -70,6 +70,9 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	float xloc=0.0f;
 	float hxloc = 0.0f;
 	float ground = -0.15f;
+	Coordinates bCoords = new Coordinates();
+	Coordinates hCoords = new Coordinates();
+	Coordinates cCoords = new Coordinates();
 
 	//constructor
 	public Pong3d1pControl() {
@@ -80,14 +83,14 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 		//add it to the center of the control
 		add("Center", canvas);
 		canvas.addKeyListener(this);
-		timer = new Timer(10,this); //how fast everything updates
+		timer = new Timer(5,this); //how fast everything updates
 		//timer.start();
 		Panel panel =new Panel();
 		panel.add(go);
 		add("North",panel);
 		go.addActionListener(this);
 		go.addKeyListener(this);
-		// Create a simple scene and attach it to the virtual universe
+		// Create a simple scene and attach it to universe
 		BranchGroup scene = createSceneGraph();
 		SimpleUniverse universe = new SimpleUniverse(canvas);
 		universe.getViewingPlatform().setNominalViewingTransform();
@@ -99,12 +102,11 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   BranchGroup pongRoot = new BranchGroup();
 	   
 	   //all ball
-	   Sphere ball = new Sphere(0.05f);
+	   Sphere ball = new Sphere(0.03f);
 	   ballTrans = new TransformGroup();
 	   ballTrans.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
 	   ballTrans.setCapability(ball.ENABLE_APPEARANCE_MODIFY);
 	   ballTrans.setCapability(ball.ENABLE_COLLISION_REPORTING);
-	   
 	   Transform3D pos1 = new Transform3D();
 	   pos1.setTranslation(new Vector3f(0.0f,0.0f,0.0f));
 	   ballTrans.setTransform(pos1);
@@ -124,40 +126,52 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   m.setSpecularColor(specularC);
 	   m.setShininess(shine);
 	   a.setMaterial(m);
-	   com.sun.j3d.utils.geometry.Box human = new com.sun.j3d.utils.geometry.Box(0.1f, 0.05f, 0.025f, a);
+	   com.sun.j3d.utils.geometry.Box human = new com.sun.j3d.utils.geometry.Box(0.1f, 0.03f, 0.025f, a);
 	   humanTrans = new TransformGroup();
 	   humanTrans.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
 	   humanTrans.setCapability(human.ENABLE_APPEARANCE_MODIFY);
 	   humanTrans.setCapability(human.ENABLE_COLLISION_REPORTING);
 	   
 	   Transform3D hpos = new Transform3D();
-	   hpos.setTranslation(new Vector3f(0.5f, -0.3f, 1.0f));
+	   hpos.setTranslation(new Vector3f(0.5f, ground, 1.5f));
 	   humanTrans.setTransform(hpos);
 	   humanTrans.addChild(human);
 	   pongRoot.addChild(humanTrans);
 	   
+	   //computer
+	   com.sun.j3d.utils.geometry.Box computer = new com.sun.j3d.utils.geometry.Box(0.1f, 0.03f, 0.025f, a);
+	   computerTrans = new TransformGroup();
+	   computerTrans.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+	   computerTrans.setCapability(computer.ENABLE_APPEARANCE_MODIFY);
+	   computerTrans.setCapability(computer.ENABLE_COLLISION_REPORTING);
+	   
+	   Transform3D cpos = new Transform3D();
+	   cpos.setTranslation(new Vector3f(0.0f, ground, -1.5f));
+	   computerTrans.setTransform(cpos);
+	   computerTrans.addChild(computer);
+	   pongRoot.addChild(computerTrans);
+	   
+	   
+	   
+	   
+	   
 	  
 	   BoundingSphere bounds = new BoundingSphere(new Point3d(0.0,0.0,0.0), 100.0); //SEE IF YOU NEED BOUNDING BOX
+	 
+	   
 	   
 	   Color3f light1Color = new Color3f(0.9f, 0.9f, 0.9f);
-
 	   Vector3f light1Direction = new Vector3f(-1.0f, -1.0f, -1.0f);
-
 	   DirectionalLight light1 = new DirectionalLight(light1Color, light1Direction);
-
 	   light1.setInfluencingBounds(bounds);
-
 	   pongRoot.addChild(light1);
 
 	   // Set up the ambient light
-
 	   Color3f ambientColor = new Color3f(0.9f, 0.9f, 0.9f);
-
 	   AmbientLight ambientLightNode = new AmbientLight(ambientColor);
-
 	   ambientLightNode.setInfluencingBounds(bounds);
-
 	   pongRoot.addChild(ambientLightNode);
+	   
 	   
 	   Background bkgd = new Background();
 	   bkgd.setApplicationBounds(bounds);
@@ -187,30 +201,56 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 			if (!timer.isRunning()) {
 				timer.start();
 			}
-		} else {
-
+		} else {		
+			update();
+			
+		}
+	}
+		public void update(){
+			
 			depth += .01 * sign;
 
-			if (depth >= 2 || depth<= -2 ) {
+			/*if (depth >= 2 || depth<= -2 ) {
+				//goal!
 				sign = -1.0f * sign;
+			}*/
+			
+			if(depth >= 2){
+			
+				//goal on human
+				//delay
+				xloc = 0.0f;
+				//no need to adjust ground
+				depth = 0.0f;
+				
+			} else if (depth <= -2){
+				//goal on computer
+				//delay
+				xloc = 0.0f;
+				//no need to adjust ground
+				depth = 0.0f;
+				
 			}
 			
-			if (depth<-0.9f) {
+			//checks for collision
+			/*if (depth<-1.9f) {
 				bTrans.setScale(new Vector3d(1.0, 1.0, 0.8));
 			}
-			else if(depth< 0.9f){
+			else if(depth> 1.9f){
 				bTrans.setScale(new Vector3d(1.0, 1.0, 1.5));
 			}
 			else {
 				bTrans.setScale(new Vector3d(1.0, 1.0, 1.0));
-			}
+			}*/
+		
 			bTrans.setTranslation(new Vector3f(xloc,ground,depth));
 			ballTrans.setTransform(bTrans);
-			hTrans.setTranslation(new Vector3f(hxloc, ground, 1.0f));
-			humanTrans.setTransform(hTrans);
+			bCoords.setCoordinates(xloc, ground, depth);
 			
-
-		}
+			
+			hTrans.setTranslation(new Vector3f(hxloc, ground, 1.5f));
+			humanTrans.setTransform(hTrans);
+			hCoords.setCoordinates(hxloc, ground, 1.5f);
 
 	}
 
