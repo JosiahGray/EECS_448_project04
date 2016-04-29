@@ -61,13 +61,15 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	TransformGroup ballTrans;
 	TransformGroup humanTrans;
 	TransformGroup computerTrans;
-	Transform3D bTrans = new Transform3D();
-	Transform3D hTrans = new Transform3D();
+	Transform3D bTrans = new Transform3D(); //ball transforms
+	Transform3D hTrans = new Transform3D(); //human transforms
+	Transform3D cTrans = new Transform3D();
 	float depth=0.0f;
 	float sign = 1.0f; // going up or down
 	Timer timer;
 	float xloc=0.0f;
 	float hxloc = 0.0f;
+	float ground = -0.15f;
 
 	//constructor
 	public Pong3d1pControl() {
@@ -97,7 +99,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   BranchGroup pongRoot = new BranchGroup();
 	   
 	   //all ball
-	   Sphere ball = new Sphere(0.1f);
+	   Sphere ball = new Sphere(0.05f);
 	   ballTrans = new TransformGroup();
 	   ballTrans.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
 	   ballTrans.setCapability(ball.ENABLE_APPEARANCE_MODIFY);
@@ -189,7 +191,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 
 			depth += .01 * sign;
 
-			if (depth >= 1 || depth<= -1 ) {
+			if (depth >= 2 || depth<= -2 ) {
 				sign = -1.0f * sign;
 			}
 			
@@ -202,9 +204,9 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 			else {
 				bTrans.setScale(new Vector3d(1.0, 1.0, 1.0));
 			}
-			bTrans.setTranslation(new Vector3f(xloc,0.0f,depth));
+			bTrans.setTranslation(new Vector3f(xloc,ground,depth));
 			ballTrans.setTransform(bTrans);
-			hTrans.setTranslation(new Vector3f(hxloc, 0.0f, 1.0f));
+			hTrans.setTranslation(new Vector3f(hxloc, ground, 1.0f));
 			humanTrans.setTransform(hTrans);
 			
 
