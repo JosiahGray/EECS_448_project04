@@ -1,11 +1,20 @@
 import com.sun.j3d.utils.geometry.*;
 import com.sun.j3d.utils.universe.*;
+
+import javax.imageio.ImageIO;
 import javax.media.j3d.*;
 import javax.vecmath.*;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.Component;
+import java.io.*;
+import java.awt.image.*;
+import javax.imageio.*;
+
+
 import javax.swing.*;
+
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
@@ -16,6 +25,7 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GraphicsConfiguration;
+
 import javax.media.j3d.Alpha;
 import javax.media.j3d.AmbientLight;
 import javax.media.j3d.Appearance;
@@ -41,18 +51,24 @@ import javax.vecmath.Point3d;
 import javax.vecmath.Point3f;
 import javax.vecmath.Vector3d;
 import javax.vecmath.Vector3f;
+
 import com.sun.j3d.utils.behaviors.vp.OrbitBehavior;
 import com.sun.j3d.utils.geometry.ColorCube;
 import com.sun.j3d.utils.universe.SimpleUniverse;
 import com.sun.j3d.utils.universe.ViewingPlatform;
+
 import java.applet.Applet;
 import java.awt.*;
 import java.awt.event.*;
+
 import com.sun.j3d.utils.applet.MainFrame;
 import com.sun.j3d.utils.universe.*;
+
 import javax.media.j3d.*;
 import javax.vecmath.*;
+
 import com.sun.j3d.utils.geometry.Sphere;
+
 import javax.swing.Timer;
 
 public class Pong3d1pControl extends Applet implements ActionListener, KeyListener {
@@ -66,14 +82,29 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	Transform3D cTrans = new Transform3D();
 	float depth=0.0f;
 	float sign = 1.0f; // going up or down
+	float dir = 1.0f; //going left or right
 	Timer timer;
 	float xloc=0.0f;
 	float hxloc = 0.0f;
-	float ground = -0.15f;
+	float ground = -0.2f;
+	float xMAX = 0.45f;
+	double squish = 1.0;
 	Coordinates bCoords = new Coordinates();
 	Coordinates hCoords = new Coordinates();
 	Coordinates cCoords = new Coordinates();
-
+	Pong3d1pComputer cLogic = new Pong3d1pComputer();
+	Pong3d1pBall bLogic = new Pong3d1pBall();
+	int size = 5;
+	float[] bBounce = new float[size];
+	
+	float z = 1.5f;
+	float computerZ = -2.5f;
+	float computerX = 0.0f;
+	boolean isDelayed = false;
+	
+	int humanScore = 0;
+	int computerScore = 0;
+	
 	//constructor
 	public Pong3d1pControl() {
 		setLayout(new BorderLayout());
@@ -95,6 +126,9 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 		SimpleUniverse universe = new SimpleUniverse(canvas);
 		universe.getViewingPlatform().setNominalViewingTransform();
 		universe.addBranchGraph(scene);
+		for(int i =0; i<size; i++){
+			bBounce[i] = 1.0f;
+		}
 
 	}
 	public BranchGroup createSceneGraph() {
@@ -102,7 +136,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   BranchGroup pongRoot = new BranchGroup();
 	   
 	   //all ball
-	   Sphere ball = new Sphere(0.03f);
+	   Sphere ball = new Sphere(0.025f);
 	   ballTrans = new TransformGroup();
 	   ballTrans.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
 	   ballTrans.setCapability(ball.ENABLE_APPEARANCE_MODIFY);
@@ -133,7 +167,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   humanTrans.setCapability(human.ENABLE_COLLISION_REPORTING);
 	   
 	   Transform3D hpos = new Transform3D();
-	   hpos.setTranslation(new Vector3f(0.5f, ground, 1.5f));
+	   hpos.setTranslation(new Vector3f(0.5f, ground, z));
 	   humanTrans.setTransform(hpos);
 	   humanTrans.addChild(human);
 	   pongRoot.addChild(humanTrans);
@@ -146,7 +180,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   computerTrans.setCapability(computer.ENABLE_COLLISION_REPORTING);
 	   
 	   Transform3D cpos = new Transform3D();
-	   cpos.setTranslation(new Vector3f(0.0f, ground, -1.5f));
+	   cpos.setTranslation(new Vector3f(0.0f, ground, computerZ));
 	   computerTrans.setTransform(cpos);
 	   computerTrans.addChild(computer);
 	   pongRoot.addChild(computerTrans);
@@ -156,7 +190,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   
 	   
 	  
-	   BoundingSphere bounds = new BoundingSphere(new Point3d(0.0,0.0,0.0), 100.0); //SEE IF YOU NEED BOUNDING BOX
+	   BoundingBox bounds = new BoundingBox(new Point3d(-0.5f,ground - 0.2f,computerZ-0.5f), new Point3d(0.5f, 1.0, z+0.5f)); //SEE IF YOU NEED BOUNDING BOX
 	 
 	   
 	   
@@ -172,10 +206,22 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   ambientLightNode.setInfluencingBounds(bounds);
 	   pongRoot.addChild(ambientLightNode);
 	   
+	   //https://docs.oracle.com/javase/tutorial/2d/images/loadimage.html
+	   BufferedImage bi = null;
+	   try{
+		   bi = ImageIO.read(new File("Background1.jpg"));
+	   }
+	   catch (IOException e){
+		   
+	   }
+	   RenderedImage ri = bi;
 	   
-	   Background bkgd = new Background();
+	   ImageComponent2D ic = new ImageComponent2D(ImageComponent2D.FORMAT_RGB, ri);
+	   //ic.set(bi);
+	  // ic.set(ri);
+	   Background bkgd = new Background(ic);
 	   bkgd.setApplicationBounds(bounds);
-	   bkgd.setColor(0.4f, 0.4f, 0.4f);
+	  // bkgd.setColor(0.4f, 0.4f, 0.4f);
 	   pongRoot.addChild(bkgd);
 	   return pongRoot;
 
@@ -184,11 +230,10 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 		//this will take over for human paddle
 		
 		if (e.getKeyChar()=='s'){
-			hxloc = hxloc + .01f;
+			hxloc = hxloc + .015f;
 		}
-
 		if (e.getKeyChar()=='a'){
-			hxloc = hxloc - .01f;
+			hxloc = hxloc - .015f;
 		}
 
 	}
@@ -201,57 +246,87 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 			if (!timer.isRunning()) {
 				timer.start();
 			}
-		} else {		
-			update();
+		} else {
+			if(!isDelayed){
+				update();
+			} else {
+				isDelayed = false;
+				timer.setDelay(5);
+			}
 			
 		}
 	}
-		public void update(){
+	public void update(){
+		if(xloc >= xMAX){
+			xloc = xMAX;
+			dir = -1.0f;
+			squish = 0.85;
+				
+		} else if(xloc<= -xMAX){
+			xloc = -xMAX;
+			dir = 1.0f;
+			squish = 0.85;
+		} else {
+			if(squish < 1.0){
+				squish += 0.01;
+			} else {
+				squish = 1.0;
+			}
+		}
 			
-			depth += .01 * sign;
+		if(depth >= z + .5f){
+			
+			//goal on human
+			computerScore++;
+			reset();
+				
+		} else if (depth <= computerZ - .5f){
+			//goal on computer
+			humanScore++;
+			reset();
+			
+				
+		} else {
+			//do ball collision logic			
+			bBounce = bLogic.move(bCoords, hCoords, cCoords);
 
-			/*if (depth >= 2 || depth<= -2 ) {
-				//goal!
-				sign = -1.0f * sign;
-			}*/
-			
-			if(depth >= 2){
-			
-				//goal on human
-				//delay
-				xloc = 0.0f;
-				//no need to adjust ground
-				depth = 0.0f;
-				
-			} else if (depth <= -2){
-				//goal on computer
-				//delay
-				xloc = 0.0f;
-				//no need to adjust ground
-				depth = 0.0f;
-				
-			}
-			
-			//checks for collision
-			/*if (depth<-1.9f) {
-				bTrans.setScale(new Vector3d(1.0, 1.0, 0.8));
-			}
-			else if(depth> 1.9f){
-				bTrans.setScale(new Vector3d(1.0, 1.0, 1.5));
-			}
-			else {
-				bTrans.setScale(new Vector3d(1.0, 1.0, 1.0));
-			}*/
+		}
+		sign = bBounce[1];
+		depth += (.01 * sign) + bBounce[3];
+		xloc += bBounce[4] * dir;
+		bTrans.setScale(new Vector3d(squish, 1.0, 1.0));
 		
-			bTrans.setTranslation(new Vector3f(xloc,ground,depth));
-			ballTrans.setTransform(bTrans);
-			bCoords.setCoordinates(xloc, ground, depth);
+		
+		bTrans.setTranslation(new Vector3f(xloc,ground,depth));
+		ballTrans.setTransform(bTrans);
+		bCoords.setCoordinates(xloc, ground, depth);
 			
 			
-			hTrans.setTranslation(new Vector3f(hxloc, ground, 1.5f));
-			humanTrans.setTransform(hTrans);
-			hCoords.setCoordinates(hxloc, ground, 1.5f);
+		hTrans.setTranslation(new Vector3f(hxloc, ground, z));
+		humanTrans.setTransform(hTrans);
+		hCoords.setCoordinates(hxloc, ground, z);
+		
+		
+		float nextLoc = cLogic.move(bCoords, cCoords);	
+		computerX += nextLoc;
+		cTrans.setTranslation(new Vector3f(computerX, ground, computerZ));
+		computerTrans.setTransform(cTrans);
+		cCoords.setCoordinates(computerX, ground, computerZ);
 
+	}
+	public void reset(){
+		xloc = 0.0f;
+		depth = 0.0f;
+		squish = 1.0;
+		for(int i=0; i<4; i++){
+			bBounce[i] = 1.0f;
+		}
+		hxloc =0.0f;
+		computerX = 0.0f;
+		bLogic.reset();
+		timer.setDelay(2000);
+		isDelayed = true;
+		
 	}
 
 }
