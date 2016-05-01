@@ -194,7 +194,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   m.setSpecularColor(specularC);
 	   m.setShininess(shine);
 	   a.setMaterial(m);
-	   TransparencyAttributes transpa = new TransparencyAttributes(TransparencyAttributes.BLENDED, 0.25f);
+	   TransparencyAttributes transpa = new TransparencyAttributes(TransparencyAttributes.BLENDED, 0.15f);
 	   a.setTransparencyAttributes(transpa);
 	   
 	  
