@@ -11,7 +11,7 @@ import java.awt.Component;
 import java.io.*;
 import java.awt.image.*;
 import javax.imageio.*;
-
+import com.sun.j3d.utils.image.*;
 
 import javax.swing.*;
 
@@ -136,7 +136,29 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   BranchGroup pongRoot = new BranchGroup();
 	   
 	   //all ball
-	   Sphere ball = new Sphere(0.025f);
+	   BufferedImage bBall = null;
+	   try{
+		   bBall = ImageIO.read(new File("suntexture.jpg"));
+	   }
+	   catch (IOException e){
+		   
+	   }
+	   int primflags = Primitive.GENERATE_NORMALS + Primitive.GENERATE_TEXTURE_COORDS;
+	   
+	   TextureLoader tl = new TextureLoader(bBall);
+	   Texture sun = tl.getTexture();
+	   TextureAttributes ta = new TextureAttributes();
+	   ta.setTextureMode(TextureAttributes.MODULATE);
+	   Appearance ballA = new Appearance();
+	   ballA.setTexture(sun);
+	   ballA.setTextureAttributes(ta);
+	   
+	   Color3f black = new Color3f(0.0f, 0.0f, 0.0f);
+	   Color3f white = new Color3f(1.0f, 1.0f, 1.0f);
+	   Color3f orange = new Color3f(0.8f, 0.5f, 0.0f);
+	   ballA.setMaterial(new Material (orange, white, orange, black, 1.0f));
+	   
+	   Sphere ball = new Sphere(0.025f, primflags, ballA);
 	   ballTrans = new TransformGroup();
 	   ballTrans.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
 	   ballTrans.setCapability(ball.ENABLE_APPEARANCE_MODIFY);
@@ -148,19 +170,35 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   pongRoot.addChild(ballTrans);
 	   
 	   //human
-	   Color3f ambientC = new Color3f(0.2f, 0.2f, 0.9f);
-	   Color3f diffuseC = new Color3f(1.0f, 1.0f, 0.5f);
+	   
+	   TextureLoader tlp = new TextureLoader("paddletexture.jpg", "LUMINANCE", new Container());
+	   Texture paddle = tlp.getTexture();
+	   TextureAttributes tap = new TextureAttributes();
+	   tap.setTextureMode(TextureAttributes.MODULATE);
+	   Appearance a = new Appearance();
+	   a.setTexture(paddle);
+	   a.setTextureAttributes(tap);
+	   
+	   
+	   
+	   
+	   
+	   Color3f ambientC = new Color3f(1.0f, 1.0f, 1.0f);
+	   Color3f diffuseC = new Color3f(1.0f, 1.0f, 1.0f);
 	   Color3f specularC = new Color3f(1.0f, 1.0f, 0.5f);
 	   Color3f emissiveC = new Color3f(0.0f, 0.0f, 0.0f);
-	   float shine = 128.0f;
+	   float shine = 0.0f;
 	   Material m = new Material ();
-	   Appearance a = new Appearance(); 
 	   m.setAmbientColor(ambientC);
 	   m.setDiffuseColor(diffuseC);
 	   m.setSpecularColor(specularC);
 	   m.setShininess(shine);
 	   a.setMaterial(m);
-	   com.sun.j3d.utils.geometry.Box human = new com.sun.j3d.utils.geometry.Box(0.1f, 0.03f, 0.025f, a);
+	   TransparencyAttributes transpa = new TransparencyAttributes(TransparencyAttributes.BLENDED, 0.25f);
+	   a.setTransparencyAttributes(transpa);
+	   
+	  
+	   com.sun.j3d.utils.geometry.Box human = new com.sun.j3d.utils.geometry.Box(0.1f, 0.03f, 0.025f, primflags, a);
 	   humanTrans = new TransformGroup();
 	   humanTrans.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
 	   humanTrans.setCapability(human.ENABLE_APPEARANCE_MODIFY);
@@ -173,7 +211,12 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   pongRoot.addChild(humanTrans);
 	   
 	   //computer
-	   com.sun.j3d.utils.geometry.Box computer = new com.sun.j3d.utils.geometry.Box(0.1f, 0.03f, 0.025f, a);
+	   Appearance a1 = new Appearance();
+	   a1.setTexture(paddle);
+	   a1.setTextureAttributes(tap);
+	   
+	   
+	   com.sun.j3d.utils.geometry.Box computer = new com.sun.j3d.utils.geometry.Box(0.1f, 0.03f, 0.025f, primflags, a1);
 	   computerTrans = new TransformGroup();
 	   computerTrans.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
 	   computerTrans.setCapability(computer.ENABLE_APPEARANCE_MODIFY);
@@ -194,8 +237,8 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	 
 	   
 	   
-	   Color3f light1Color = new Color3f(0.9f, 0.9f, 0.9f);
-	   Vector3f light1Direction = new Vector3f(-1.0f, -1.0f, -1.0f);
+	   Color3f light1Color = new Color3f(0.0f, 1.0f, 1.0f);
+	   Vector3f light1Direction = new Vector3f(0.0f, 2.0f, 0.0f);
 	   DirectionalLight light1 = new DirectionalLight(light1Color, light1Direction);
 	   light1.setInfluencingBounds(bounds);
 	   pongRoot.addChild(light1);
@@ -221,7 +264,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	  // ic.set(ri);
 	   Background bkgd = new Background(ic);
 	   bkgd.setApplicationBounds(bounds);
-	  // bkgd.setColor(0.4f, 0.4f, 0.4f);
+	   bkgd.setColor(0.1f, 0.1f, 0.1f);
 	   pongRoot.addChild(bkgd);
 	   return pongRoot;
 
