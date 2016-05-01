@@ -1,10 +1,8 @@
 import com.sun.j3d.utils.geometry.*;
 import com.sun.j3d.utils.universe.*;
-
 import javax.imageio.ImageIO;
 import javax.media.j3d.*;
 import javax.vecmath.*;
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.Component;
@@ -12,9 +10,7 @@ import java.io.*;
 import java.awt.image.*;
 import javax.imageio.*;
 import com.sun.j3d.utils.image.*;
-
 import javax.swing.*;
-
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
@@ -25,7 +21,6 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GraphicsConfiguration;
-
 import javax.media.j3d.Alpha;
 import javax.media.j3d.AmbientLight;
 import javax.media.j3d.Appearance;
@@ -51,24 +46,18 @@ import javax.vecmath.Point3d;
 import javax.vecmath.Point3f;
 import javax.vecmath.Vector3d;
 import javax.vecmath.Vector3f;
-
 import com.sun.j3d.utils.behaviors.vp.OrbitBehavior;
 import com.sun.j3d.utils.geometry.ColorCube;
 import com.sun.j3d.utils.universe.SimpleUniverse;
 import com.sun.j3d.utils.universe.ViewingPlatform;
-
 import java.applet.Applet;
 import java.awt.*;
 import java.awt.event.*;
-
 import com.sun.j3d.utils.applet.MainFrame;
 import com.sun.j3d.utils.universe.*;
-
 import javax.media.j3d.*;
 import javax.vecmath.*;
-
 import com.sun.j3d.utils.geometry.Sphere;
-
 import javax.swing.Timer;
 
 public class Pong3d1pControl extends Applet implements ActionListener, KeyListener {
@@ -287,6 +276,8 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 		if (e.getSource()==go){
 			
 			if (!timer.isRunning()) {
+				humanScore = 0;
+				computerScore = 0;
 				timer.start();
 			}
 		} else {
@@ -369,7 +360,19 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 		bLogic.reset();
 		timer.setDelay(2000);
 		isDelayed = true;
+		isGameOver();
 		
+	}
+	public void isGameOver(){
+		if(humanScore >=5){
+			//display human won
+			//prompt to play new game
+			timer.stop();
+		} else if (computerScore >= 5){
+			//display computer won
+			//prompt to play new game
+			timer.stop();
+		}
 	}
 
 }
