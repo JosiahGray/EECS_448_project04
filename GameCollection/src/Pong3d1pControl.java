@@ -133,6 +133,10 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	public BranchGroup createSceneGraph() {
 	   // Create the root of the branch graph
 	   BranchGroup pongRoot = new BranchGroup();
+	   
+	   int primflags = Primitive.GENERATE_NORMALS + Primitive.GENERATE_TEXTURE_COORDS;
+	   
+	   
 	   pongRoot.setCapability(BranchGroup.ALLOW_CHILDREN_WRITE);
 	   
 	   //all ball
@@ -143,7 +147,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   catch (IOException e){
 		   
 	   }
-	   int primflags = Primitive.GENERATE_NORMALS + Primitive.GENERATE_TEXTURE_COORDS;
+	   
 	   
 	   TextureLoader tl = new TextureLoader(bBall);
 	   Texture sun = tl.getTexture();
@@ -164,7 +168,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   ballTrans.setCapability(ball.ENABLE_APPEARANCE_MODIFY);
 	   ballTrans.setCapability(ball.ENABLE_COLLISION_REPORTING);
 	   Transform3D pos1 = new Transform3D();
-	   pos1.setTranslation(new Vector3f(0.0f,0.0f,0.0f));
+	   pos1.setTranslation(new Vector3f(0.0f,ground,0.0f));
 	   ballTrans.setTransform(pos1);
 	   ballTrans.addChild(ball);
 	   pongRoot.addChild(ballTrans);
@@ -242,7 +246,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   humanTrans.setCapability(human.ENABLE_COLLISION_REPORTING);
 	   
 	   Transform3D hpos = new Transform3D();
-	   hpos.setTranslation(new Vector3f(0.5f, ground, z));
+	   hpos.setTranslation(new Vector3f(hxloc, ground, z));
 	   humanTrans.setTransform(hpos);
 	   humanTrans.addChild(human);
 	   pongRoot.addChild(humanTrans);
@@ -264,10 +268,6 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   computerTrans.setTransform(cpos);
 	   computerTrans.addChild(computer);
 	   pongRoot.addChild(computerTrans);
-	   
-	   
-	   
-	   
 	   
 	  
 	   BoundingBox bounds = new BoundingBox(new Point3d(-0.5f,ground - 0.2f,computerZ-0.5f), new Point3d(0.5f, 1.0, z+0.5f)); //SEE IF YOU NEED BOUNDING BOX
