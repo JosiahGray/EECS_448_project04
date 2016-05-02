@@ -1,3 +1,6 @@
+//https://community.oracle.com/thread/1275874?start=0&tstart=0
+
+
 import com.sun.j3d.utils.geometry.*;
 import com.sun.j3d.utils.universe.*;
 import javax.imageio.ImageIO;
@@ -368,6 +371,11 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 			reset();
 				
 		} else if (depth <= computerZ - .5f){
+			Color3f black = new Color3f(0.0f, 0.0f, 0.0f);
+			Appearance goalA = new Appearance();
+			goalA.setCapability(Appearance.ALLOW_MATERIAL_WRITE);
+			goalA.setMaterial(new Material (black, black, black, black, 1.0f));
+			compPoints[humanScore].setAppearance(goalA);
 			//goal on computer
 			humanScore++;
 			reset();
