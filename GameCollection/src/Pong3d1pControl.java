@@ -62,7 +62,7 @@ import javax.swing.Timer;
 
 public class Pong3d1pControl extends Applet implements ActionListener, KeyListener {
 
-	Button go = new Button("Go");
+	Button go = new Button("New Game");
 	TransformGroup ballTrans;
 	TransformGroup humanTrans;
 	TransformGroup computerTrans;
@@ -93,6 +93,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	
 	int humanScore = 0;
 	int computerScore = 0;
+	boolean gameGoing = false;
 	
 	//constructor
 	public Pong3d1pControl() {
@@ -275,9 +276,10 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 		// start timer when button is pressed
 		if (e.getSource()==go){
 			
-			if (!timer.isRunning()) {
+			if (!timer.isRunning() && !gameGoing) {
 				humanScore = 0;
 				computerScore = 0;
+				gameGoing = true;
 				timer.start();
 			}
 		} else {
@@ -373,6 +375,8 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 			//prompt to play new game
 			timer.stop();
 		}
+		
+		gameGoing = false;
 	}
 
 }
