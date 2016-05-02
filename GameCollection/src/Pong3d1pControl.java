@@ -95,6 +95,12 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	int computerScore = 0;
 	boolean gameGoing = false;
 	
+	Sphere[] compPoints = new Sphere[5];
+	Sphere[] humanPoints = new Sphere[5];
+	Transform3D[] cpTrans = new Transform3D[5];
+	Transform3D[] hpTrans = new Transform3D[5];
+	int gameCount = 0;
+	
 	//constructor
 	public Pong3d1pControl() {
 		setLayout(new BorderLayout());
@@ -124,6 +130,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	public BranchGroup createSceneGraph() {
 	   // Create the root of the branch graph
 	   BranchGroup pongRoot = new BranchGroup();
+	   pongRoot.setCapability(BranchGroup.ALLOW_CHILDREN_WRITE);
 	   
 	   //all ball
 	   BufferedImage bBall = null;
@@ -158,6 +165,43 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   ballTrans.setTransform(pos1);
 	   ballTrans.addChild(ball);
 	   pongRoot.addChild(ballTrans);
+	   
+	   
+	   
+	   // points
+	   TransformGroup[] pointCompTrans = new TransformGroup[5];
+	   TransformGroup[] pointHumanTrans = new TransformGroup[5];
+	   for(int i = 0; i<5; i++){
+		   pointCompTrans[i] = new TransformGroup();
+		   Appearance cpa = new Appearance();
+		   //cpa.setMaterial(new Material(black, black, black, black, 1.0f));
+		   compPoints[i] = new Sphere(0.04f, Primitive.GENERATE_TEXTURE_COORDS + Primitive.GENERATE_NORMALS + Sphere.ENABLE_APPEARANCE_MODIFY, 20);
+		   compPoints[i].setCapability(Sphere.ENABLE_APPEARANCE_MODIFY);
+		   compPoints[i].setCapability(BranchGroup.ALLOW_CHILDREN_WRITE);
+		   pointCompTrans[i].setCapability(compPoints[i].ENABLE_APPEARANCE_MODIFY);
+		   pointCompTrans[i].setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+		   cpTrans[i] = new Transform3D();
+		   cpTrans[i].setTranslation(new Vector3f(-0.11f * i - 0.09f, 0.5f, 0.0f));
+		   pointCompTrans[i].setTransform(cpTrans[i]);
+		   pointCompTrans[i].addChild(compPoints[i]);
+		   pongRoot.addChild(pointCompTrans[i]);
+		   
+		   pointHumanTrans[i] = new TransformGroup();
+		   humanPoints[i] = new Sphere(0.04f, Primitive.GENERATE_NORMALS + Sphere.ENABLE_APPEARANCE_MODIFY, 20);
+		   humanPoints[i].setCapability(Sphere.ENABLE_APPEARANCE_MODIFY);
+		   pointHumanTrans[i].setCapability(humanPoints[i].ENABLE_APPEARANCE_MODIFY);
+		   pointHumanTrans[i].setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+		   hpTrans[i] = new Transform3D();
+		   hpTrans[i].setTranslation(new Vector3f(0.11f * i +0.09f, 0.5f, 0.0f));
+		   pointHumanTrans[i].setTransform(hpTrans[i]);
+		   pointHumanTrans[i].addChild(humanPoints[i]);
+		   
+		   pongRoot.addChild(pointHumanTrans[i]);
+		   
+	   }
+	   
+	   
+	   
 	   
 	   //human
 	   
@@ -277,10 +321,12 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 		if (e.getSource()==go){
 			
 			if (!timer.isRunning() && !gameGoing) {
-				humanScore = 0;
-				computerScore = 0;
+				if(gameCount > 0){
+					newGame();
+				}
 				gameGoing = true;
 				timer.start();
+				gameCount ++;
 			}
 		} else {
 			if(!isDelayed){
@@ -313,6 +359,11 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 		if(depth >= z + .5f){
 			
 			//goal on human
+			Color3f black = new Color3f(0.0f, 0.0f, 0.0f);
+			Appearance goalA = new Appearance();
+			goalA.setCapability(Appearance.ALLOW_MATERIAL_WRITE);
+			goalA.setMaterial(new Material (black, black, black, black, 1.0f));
+			humanPoints[computerScore].setAppearance(goalA);
 			computerScore++;
 			reset();
 				
@@ -377,6 +428,22 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 		}
 		
 		gameGoing = false;
+	}
+	public void newGame(){
+		if(humanScore >= 5){
+			for(int i = 0; i<5; i++){
+			 compPoints[i].setAppearance(humanPoints[4].getAppearance());
+			 humanPoints[i].setAppearance(humanPoints[4].getAppearance());
+			}
+		} else if(computerScore >=5){
+			for(int i = 0; i<5; i++){
+				 compPoints[i].setAppearance(compPoints[4].getAppearance());
+				 humanPoints[i].setAppearance(compPoints[4].getAppearance());
+			}
+		}
+		
+		humanScore = 0;
+		computerScore = 0;
 	}
 
 }
