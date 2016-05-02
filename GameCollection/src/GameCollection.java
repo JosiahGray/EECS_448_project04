@@ -100,7 +100,7 @@ public class GameCollection {
 			public void actionPerformed(ActionEvent e)
 			{
 				//set up Pong game
-				Pong pongGame = new Pong();
+				Pong3d1pGame game = new Pong3d1pGame();
 			}
 		};
 
