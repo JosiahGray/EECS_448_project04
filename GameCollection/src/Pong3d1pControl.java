@@ -65,13 +65,15 @@ import javax.swing.Timer;
 
 public class Pong3d1pControl extends Applet implements ActionListener, KeyListener {
 
+	PongTester tester = new PongTester();
 	Button go = new Button("New Game");
+	Button test = new Button("Test Game");
 	TransformGroup ballTrans;
 	TransformGroup humanTrans;
 	TransformGroup computerTrans;
 	Transform3D bTrans = new Transform3D(); //ball transforms
 	Transform3D hTrans = new Transform3D(); //human transforms
-	Transform3D cTrans = new Transform3D();
+	Transform3D cTrans = new Transform3D(); //computer transforms
 	float depth=0.0f;
 	float sign = 1.0f; // going up or down
 	float dir = 1.0f; //going left or right
@@ -117,9 +119,12 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 		//timer.start();
 		Panel panel =new Panel();
 		panel.add(go);
+		panel.add(test);
 		add("North",panel);
 		go.addActionListener(this);
 		go.addKeyListener(this);
+		test.addActionListener(this);
+		test.addKeyListener(this);
 		// Create a simple scene and attach it to universe
 		BranchGroup scene = createSceneGraph();
 		SimpleUniverse universe = new SimpleUniverse(canvas);
@@ -147,8 +152,6 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   catch (IOException e){
 		   
 	   }
-	   
-	   
 	   TextureLoader tl = new TextureLoader(bBall);
 	   Texture sun = tl.getTexture();
 	   TextureAttributes ta = new TextureAttributes();
@@ -275,13 +278,20 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   
 	   
 	   Color3f light1Color = new Color3f(0.0f, 1.0f, 1.0f);
-	   Vector3f light1Direction = new Vector3f(0.0f, 2.0f, 0.0f);
+	   Vector3f light1Direction = new Vector3f(0.0f, 5.0f, 3.0f);
 	   DirectionalLight light1 = new DirectionalLight(light1Color, light1Direction);
 	   light1.setInfluencingBounds(bounds);
 	   pongRoot.addChild(light1);
+	   
+	   
+	   Color3f light2Color = new Color3f(0.5f, 0.6f, 0.88f);
+	   Vector3f light2Direction = new Vector3f(1.0f, -2.0f, 0.0f);
+	   DirectionalLight light2 = new DirectionalLight(light2Color, light2Direction);
+	   light2.setInfluencingBounds(bounds);
+	   pongRoot.addChild(light2);
 
 	   // Set up the ambient light
-	   Color3f ambientColor = new Color3f(0.9f, 0.9f, 0.9f);
+	   Color3f ambientColor = new Color3f(1.0f, 1.0f, 1.0f);
 	   AmbientLight ambientLightNode = new AmbientLight(ambientColor);
 	   ambientLightNode.setInfluencingBounds(bounds);
 	   pongRoot.addChild(ambientLightNode);
@@ -320,45 +330,62 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	public void keyReleased(KeyEvent e){}
 	public void keyTyped(KeyEvent e){}
 	public void actionPerformed(ActionEvent e ) {
+		if(e.getSource() == test){
+			tester.test(this);
+			humanScore = 5;
+			newGame();
+		}
+		else{
 		// start timer when button is pressed
-		if (e.getSource()==go){
+			if (e.getSource()==go){
 			
-			if (!timer.isRunning() && !gameGoing) {
-				if(gameCount > 0){
-					newGame();
+				if (!timer.isRunning() && !gameGoing) {
+					if(gameCount > 0){
+						newGame();
+					}
+					gameGoing = true;
+					timer.start();
+					gameCount ++;
 				}
-				gameGoing = true;
-				timer.start();
-				gameCount ++;
-			}
-		} else {
-			if(!isDelayed){
-				update();
 			} else {
-				isDelayed = false;
-				timer.setDelay(5);
-			}
+				if(!isDelayed){
+					update();
+				} else {
+					isDelayed = false;
+					timer.setDelay(5);
+				}
 			
+			}
 		}
 	}
 	public void update(){
+		updateSquish();
+		checkScore();
+		updateBall();
+		updateHuman();
+		updateComputer();
+
+	}
+	public void updateSquish(){
 		if(xloc >= xMAX){
 			xloc = xMAX;
 			dir = -1.0f;
-			squish = 0.85;
+			squish = 0.5;
 				
 		} else if(xloc<= -xMAX){
 			xloc = -xMAX;
 			dir = 1.0f;
-			squish = 0.85;
+			squish = 0.5;
 		} else {
 			if(squish < 1.0){
-				squish += 0.01;
+				squish += 0.02;
 			} else {
 				squish = 1.0;
 			}
 		}
 			
+	}
+	public void checkScore(){
 		if(depth >= z + .5f){
 			
 			//goal on human
@@ -383,31 +410,32 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 				
 		} else {
 			//do ball collision logic			
-			bBounce = bLogic.move(bCoords, hCoords, cCoords);
+			
 
 		}
+	}
+	public void updateBall(){
+		bBounce = bLogic.move(bCoords, hCoords, cCoords);
 		sign = bBounce[1];
 		depth += (.01 * sign) + bBounce[3];
 		xloc += bBounce[4] * dir;
 		bTrans.setScale(new Vector3d(squish, 1.0, 1.0));
-		
-		
 		bTrans.setTranslation(new Vector3f(xloc,ground,depth));
 		ballTrans.setTransform(bTrans);
 		bCoords.setCoordinates(xloc, ground, depth);
-			
-			
+	}
+	public void updateHuman(){
 		hTrans.setTranslation(new Vector3f(hxloc, ground, z));
 		humanTrans.setTransform(hTrans);
 		hCoords.setCoordinates(hxloc, ground, z);
-		
-		
+	}
+	
+	public void updateComputer(){
 		float nextLoc = cLogic.move(bCoords, cCoords);	
 		computerX += nextLoc;
 		cTrans.setTranslation(new Vector3f(computerX, ground, computerZ));
 		computerTrans.setTransform(cTrans);
 		cCoords.setCoordinates(computerX, ground, computerZ);
-
 	}
 	public void reset(){
 		xloc = 0.0f;
@@ -438,6 +466,15 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 		gameGoing = false;
 	}
 	public void newGame(){
+		xloc = 0.0f;
+		depth = 0.0f;
+		squish = 1.0;
+		for(int i=0; i<4; i++){
+			bBounce[i] = 1.0f;
+		}
+		hxloc =0.0f;
+		computerX = 0.0f;
+		bLogic.reset();
 		if(humanScore >= 5){
 			for(int i = 0; i<5; i++){
 			 compPoints[i].setAppearance(humanPoints[4].getAppearance());
