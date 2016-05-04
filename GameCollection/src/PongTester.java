@@ -110,15 +110,11 @@ public class PongTester {
 		System.out.println(" Description: ");
 		System.out.println("  Testing when ball is positioned to where computer scores");
 		control.depth = 2.1f;
+		System.out.println("   Computer Score before: " + control.computerScore);
 		control.checkScore();
 		System.out.println("   Anicipated Computer Score: 1");
 		System.out.println("   Actual Computer Score: " + control.computerScore);
-		if(control.computerScore != 1){
-			return false;
-		}
-		else{
-			return true;
-		}
+		return(control.computerScore == 1);
 	}
 	//test 2
 	//ball is set up where player scores
@@ -128,15 +124,11 @@ public class PongTester {
 		System.out.println(" Description: ");
 		System.out.println("  Testing when ball is positioned to where human scores");
 		control.depth = -3.1f;
+		System.out.println("   Human Score before: " + control.humanScore);
 		control.checkScore();
 		System.out.println("   Anicipated Human Score: 1");
 		System.out.println("   Actual Human Score: " + control.humanScore);
-		if(control.humanScore != 1){
-			return false;
-		}
-		else{
-			return true;
-		}
+		return(control.humanScore == 1);
 	}
 	//test3
 	//ball is up against wall
@@ -144,7 +136,7 @@ public class PongTester {
 	public boolean test3(Pong3d1pControl control){
 		System.out.println("Running test 3...");
 		System.out.println(" Description: ");
-		System.out.println("  Place ball up against wall, update, check if direction switches");
+		System.out.println("  Place ball up against right wall, update, check if direction switches");
 		control.xloc = control.xMAX;
 		float direction = control.dir;
 		System.out.println("   Ball direction before: " + direction);
@@ -160,7 +152,7 @@ public class PongTester {
 	public boolean test4(Pong3d1pControl control){
 		System.out.println("Running test 4...");
 		System.out.println(" Description: ");
-		System.out.println("  Place ball up against wall, update, check if direction switches");
+		System.out.println("  Place ball up against left wall, update, check if direction switches");
 		control.xloc = -control.xMAX;
 		float direction = control.dir;
 		System.out.println("   Ball direction before: " + direction);
@@ -177,7 +169,7 @@ public class PongTester {
 		boolean allCorrect = true;
 		System.out.println("Running test 5...");
 		System.out.println(" Description: ");
-		System.out.println("  Call reset and see if positioning  is adjusted");
+		System.out.println("  Put in arbitrary locations. Call reset and see if positioning  is adjusted");
 		System.out.println("");
 		//arbitrary locations
 		control.xloc = 1.0f;
@@ -186,26 +178,31 @@ public class PongTester {
 		control.hxloc = 0.2f;
 		control.computerX = 0.2f;
 		control.reset();
+		System.out.println("   Ball x location before: 1.0f");
 		System.out.println("   Anticipated ball x location: 0.0f");
 		System.out.println("   Actual ball x location: " + control.xloc);
 		if(control.xloc != 0.0f){
 			allCorrect = false;
 		}
+		System.out.println("   Ball z location before: 0.5f");
 		System.out.println("   Anticipated ball z location: 0.0f");
 		System.out.println("   Actual ball z location: " + control.depth);
 		if(control.depth != 0.0f){
 			allCorrect = false;
 		}
+		System.out.println("   Squish amount before: 0.2");
 		System.out.println("   Anticipated squish amount: 1.0");
 		System.out.println("   Actual squish amount: " + control.squish);
 		if(control.squish != 1.0){
 			allCorrect = false;
 		}
+		System.out.println("   Human x location before: 0.2f");
 		System.out.println("   Anticipated human x location: 0.0f");
 		System.out.println("   Actual human x location: " + control.hxloc);
 		if(control.hxloc != 0.0f){
 			allCorrect = false;
 		}
+		System.out.println("   Computer x location before: 0.2f");
 		System.out.println("   Anticpated computer x location: 0.0f");
 		System.out.println("   Actual computer x location: " + control.computerX);
 		if(control.computerX != 0.0f){
@@ -216,19 +213,33 @@ public class PongTester {
 		return allCorrect;
 	}
 	//test6
-	//put ball out of bounds, wait one execution cycle, see if ball stays in bounds
+	//put ball out of bounds, update,  see if ball stays in bounds
 	public boolean test6(Pong3d1pControl control){
 		System.out.println("Running test 6...");
-		System.out.println("Description: ");
-		return true;
+		System.out.println(" Description: ");
+		System.out.println("  Place ball out of x axis bounds, see if ball returns to bounds");
+		//arbitrary x location 
+		control.xloc = 1.0f;
+		System.out.println("   Ball x location before: 1.0f");
+		control.updateSquish();
+		System.out.println("   Anticipated ball location: 0.45f");
+		System.out.println("   Actual ball location: " + control.xloc);
+		
+		return (control.xloc == 0.45f);
+		
 	}
 	//test7 
-	//put score at 4-4
-	//see if 5 stops game
+	//see if game discontinues after a score of 5
 	public boolean test7(Pong3d1pControl control){
 		System.out.println("Running test 7...");
-		System.out.println("Description: ");
-		return true;
+		System.out.println(" Description: ");
+		System.out.println("  Put score at humanScore = 5, check if game is over");
+		control.humanScore = 5;
+		control.isGameOver();
+		System.out.println("   Anticipated gameGoing truth value: false");
+		System.out.println("   Actual gameGoing truth value: " + control.gameGoing);
+		return (!control.gameGoing);
+		
 	}
 	//test8 
 	//check newGame method
