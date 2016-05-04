@@ -320,10 +320,18 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 		//this will take over for human paddle
 		
 		if (e.getKeyChar()=='s'){
-			hxloc = hxloc + .015f;
+			if(hxloc < 0.45f){
+				hxloc = hxloc + .015f;
+			} else {
+				hxloc = 0.45f;
+			}
 		}
 		if (e.getKeyChar()=='a'){
-			hxloc = hxloc - .015f;
+			if(hxloc > -0.45f){
+				hxloc = hxloc - .015f;
+			} else {
+				hxloc = -0.45f;
+			}
 		}
 
 	}
@@ -367,6 +375,11 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 
 	}
 	public void updateSquish(){
+		if(depth < -2.0f){
+			xMAX = 0.4f;
+		} else {
+			xMAX = 0.45f;
+		}
 		if(xloc >= xMAX){
 			xloc = xMAX;
 			dir = -1.0f;
