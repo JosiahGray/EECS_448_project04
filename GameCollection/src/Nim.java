@@ -60,6 +60,79 @@ public class Nim
 	{
 		return gamePanel;
 	}
+	
+	/**
+	 * A method to get the number of stones left in the game.
+	 * @return int representing the number of stones left
+	 */
+	public int getStones()
+	{
+		return(stones);
+	}
+	
+	/**
+	 * A method to set the number of stones in the game (should always be a positive integer)
+	 * @param num
+	 */
+	public void setStones(int num)
+	{
+		if(num < 0)
+		{
+			stones = 0;
+		}
+		else
+		{
+			stones = num;
+		}
+	}
+	
+	/**
+	 * A method to get the current difficulty level of the game
+	 * @return String representing the current difficulty
+	 */
+	public String getDifficulty()
+	{
+		return(difficulty);
+	}
+	
+	/**
+	 * A method to set the game's difficulty level
+	 * @param newDiff
+	 */
+	public void setDifficulty(String newDiff)
+	{
+		//change difficulty variable and display change in label
+		if(newDiff.equals("Easy"))
+		{
+			difficulty = "Easy";
+		}
+		else if(newDiff.equals("Normal"))
+		{
+			difficulty = "Normal";
+		}
+		else if(newDiff.equals("Hard"))
+		{
+			difficulty = "Hard";
+		}
+		else
+		{
+			//if newDiff is NOT a valid difficulty,
+			//set difficulty to Easy
+			difficulty = "Easy";
+		}
+		
+		//update label that displays difficulty
+		difficultyLabel.setText("Current difficulty level is: " + difficulty);
+	}
+	
+	/**
+	 * A method to check if the game is over.
+	 * @return boolean; true if game is over (stones = 0), false otherwise
+	 */
+	public boolean isGameOver()
+	{
+		return(gameOver);
+	}
 
 	/**
 	 * Sets up the frame the game is played in.
@@ -126,7 +199,7 @@ public class Nim
 	/**
 	 * Resets the game, returning all variables to their initial state.
 	 */
-	private void reset()
+	public void reset()
 	{
 		//set game variables to initial values
 		//(what they should look like at the start of the game)
@@ -188,10 +261,11 @@ public class Nim
 
 	/**
 	 * Subtracts the number of stones n from the total pile of stones.
+	 * Updates stonesLabel to display this change.
 	 * @param n
-	 * @return false if game is over (number of stones == 0), true otherwise
+	 * @return true if game is over (number of stones == 0), false otherwise
 	 */
-	private boolean takeStones(int n)
+	public void takeStones(int n)
 	{
 		stones = stones - n;
 
@@ -203,14 +277,14 @@ public class Nim
 
 			//update stone pile
 			stonesLabel.setText(stoneString(stones));
-			return true;
+			gameOver = true;
 		}
 		else
 		{
 			//game still going
 			//update stone pile
 			stonesLabel.setText(stoneString(stones));
-			return false;
+			gameOver = false;
 		}
 	}
 	
@@ -262,7 +336,7 @@ public class Nim
 	private void playersTurn(int playerStones)
 	{
 		//player's turn to take stones
-		gameOver = takeStones(playerStones);
+		takeStones(playerStones);
 		updateMoves("You took " + playerStones + " stones.");
 
 		//add a delay between turns
@@ -284,6 +358,9 @@ public class Nim
 	 */
 	private void computersTurn()
 	{
+		//add a delay to make it seem like the computer is thinking
+		//delay(1000);
+		
 		//decide number of stones the computer will take based on difficulty
 		int compStones = 0;
 		
@@ -322,13 +399,12 @@ public class Nim
 		else
 		{
 			//if difficulty is ever NOT one of the above,
-			//set difficulty to Easy and call computersTurn again
-			difficulty = "Easy";
-			difficultyLabel.setText("Current difficulty level is: " + difficulty);
-			computersTurn();
+			//set difficulty to Easy and take only 1 stone
+			setDifficulty("Easy");
+			compStones = 1;
 		}
 		
-		gameOver = takeStones(compStones);
+		takeStones(compStones);
 		updateMoves("The computer took " + compStones + " stones.");
 
 		//add a delay between turns
@@ -343,60 +419,6 @@ public class Nim
 		
 		isPlayerTurn = true;
 	}
-	
-/* Older method for executing player's turn and then computer's turn (called from button listeners)
-	/**
-	 * Execute player's turn and then follow with the computer's turn if the game is still going.
-	 * @param stonesTaken
-	 */
-/*	private void playerTurn(int stonesTaken)
-	{
-		//only active if game is not over and it's the player's turn
-		if(!gameOver && isPlayerTurn)
-		{
-			//player's turn to take stones
-			gameOver = takeStones(stonesTaken);
-			updateMoves("You took " + stonesTaken + " stones.");
-
-			//add a delay between turns
-			//delay(1000);
-
-			//check if player lost this turn
-			if(gameOver)
-			{
-				isPlayerTurn = false;
-				updateMoves("You took the last stone.");
-				updateMoves("You Lose...");
-			}
-			else
-			{
-				//computer's turn
-				isPlayerTurn = false;
-
-				//computer takes random number of stones (1-3)
-				int compTake = rand.nextInt(3) + 1;
-				gameOver = takeStones(compTake);
-				updateMoves("The computer took " + compTake + " stones.");
-
-				//add a delay between turns
-				//delay(1000);
-
-				//check if computer just lost
-				if(gameOver)
-				{
-					isPlayerTurn = false;
-					updateMoves("The computer took the last stone.");
-					updateMoves("You Win!");
-				}
-				else
-				{
-					//if computer did not lose this turn, game continues
-					isPlayerTurn = true;
-				}
-			}
-		}
-	}
-*/	
 	
 	/**
 	 * Sets up the action listener for button1
@@ -459,9 +481,7 @@ public class Nim
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				//change difficulty variable and display change in label
-				difficulty = "Easy";
-				difficultyLabel.setText("Current difficulty level is: " + difficulty);
+				setDifficulty("Easy");
 			}
 		};
 
@@ -478,9 +498,7 @@ public class Nim
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				//change difficulty variable and display change in label
-				difficulty = "Normal";
-				difficultyLabel.setText("Current difficulty level is: " + difficulty);
+				setDifficulty("Normal");
 			}
 		};
 
@@ -497,9 +515,7 @@ public class Nim
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				//change difficulty variable and display change in label
-				difficulty = "Hard";
-				difficultyLabel.setText("Current difficulty level is: " + difficulty);
+				setDifficulty("Hard");
 			}
 		};
 
