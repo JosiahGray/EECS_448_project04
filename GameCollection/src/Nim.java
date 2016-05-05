@@ -265,7 +265,7 @@ public class Nim
 	 * @param n
 	 * @return true if game is over (number of stones == 0), false otherwise
 	 */
-	public boolean takeStones(int n)
+	public void takeStones(int n)
 	{
 		stones = stones - n;
 
@@ -277,14 +277,14 @@ public class Nim
 
 			//update stone pile
 			stonesLabel.setText(stoneString(stones));
-			return true;
+			gameOver = true;
 		}
 		else
 		{
 			//game still going
 			//update stone pile
 			stonesLabel.setText(stoneString(stones));
-			return false;
+			gameOver = false;
 		}
 	}
 	
@@ -336,7 +336,7 @@ public class Nim
 	private void playersTurn(int playerStones)
 	{
 		//player's turn to take stones
-		gameOver = takeStones(playerStones);
+		takeStones(playerStones);
 		updateMoves("You took " + playerStones + " stones.");
 
 		//add a delay between turns
@@ -404,7 +404,7 @@ public class Nim
 			compStones = 1;
 		}
 		
-		gameOver = takeStones(compStones);
+		takeStones(compStones);
 		updateMoves("The computer took " + compStones + " stones.");
 
 		//add a delay between turns
