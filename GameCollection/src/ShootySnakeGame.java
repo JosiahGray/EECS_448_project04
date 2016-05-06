@@ -615,19 +615,19 @@ class Enemy extends Ball{
       disabled = true;
     else if(leader)
     {
-      vx = vx + 25*normalX(x0, y0);
-      vy = vy + 25*normalY(x0, y0);
+      vx = 25*normalX(x0, y0);
+      vy = 25*normalY(x0, y0);
       System.out.println(vx*vx + vy*vy);
-      if(vx*vx + vy*vy > 2000)
-      {
-        vx = 2000*normalX(0,0);
-        vy = 2000*normalY(0,0);
-      }
-      if(vx*vx + vy*vy < 100)
-      {
-        vx = 100*normalX(0,0);
-        vy = 100*normalY(0,0);
-      }
+      // if(vx*vx + vy*vy > 2000)
+      // {
+      //   vx = 2000*normalX(0,0);
+      //   vy = 2000*normalY(0,0);
+      // }
+      // if(vx*vx + vy*vy < 100)
+      // {
+      //   vx = 100*normalX(0,0);
+      //   vy = 100*normalY(0,0);
+      // }
     }
   }
 
