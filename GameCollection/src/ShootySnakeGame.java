@@ -175,13 +175,7 @@ public class ShootySnakeGame extends JFrame {
     if ((KEYS[KeyEvent.VK_DOWN] || KEYS[KeyEvent.VK_S]) && player.y < HEIGHT - player.radius*2) {
       player.y += PLAYER_VELOCITY;
     }
-    if (KEYS[KeyEvent.VK_SPACE] && (System.nanoTime() - lastShot > 1000000000L/10) &&
-        (System.nanoTime() - respawnStart > spawnInvulnerabilityCounter))
-    {
-      lastShot = System.nanoTime();
-      addBeam(player.x + player.radius, player.y + player.radius, 4, 0);
-    }
-    if (mouseDown && (System.nanoTime() - lastShot > 1000000000L/10) &&
+    if ((KEYS[KeyEvent.VK_SPACE] || mouseDown) && (System.nanoTime() - lastShot > 1000000000L/10) &&
         (System.nanoTime() - respawnStart > spawnInvulnerabilityCounter))
     {
       lastShot = System.nanoTime();
