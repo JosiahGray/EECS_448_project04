@@ -1,11 +1,21 @@
 import javax.swing.*;
+import javax.media.j3d.*;
 import java.awt.event.*;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.*;
 //import java.awt.Component;
 //import java.awt.GridLayout;
 /**
+ * GameCollection Sources:
+ * @source http://www.java2s.com/Code/Java/Swing-JFC/Panelwithbackgroundimage.htm
  * Pong Sources: 
- * @source //https://docs.oracle.com/javase/tutorial/uiswing/events/keylistener.html
- * @source //http://stackoverflow.com/questions/8980185/how-to-reduce-lag-in-my-java-2d-platformer
+ * @source https://docs.oracle.com/javase/tutorial/uiswing/events/keylistener.html
+ * @source  http://www.oxfordmathcenter.com/drupal7/node/44
+ * @source https://docs.oracle.com/javase/tutorial/2d/images/loadimage.html
+ * @source http://www.java3d.org/starting.html
+ * @source https://community.oracle.com/thread/1275874?start=0&tstart=0
  *
  */
 
@@ -16,12 +26,14 @@ public class GameCollection {
 
 		createAndDisplayGUI();
 	}
+	
 	/**
 	 * Creates and displays user interface, implements menu items for each game on a menu and a frame
 	 */
 	private static void createAndDisplayGUI()
 	{
 		//declare components
+		
 		JFrame frame = new JFrame("Game Collection");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
@@ -30,7 +42,7 @@ public class GameCollection {
 		JMenuItem menuNim;
 		JMenuItem menuPong;
 		JMenuItem menuShooty;
-
+		
 		//create menu components
 		menuBar = new JMenuBar();
 		menu = new JMenu("Games");
@@ -49,17 +61,28 @@ public class GameCollection {
 		menu.add(menuPong);
 		menu.add(menuShooty);
 		menuBar.add(menu);
+		
+		
 
 		//create empty components for spacing
 		JPanel emptyPanel;
-		JLabel emptyLabel;
-		emptyPanel = new JPanel();
-		emptyLabel = new JLabel("                                        ");
-		emptyPanel.add(emptyLabel);
+		//JLabel emptyLabel;
+		//emptyPanel = new JPanel();
+		//emptyLabel = new JLabel("                                        ");
+		//emptyPanel.add(emptyLabel);
+		
+		frame.setLayout(new BorderLayout());
+		frame.setContentPane(new JLabel(new ImageIcon("GameCollectionBackground1.jpg")));
+		frame.setLayout(new FlowLayout());
+		
+		
+		frame.setSize(200, 300);
+		
 
 		//add components to frame
-		frame.setJMenuBar(menuBar);
-		frame.getContentPane().add(emptyPanel);
+		frame.add("Center", menuBar);
+		//frame.setJMenuBar(menuBar);
+		//frame.getContentPane().add(emptyPanel);
 
 		frame.pack();
 		frame.setVisible(true);
