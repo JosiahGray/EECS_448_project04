@@ -45,11 +45,11 @@ public class ShootySnakeGame extends JFrame {
   /**
   * Diameter of the enemy balls.
   */
-  private final double BALL_SIZE = WIDTH / 20;
+  private final double BALL_SIZE = WIDTH / 40;
   /**
   * Diameter of the beam balls.
   */
-  private final double BEAM_SIZE = BALL_SIZE/5;
+  private final double BEAM_SIZE = BALL_SIZE/10;
   /**
   * Diameter of the player ball.
   */
@@ -81,7 +81,7 @@ public class ShootySnakeGame extends JFrame {
   /**
   * Ball array containing all the enemy balls.
   */
-  private Ball[] balls = new Ball[BALLS];
+  private Enemy[] balls = new Enemy[BALLS];
   /**
   * Ball array containing all of the beam Ball objects.
   */
@@ -114,6 +114,12 @@ public class ShootySnakeGame extends JFrame {
   * The playerWon flag, when gameOver is true, tells the game whether the player has won (true) or lost (false).
   */
   private Boolean playerWon;
+
+  private volatile Boolean mouseDown = false;
+
+  private volatile int mouseX;
+  private volatile int mouseY;
+
   /**
   * Constructor for ShootySnakeGame.  Will initialize the frame, image and game model.
   * @post The game's frame, image and game model are initialized.
@@ -157,23 +163,25 @@ public class ShootySnakeGame extends JFrame {
     // Check if all balls are disabled
     checkBalls(); //victory condition
     // Move the player
-    if (KEYS[KeyEvent.VK_LEFT] && player.x > 0) {
+    if ((KEYS[KeyEvent.VK_LEFT] || KEYS[KeyEvent.VK_A]) && player.x > 0) {
       player.x -= PLAYER_VELOCITY;
     }
-    if (KEYS[KeyEvent.VK_RIGHT] && player.x < WIDTH - PLAYER_SIZE/2) {
+    if ((KEYS[KeyEvent.VK_RIGHT] || KEYS[KeyEvent.VK_D]) && player.x < WIDTH - player.radius*2) {
       player.x += PLAYER_VELOCITY;
     }
-    if (KEYS[KeyEvent.VK_UP] && player.y > 0) {
+    if ((KEYS[KeyEvent.VK_UP] || KEYS[KeyEvent.VK_W]) && player.y > 0) {
       player.y -= PLAYER_VELOCITY;
     }
-    if (KEYS[KeyEvent.VK_DOWN] && player.y < HEIGHT - PLAYER_SIZE/2) {
+    if ((KEYS[KeyEvent.VK_DOWN] || KEYS[KeyEvent.VK_S]) && player.y < HEIGHT - player.radius*2) {
       player.y += PLAYER_VELOCITY;
     }
-    if (KEYS[KeyEvent.VK_SPACE] && (System.nanoTime() - lastShot > 1000000000L/10) &&
+    if ((KEYS[KeyEvent.VK_SPACE] || mouseDown) && (System.nanoTime() - lastShot > 1000000000L/10) &&
         (System.nanoTime() - respawnStart > spawnInvulnerabilityCounter))
     {
       lastShot = System.nanoTime();
-      addBeam(player.x + PLAYER_SIZE/2, player.y + PLAYER_SIZE/2, 4, 0);
+      mouseX = MouseInfo.getPointerInfo().getLocation().x - getLocationOnScreen().x - getComponent(0).getBounds().x;
+      mouseY = MouseInfo.getPointerInfo().getLocation().y - getLocationOnScreen().y - getComponent(0).getBounds().y;
+      addBeam(player.x + player.radius, player.y + player.radius, 4*player.normalX(mouseX,mouseY), 4*player.normalY(mouseX,mouseY));
     }
     moveBeams();
     findCollisions();
@@ -190,14 +198,11 @@ public class ShootySnakeGame extends JFrame {
     {
       // Render balls
       for(int i = 0; i < BALLS; i++) {
-        Ball ball = balls[i];
+        Enemy ball = balls[i];
         if(!ball.disabled)
         {
-          if(i != BALLS-1 && !balls[i+1].disabled)
-            imageGraphics.setColor(Color.BLUE);
-          else
-            imageGraphics.setColor(Color.CYAN);
-          imageGraphics.fillOval((int)(ball.x), (int)(ball.y), (int)BALL_SIZE, (int)BALL_SIZE);
+          imageGraphics.setColor(ball.color);
+          imageGraphics.fillOval((int)(ball.x), (int)(ball.y), (int)ball.radius*2, (int)ball.radius*2);
         }
       }
       // Render player
@@ -212,14 +217,14 @@ public class ShootySnakeGame extends JFrame {
       else
         imageGraphics.setColor(Color.YELLOW);
       imageGraphics.fillOval(
-        (int)player.x, (int)player.y, (int)PLAYER_SIZE, (int)PLAYER_SIZE);
+        (int)player.x, (int)player.y, (int)player.radius*2, (int)player.radius*2);
 
       // Render beams
       imageGraphics.setColor(Color.RED);
       for(int i = 0; i < BEAMS; i++)
       {
         if(!beams[i].disabled)
-          imageGraphics.fillOval((int)(beams[i].x), (int)(beams[i].y), (int)BEAM_SIZE, (int)BEAM_SIZE);
+          imageGraphics.fillOval((int)(beams[i].x), (int)(beams[i].y), (int)beams[i].radius*2, (int)beams[i].radius*2);
       }
 
       //Render lives
@@ -255,9 +260,31 @@ public class ShootySnakeGame extends JFrame {
   */
   private void initFrame() {
     setTitle("Shooty Snake");
-    setResizable(false);
+    setResizable(true);
     panel = (JPanel)getContentPane();
     panel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+    panel.setMaximumSize(new Dimension(WIDTH, HEIGHT));
+    panel.setMinimumSize(new Dimension(WIDTH, HEIGHT));
+    addMouseListener(
+      new MouseAdapter()
+      {
+        public void mousePressed(MouseEvent e)
+        {
+          if (e.getButton() == MouseEvent.BUTTON1)
+          {
+            mouseDown = true;
+          }
+        }
+
+        public void mouseReleased(MouseEvent e)
+        {
+          if (e.getButton() == MouseEvent.BUTTON1)
+          {
+            mouseDown = false;
+          }
+        }
+      }
+    );
     pack();
     setLocationRelativeTo(null);
     setVisible(true);
@@ -281,22 +308,24 @@ public class ShootySnakeGame extends JFrame {
     lives = 3;
     gameOver = false;
 
-    player = new Ball(WIDTH/4, HEIGHT/2, 0, 0);
+    player = new Ball(WIDTH/4, HEIGHT/2, 0, 0, PLAYER_SIZE);
     for(double i = 0; i < BALLS; i++)
     {
-      balls[(int)(BALLS - i - 1)] = new Ball(
+      balls[(int)(BALLS - i - 1)] = new Enemy(
         (WIDTH - BALL_SIZE)/2 + i*BALL_SIZE,
         (HEIGHT - BALL_SIZE)/2,
         BALL_VELOCITY,
-        BALL_VELOCITY
+        BALL_VELOCITY,
+        BALL_SIZE
       );
     }
     lastShot = System.nanoTime();
     for(int i = 0; i < BEAMS; i++)
     {
-      beams[i] = new Ball(-100, -100, 0, 0);
+      beams[i] = new Ball(-100, -100, 0, 0, BEAM_SIZE);
       beams[i].disabled = true;
     }
+    balls[199].becomeLeader();
   }
 
   /**
@@ -306,6 +335,8 @@ public class ShootySnakeGame extends JFrame {
   public void processKeyEvent(KeyEvent e) {
     KEYS[e.getKeyCode()] = e.getID() == 401;
   }
+
+
 
   /**
   * Moves the balls in the balls array according to their position, velocity and disabled status of their leading members.
@@ -326,12 +357,12 @@ public class ShootySnakeGame extends JFrame {
       }
       else
       {
-        if (ball.x >= WIDTH - BALL_SIZE) {
+        if (ball.x >= WIDTH - ball.radius*2) {
           ball.vx = -ball.vx;
         } else if (ball.x <= 0) {
           ball.vx = -ball.vx;
         }
-        if (ball.y >= HEIGHT - BALL_SIZE) {
+        if (ball.y >= HEIGHT - ball.radius*2) {
           ball.vy = -ball.vy;
         } else if (ball.y <= 0) {
           ball.vy = -ball.vy;
@@ -380,7 +411,7 @@ public class ShootySnakeGame extends JFrame {
     for(int i = 0; i < BEAMS-1; i++){
       beams[i] = beams[i+1];
     }
-    beams[BEAMS-1] = new Ball(x,y,vx,vy);
+    beams[BEAMS-1] = new Ball(x,y,vx,vy, BEAM_SIZE*2);
   }
 
   /**
@@ -436,10 +467,17 @@ public class ShootySnakeGame extends JFrame {
     {
       for(int j = 0; j < BALLS; j++)
       {
-        if(circlesIntersect(beams[i], balls[j], BEAM_SIZE/4, BALL_SIZE/2) && !beams[i].disabled && !balls[j].disabled)
+        if(circlesIntersect(beams[i], balls[j], BEAM_SIZE/2, BALL_SIZE) && !beams[i].disabled && !balls[j].disabled)
         {
-          beams[i].disabled = true;
-          balls[j].disabled = true;
+          // if(balls[j].x > getComponent(0).getBounds().x && balls[j].x < WIDTH - balls[j].radius*2 - getComponent(0).getBounds().x)
+          // {
+            beams[i].disabled = true;
+            balls[j].hit(player.x, player.y);
+            if(balls[j].disabled && j > 0)
+            {
+              balls[j-1].becomeLeader();
+            }
+          // }
         }
       }
     }
@@ -469,7 +507,7 @@ public class ShootySnakeGame extends JFrame {
     lastShot = System.nanoTime();
     for(int i = 0; i < BEAMS; i++)
     {
-      beams[i] = new Ball(-100, -100, 0, 0);
+      beams[i] = new Ball(-100, -100, 0, 0, BEAM_SIZE);
       beams[i].disabled = true;
     }
     player.x = WIDTH/2;
@@ -519,6 +557,8 @@ class Ball {
   */
   public Boolean disabled;
 
+  public double radius;
+
   /**
   * Constructor for a Ball object.
   * @param mx The x coordinate for the new ball object.
@@ -526,11 +566,82 @@ class Ball {
   * @param mvx The horizontal component of velocity for the new ball object.
   * @param mvy The vertical component of velocity for the new ball object.
   */
-  public Ball(double mx, double my, double mvx, double mvy) {
+  public Ball(double mx, double my, double mvx, double mvy, double mradius)
+  {
     x = mx;
     y = my;
     vx = mvx;
     vy = mvy;
     disabled = false;
+    radius = mradius;
+  }
+
+  public double normalX(double x0, double y0)
+  {
+    double xDiff = x0 - (x + radius);
+    double yDiff = y0 - (y + radius);
+    double temp = xDiff/java.lang.Math.sqrt(xDiff*xDiff + yDiff*yDiff);
+    return temp;
+  }
+
+  public double normalY(double x0, double y0)
+  {
+    double xDiff = x0 - (x + radius);
+    double yDiff = y0 - (y + radius);
+    double temp = yDiff/java.lang.Math.sqrt(xDiff*xDiff + yDiff*yDiff);
+    return temp;
+  }
+}
+
+
+class Enemy extends Ball{
+  public Boolean leader;
+  public int hitpoints;
+  public java.awt.Color color;
+
+  public Enemy(double mx, double my, double mvx, double mvy, double mradius)
+  {
+    super(mx, my, mvx, mvy, mradius);
+    leader = false;
+    hitpoints = 2;
+    color = Color.BLUE;
+  }
+
+  public void hit(double x0, double y0)
+  {
+    hitpoints--;
+    color = color.darker();
+    if(hitpoints <= 0)
+      disabled = true;
+    else if(leader)
+    {
+      vx = vx + 25*normalX(x0, y0);
+      vy = vy + 25*normalY(x0, y0);
+      System.out.println(vx*vx + vy*vy);
+      if(vx*vx + vy*vy > 2000)
+      {
+        vx = 2000*normalX(0,0);
+        vy = 2000*normalY(0,0);
+      }
+      if(vx*vx + vy*vy < 100)
+      {
+        vx = 100*normalX(0,0);
+        vy = 100*normalY(0,0);
+      }
+    }
+  }
+
+  public void becomeLeader()
+  {
+    if(!disabled)
+    {
+      leader = true;
+      hitpoints = 3 - (2 - hitpoints);
+      color = Color.CYAN;
+      for(int i = 0; i < 3 - hitpoints; i++)
+      {
+        color = Color.CYAN.darker();
+      }
+    }
   }
 }
