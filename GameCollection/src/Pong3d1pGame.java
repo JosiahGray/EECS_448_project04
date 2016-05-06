@@ -21,14 +21,14 @@ import java.util.TimerTask;
 public class Pong3d1pGame {
 	Pong3d1pBall ball;
 	//Pong3d1pControl control;
-	Pong3d1pHuman human;
+	// Pong3d1pHuman human;
 	Pong3d1pComputer computer;
 	public Pong3d1pGame(){
 		ball = new Pong3d1pBall();
-		human = new Pong3d1pHuman();
+		// human = new Pong3d1pHuman();
 		computer = new Pong3d1pComputer();
 		Pong3d1pShell shell = new Pong3d1pShell(this);
 	}
-	
+
 
 }
