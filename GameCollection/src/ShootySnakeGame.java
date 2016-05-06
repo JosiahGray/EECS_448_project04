@@ -81,7 +81,7 @@ public class ShootySnakeGame extends JFrame {
   /**
   * Ball array containing all the enemy balls.
   */
-  private Ball[] balls = new Ball[BALLS];
+  private Enemy[] balls = new Enemy[BALLS];
   /**
   * Ball array containing all of the beam Ball objects.
   */
@@ -198,13 +198,10 @@ public class ShootySnakeGame extends JFrame {
     {
       // Render balls
       for(int i = 0; i < BALLS; i++) {
-        Ball ball = balls[i];
+        Enemy ball = balls[i];
         if(!ball.disabled)
         {
-          if(i != BALLS-1 && !balls[i+1].disabled)
-            imageGraphics.setColor(Color.BLUE);
-          else
-            imageGraphics.setColor(Color.CYAN);
+          imageGraphics.setColor(ball.color);
           imageGraphics.fillOval((int)(ball.x), (int)(ball.y), (int)ball.radius*2, (int)ball.radius*2);
         }
       }
@@ -314,7 +311,7 @@ public class ShootySnakeGame extends JFrame {
     player = new Ball(WIDTH/4, HEIGHT/2, 0, 0, PLAYER_SIZE);
     for(double i = 0; i < BALLS; i++)
     {
-      balls[(int)(BALLS - i - 1)] = new Ball(
+      balls[(int)(BALLS - i - 1)] = new Enemy(
         (WIDTH - BALL_SIZE)/2 + i*BALL_SIZE,
         (HEIGHT - BALL_SIZE)/2,
         BALL_VELOCITY,
@@ -328,6 +325,7 @@ public class ShootySnakeGame extends JFrame {
       beams[i] = new Ball(-100, -100, 0, 0, BEAM_SIZE);
       beams[i].disabled = true;
     }
+    balls[199].becomeLeader();
   }
 
   /**
@@ -359,6 +357,10 @@ public class ShootySnakeGame extends JFrame {
       }
       else
       {
+        if(ball.vx*ball.vx + ball.vy*ball.vy <= 16 && !ball.disabled)
+        {
+          System.out.println("Slow Ball! " + i + "'s speed: " + (ball.vx*ball.vx + ball.vy*ball.vy) + " Location(x,y): ( " + (int)ball.x + ", " + (int)ball.y + ")");
+        }
         if (ball.x >= WIDTH - ball.radius*2) {
           ball.vx = -ball.vx;
         } else if (ball.x <= 0) {
@@ -471,11 +473,15 @@ public class ShootySnakeGame extends JFrame {
       {
         if(circlesIntersect(beams[i], balls[j], BEAM_SIZE/2, BALL_SIZE) && !beams[i].disabled && !balls[j].disabled)
         {
-          if(balls[j].x > 0 && balls[j].x < WIDTH - balls[j].radius*2 - 16)
-          {
+          // if(balls[j].x > getComponent(0).getBounds().x && balls[j].x < WIDTH - balls[j].radius*2 - getComponent(0).getBounds().x)
+          // {
             beams[i].disabled = true;
-            balls[j].disabled = true;
-          }
+            balls[j].hit(beams[i].x, beams[i].y);
+            if(balls[j].disabled && j > 0)
+            {
+              balls[j-1].becomeLeader();
+            }
+          // }
         }
       }
     }
@@ -582,11 +588,63 @@ class Ball {
     return temp;
   }
 
-  public double normalY(int x0, int y0)
+  public double normalY(double x0, double y0)
   {
     double xDiff = x0 - (x + radius);
     double yDiff = y0 - (y + radius);
     double temp = yDiff/java.lang.Math.sqrt(xDiff*xDiff + yDiff*yDiff);
     return temp;
+  }
+}
+
+
+class Enemy extends Ball{
+  public Boolean leader;
+  public int hitpoints;
+  public java.awt.Color color;
+
+  public Enemy(double mx, double my, double mvx, double mvy, double mradius)
+  {
+    super(mx, my, mvx, mvy, mradius);
+    leader = false;
+    hitpoints = 2;
+    color = Color.BLUE;
+  }
+
+  public void hit(double x0, double y0)
+  {
+    hitpoints--;
+    color = color.darker();
+    if(hitpoints <= 0)
+      disabled = true;
+    else
+    {
+      vx = 100*normalX(x0, y0);
+      vy = 100*normalY(x0, y0);
+      if(vx*vx + vy*vy > 20)
+      {
+        vx = -20*normalX(0,0);
+        vy = -20*normalY(0,0);
+      }
+      if(vx*vx + vy*vy < 8)
+      {
+        vx = -8*normalX(0,0);
+        vy = -8*normalY(0,0);
+      }
+    }
+  }
+
+  public void becomeLeader()
+  {
+    if(!disabled)
+    {
+      leader = true;
+      hitpoints = 3 - (2 - hitpoints);
+      color = Color.CYAN;
+      for(int i = 0; i < 3 - hitpoints; i++)
+      {
+        color = Color.CYAN.darker();
+      }
+    }
   }
 }
