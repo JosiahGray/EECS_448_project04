@@ -270,6 +270,7 @@ public class ShootySnakeGame extends JFrame {
   private void initFrame() {
     setTitle("Shooty Snake");
     setResizable(true);
+    setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     panel = (JPanel)getContentPane();
     panel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
     panel.setMaximumSize(new Dimension(WIDTH, HEIGHT));
