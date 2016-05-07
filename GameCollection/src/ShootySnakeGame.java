@@ -325,7 +325,7 @@ public class ShootySnakeGame extends JFrame {
       beams[i] = new Ball(-100, -100, 0, 0, BEAM_SIZE);
       beams[i].disabled = true;
     }
-    balls[199].becomeLeader();
+    balls[BALLS - 1].becomeLeader();
   }
 
   /**
@@ -346,8 +346,53 @@ public class ShootySnakeGame extends JFrame {
   {
     for(int i = 0; i < BALLS; i++)
     {
-      Ball ball = balls[i];
+      Enemy ball = balls[i];
 
+
+
+      if(ball.leader)
+      {
+        while(ball.vx*ball.vx + ball.vy*ball.vy < 4)
+        {
+          System.out.println("ball: " + i + " speed too small: " + ball.vx*ball.vx + ball.vy*ball.vy);
+          ball.vx *= 1.10;
+          ball.vy *= 1.10;
+          // if(ball.vx*ball.vx <= ball.vy*ball.vy)
+          // {
+          //   if(ball.vx > 0)
+          //     ball.vx++;
+          //   else
+          //     ball.vx--;
+          // }
+          // else
+          // {
+          //   if(ball.vy > 0)
+          //     ball.vy++;
+          //   else
+          //     ball.vy--;
+          // }
+        }
+        while(ball.vx*ball.vx + ball.vy*ball.vy > 800)
+        {
+          System.out.println("ball: " + i + " speed too large: " + (ball.vx*ball.vx + ball.vy*ball.vy));
+          ball.vx *= .90;
+          ball.vy *= .90;
+          // if(ball.vx*ball.vx >= ball.vy*ball.vy)
+          // {
+          //   if(ball.vx > 0)
+          //     ball.vx--;
+          //   else
+          //     ball.vx++;
+          // }
+          // else
+          // {
+          //   if(ball.vy > 0)
+          //     ball.vy--;
+          //   else
+          //     ball.vy++;
+          // }
+        }
+      }
       if(i != BALLS - 1 && !balls[i+1].disabled)
       {
         ball.vx = (balls[i+1].x - ball.x);
@@ -367,7 +412,7 @@ public class ShootySnakeGame extends JFrame {
         } else if (ball.y <= 0) {
           ball.vy = -ball.vy;
         }
-        if(i == BALLS-1)
+        if(i == BALLS-1 && balls[BALLS-1].hitpoints == 3)
         {
           ball.x += ball.vx;
           ball.y += ball.vy;
@@ -447,7 +492,7 @@ public class ShootySnakeGame extends JFrame {
     if(System.nanoTime() - respawnStart > spawnInvulnerabilityCounter)
       for(int i = 0; i < BALLS; i++)
       {
-        if(circlesIntersect(balls[i], player, BALL_SIZE/2, PLAYER_SIZE/2) && !balls[i].disabled)
+        if(circlesIntersect(balls[i], player, BALL_SIZE, PLAYER_SIZE) && !balls[i].disabled)
         {
           if(lives > 0)
             respawn();
@@ -478,9 +523,16 @@ public class ShootySnakeGame extends JFrame {
               balls[j-1].becomeLeader();
             }
           // }
+            // System.out.print("[");
+            // for(int k = 0; k < BALLS - 1; k++)
+            // {
+            //   System.out.print(balls[k].hitpoints);
+            // }
+            // System.out.println("]");
         }
       }
     }
+
   }
 
   /**
@@ -612,12 +664,14 @@ class Enemy extends Ball{
     hitpoints--;
     color = color.darker();
     if(hitpoints <= 0)
+    {
       disabled = true;
+    }
     else if(leader)
     {
       vx = 25*normalX(x0, y0);
       vy = 25*normalY(x0, y0);
-      // if(vx*vx + vy*vy > 2000)
+      // if(vx*vx + vy*vy > 625)
       // {
       //   vx = 2000*normalX(0,0);
       //   vy = 2000*normalY(0,0);
