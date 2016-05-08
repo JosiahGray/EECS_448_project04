@@ -22,7 +22,6 @@ public class ShootySnakeChain {
     chain = new ShootySnakeEnemy[num];
     for(double i = 0; i < numberOfBalls; i++)
     {
-      // System.out.println((int)(numberOfBalls - i - 1));
       chain[(int)(numberOfBalls - i - 1)] = new ShootySnakeEnemy(
         initialX + i*radius,
         initialY,
@@ -32,7 +31,6 @@ public class ShootySnakeChain {
       );
     }
     chain[numberOfBalls - 1].becomeLeader();
-    // System.out.println("yo");
   }
 
   public ShootySnakeEnemy ball(int num)
@@ -48,8 +46,6 @@ public class ShootySnakeChain {
       if(!chain[i].disabled)
         chainDisabled = false;
     }
-    if(chainDisabled)
-          System.out.println("chain disabled");
     return chainDisabled;
   }
 }
