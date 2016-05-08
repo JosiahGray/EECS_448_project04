@@ -81,15 +81,16 @@ public class ShootySnakeGame extends JFrame {
   /**
   * Ball array containing all the enemy balls.
   */
-  private Enemy[] balls = new Enemy[BALLS];
+  //private ShootySnakeEnemy[] balls = new ShootySnakeEnemy[BALLS];
+  private ShootySnakeChain[] chain = new ShootySnakeChain[9];
   /**
   * Ball array containing all of the beam Ball objects.
   */
-  private Ball[] beams = new Ball[BEAMS];
+  private ShootySnakeBall[] beams = new ShootySnakeBall[BEAMS];
   /**
   * The player Ball object.
   */
-  private Ball player;
+  private ShootySnakeBall player;
   /**
   * Contains the last nano second (according to nanoTime()) that a beam was fired.
   */
@@ -102,6 +103,8 @@ public class ShootySnakeGame extends JFrame {
   * Contains the nano second (according to nanoTime()) since a player respawned.
   */
   private long respawnStart;
+
+  private long levelTransitionStart;
   /**
   * The number of lives the player has left before they lose.  Getting struck by an enemy ball when the player has 0 will cause them to lose.
   */
@@ -119,6 +122,11 @@ public class ShootySnakeGame extends JFrame {
 
   private volatile int mouseX;
   private volatile int mouseY;
+  private int activeChains = 0;
+  private int disabledChains = 0;
+
+  private Boolean newLevel = true;
+  private int level = 1;
 
   /**
   * Constructor for ShootySnakeGame.  Will initialize the frame, image and game model.
@@ -138,7 +146,8 @@ public class ShootySnakeGame extends JFrame {
     if(!gameOver) {
       long nextFrameStart = System.nanoTime();
       do {
-        updateModel();
+        if(!newLevel)
+          updateModel();
         nextFrameStart += FRAME_PERIOD;
       } while(nextFrameStart < System.nanoTime());
       renderFrame();
@@ -162,6 +171,15 @@ public class ShootySnakeGame extends JFrame {
     moveBalls();
     // Check if all balls are disabled
     checkBalls(); //victory condition
+    // Check if level is disabled
+    if(newLevel)
+    {
+      levelTransition(level, WIDTH/2, HEIGHT/2);
+    }
+    else
+    {
+      updateLevels();
+    }
     // Move the player
     if ((KEYS[KeyEvent.VK_LEFT] || KEYS[KeyEvent.VK_A]) && player.x > 0) {
       player.x -= PLAYER_VELOCITY;
@@ -194,15 +212,30 @@ public class ShootySnakeGame extends JFrame {
   private void renderFrame() {
     imageGraphics.setColor(Color.BLACK);
     imageGraphics.fillRect(0, 0, WIDTH, HEIGHT);
-    if(!gameOver)
+    if(newLevel && System.nanoTime() - levelTransitionStart < 4000000000L)
+    {
+      message("Level " + level, WIDTH/2, HEIGHT/2, 20);
+    }
+    else if(newLevel && System.nanoTime() - levelTransitionStart >= 4000000000L)
+    {
+      System.out.println("thing 3");
+      newLevel = false;
+      levelTransition(level, WIDTH/2, HEIGHT/2);
+    }
+
+    if(!gameOver && !newLevel)
     {
       // Render balls
-      for(int i = 0; i < BALLS; i++) {
-        Enemy ball = balls[i];
-        if(!ball.disabled)
-        {
-          imageGraphics.setColor(ball.color);
-          imageGraphics.fillOval((int)(ball.x), (int)(ball.y), (int)ball.radius*2, (int)ball.radius*2);
+      int count = 0;
+      for(int k = disabledChains; k < activeChains; k++)
+      {
+        for(int i = 0; i < chain[k].numberOfBalls; i++) {
+          ShootySnakeEnemy ball = chain[k].ball(i);
+          if(!ball.disabled)
+          {
+            imageGraphics.setColor(ball.color);
+            imageGraphics.fillOval((int)(ball.x), (int)(ball.y), (int)ball.radius*2, (int)ball.radius*2);
+          }
         }
       }
       // Render player
@@ -228,10 +261,8 @@ public class ShootySnakeGame extends JFrame {
       }
 
       //Render lives
-      int fontSize = 20;
-      imageGraphics.setFont(new Font("TimesRoman", Font.PLAIN, fontSize));
-      imageGraphics.setColor(Color.GREEN);
-      imageGraphics.drawString("LIVES " + lives, 10, 20);
+      message("LIVES " + lives, 10, 20, 20);
+
     }
     else if(gameOver)
     {
@@ -240,10 +271,8 @@ public class ShootySnakeGame extends JFrame {
         message = "Game Over!";
       else
         message = "You Won!";
-      int fontSize = 20;
-      imageGraphics.setFont(new Font("TimesRoman", Font.PLAIN, fontSize));
-      imageGraphics.setColor(Color.GREEN);
-      imageGraphics.drawString(message, WIDTH/2, HEIGHT/2);
+
+      message(message, WIDTH/2, HEIGHT/2, 20);
     }
 
     // Draw to screen
@@ -261,6 +290,7 @@ public class ShootySnakeGame extends JFrame {
   private void initFrame() {
     setTitle("Shooty Snake");
     setResizable(true);
+    setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     panel = (JPanel)getContentPane();
     panel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
     panel.setMaximumSize(new Dimension(WIDTH, HEIGHT));
@@ -307,25 +337,19 @@ public class ShootySnakeGame extends JFrame {
     // Set lives
     lives = 3;
     gameOver = false;
+    level = 1;
+    newLevel = true;
+    levelTransitionStart = System.nanoTime();
 
-    player = new Ball(WIDTH/4, HEIGHT/2, 0, 0, PLAYER_SIZE);
-    for(double i = 0; i < BALLS; i++)
-    {
-      balls[(int)(BALLS - i - 1)] = new Enemy(
-        (WIDTH - BALL_SIZE)/2 + i*BALL_SIZE,
-        (HEIGHT - BALL_SIZE)/2,
-        BALL_VELOCITY,
-        BALL_VELOCITY,
-        BALL_SIZE
-      );
-    }
+    player = new ShootySnakeBall(WIDTH/4, HEIGHT/2, 0, 0, PLAYER_SIZE);
+    initLevels();
+    //balls = chain[k].chain;
     lastShot = System.nanoTime();
     for(int i = 0; i < BEAMS; i++)
     {
-      beams[i] = new Ball(-100, -100, 0, 0, BEAM_SIZE);
+      beams[i] = new ShootySnakeBall(-100, -100, 0, 0, BEAM_SIZE);
       beams[i].disabled = true;
     }
-    balls[199].becomeLeader();
   }
 
   /**
@@ -344,38 +368,53 @@ public class ShootySnakeGame extends JFrame {
   */
   private void moveBalls()
   {
-    for(int i = 0; i < BALLS; i++)
+    for(int k = disabledChains; k < activeChains; k++)
     {
-      Ball ball = balls[i];
-
-      if(i != BALLS - 1 && !balls[i+1].disabled)
+      for(int i = 0; i < chain[k].numberOfBalls; i++)
       {
-        ball.vx = (balls[i+1].x - ball.x);
-        ball.vy = (balls[i+1].y - ball.y);
-        ball.x += ball.vx/DIV;
-        ball.y += ball.vy/DIV;
-      }
-      else
-      {
-        if (ball.x >= WIDTH - ball.radius*2) {
-          ball.vx = -ball.vx;
-        } else if (ball.x <= 0) {
-          ball.vx = -ball.vx;
-        }
-        if (ball.y >= HEIGHT - ball.radius*2) {
-          ball.vy = -ball.vy;
-        } else if (ball.y <= 0) {
-          ball.vy = -ball.vy;
-        }
-        if(i == BALLS-1)
+        ShootySnakeEnemy ball = chain[k].ball(i);
+        if(ball.leader)
         {
-          ball.x += ball.vx;
-          ball.y += ball.vy;
+          while(ball.vx*ball.vx + ball.vy*ball.vy < 4)
+          {
+            ball.vx *= 1.10;
+            ball.vy *= 1.10;
+          }
+          while(ball.vx*ball.vx + ball.vy*ball.vy > 800)
+          {
+            ball.vx *= .90;
+            ball.vy *= .90;
+          }
+        }
+        if(i != chain[k].numberOfBalls - 1 && !chain[k].ball(i+1).disabled)
+        {
+          ball.vx = (chain[k].ball(i+1).x - ball.x);
+          ball.vy = (chain[k].ball(i+1).y - ball.y);
+          ball.x += ball.vx/DIV;
+          ball.y += ball.vy/DIV;
         }
         else
         {
-          ball.x += ball.vx/DIV;
-          ball.y += ball.vy/DIV;
+          if (ball.x >= WIDTH - ball.radius*2) {
+            ball.vx = -ball.vx;
+          } else if (ball.x <= 0) {
+            ball.vx = -ball.vx;
+          }
+          if (ball.y >= HEIGHT - ball.radius*2) {
+            ball.vy = -ball.vy;
+          } else if (ball.y <= 0) {
+            ball.vy = -ball.vy;
+          }
+          if(i == chain[k].numberOfBalls-1 && chain[k].ball(chain[k].numberOfBalls-1).hitpoints == 3)
+          {
+            ball.x += ball.vx;
+            ball.y += ball.vy;
+          }
+          else
+          {
+            ball.x += ball.vx/DIV;
+            ball.y += ball.vy/DIV;
+          }
         }
       }
     }
@@ -387,16 +426,19 @@ public class ShootySnakeGame extends JFrame {
   */
   private void checkBalls()
   {
-    int count = 0;
-    for(int i = 0; i < BALLS; i++)
-    {
-      if(balls[i].disabled)
-        count++;
-    }
-    if(count >= BALLS)
-    {
-      win();
-    }
+    // for(int k = disabledChains; k < activeChains; k++)
+    // {
+    //   int count = 0;
+    //   for(int i = 0; i < BALLS; i++)
+    //   {
+    //     if(chain[k].ball(i).disabled)
+    //       count++;
+    //   }
+    //   if(count >= BALLS)
+    //   {
+    //     win();
+    //   }
+    // }
   }
 
   /**
@@ -411,7 +453,7 @@ public class ShootySnakeGame extends JFrame {
     for(int i = 0; i < BEAMS-1; i++){
       beams[i] = beams[i+1];
     }
-    beams[BEAMS-1] = new Ball(x,y,vx,vy, BEAM_SIZE*2);
+    beams[BEAMS-1] = new ShootySnakeBall(x,y,vx,vy, BEAM_SIZE*2);
   }
 
   /**
@@ -422,7 +464,7 @@ public class ShootySnakeGame extends JFrame {
   {
     for(int i = 0; i < BEAMS; i++)
     {
-      Ball beam = beams[i];
+      ShootySnakeBall beam = beams[i];
       beam.x += beam.vx;
       beam.y += beam.vy;
     }
@@ -445,14 +487,17 @@ public class ShootySnakeGame extends JFrame {
   private void ballHitsPlayer()
   {
     if(System.nanoTime() - respawnStart > spawnInvulnerabilityCounter)
-      for(int i = 0; i < BALLS; i++)
+      for(int k = disabledChains; k < activeChains; k++)
       {
-        if(circlesIntersect(balls[i], player, BALL_SIZE/2, PLAYER_SIZE/2) && !balls[i].disabled)
+        for(int i = 0; i < chain[k].numberOfBalls; i++)
         {
-          if(lives > 0)
-            respawn();
-          else
-            lose();
+          if(circlesIntersect(chain[k].ball(i), player, BALL_SIZE, PLAYER_SIZE) && !chain[k].ball(i).disabled)
+          {
+            if(lives > 0)
+              respawn();
+            else
+              lose();
+          }
         }
       }
   }
@@ -465,22 +510,23 @@ public class ShootySnakeGame extends JFrame {
   {
     for(int i = 0; i < BEAMS; i++)
     {
-      for(int j = 0; j < BALLS; j++)
+      for(int k = disabledChains; k < activeChains; k++)
       {
-        if(circlesIntersect(beams[i], balls[j], BEAM_SIZE/2, BALL_SIZE) && !beams[i].disabled && !balls[j].disabled)
+        for(int j = 0; j < chain[k].numberOfBalls; j++)
         {
-          // if(balls[j].x > getComponent(0).getBounds().x && balls[j].x < WIDTH - balls[j].radius*2 - getComponent(0).getBounds().x)
-          // {
+          if(circlesIntersect(beams[i], chain[k].ball(j), BEAM_SIZE/2, BALL_SIZE) && !beams[i].disabled && !chain[k].ball(j).disabled)
+          {
             beams[i].disabled = true;
-            balls[j].hit(player.x, player.y);
-            if(balls[j].disabled && j > 0)
+            chain[k].ball(j).hit(player.x, player.y);
+            if(chain[k].ball(j).disabled && j > 0)
             {
-              balls[j-1].becomeLeader();
+              chain[k].ball(j-1).becomeLeader();
             }
-          // }
+          }
         }
       }
     }
+
   }
 
   /**
@@ -491,7 +537,7 @@ public class ShootySnakeGame extends JFrame {
   * @param size2 The radius of the second Ball object.
   * @return True if the Ball objects are intersecting, False otherwise.
   */
-  private Boolean circlesIntersect(Ball b1, Ball b2, double size1, double size2)
+  private Boolean circlesIntersect(ShootySnakeBall b1, ShootySnakeBall b2, double size1, double size2)
   {
     return java.awt.geom.Point2D.distance(b1.x + size1, b1.y + size1, b2.x + size2, b2.y + size2) < size1 + size2;
   }
@@ -507,7 +553,7 @@ public class ShootySnakeGame extends JFrame {
     lastShot = System.nanoTime();
     for(int i = 0; i < BEAMS; i++)
     {
-      beams[i] = new Ball(-100, -100, 0, 0, BEAM_SIZE);
+      beams[i] = new ShootySnakeBall(-100, -100, 0, 0, BEAM_SIZE);
       beams[i].disabled = true;
     }
     player.x = WIDTH/2;
@@ -533,115 +579,160 @@ public class ShootySnakeGame extends JFrame {
     gameOver = true;
     playerWon = true;
   }
-}
 
-class Ball {
-  /**
-  * The x coordinate of a Ball object.
-  */
-  public double x;
-  /**
-  * The y coordinate of a Ball object.
-  */
-  public double y;
-  /**
-  * The horizontal component of velocity of a Ball object.
-  */
-  public double vx;
-  /**
-  * The vertical component of velocity of a Ball object.
-  */
-  public double vy;
-  /**
-  * The disabled state of a Ball object.
-  */
-  public Boolean disabled;
-
-  public double radius;
-
-  /**
-  * Constructor for a Ball object.
-  * @param mx The x coordinate for the new ball object.
-  * @param my The y coordinate for the new ball object.
-  * @param mvx The horizontal component of velocity for the new ball object.
-  * @param mvy The vertical component of velocity for the new ball object.
-  */
-  public Ball(double mx, double my, double mvx, double mvy, double mradius)
+  private void initLevels()
   {
-    x = mx;
-    y = my;
-    vx = mvx;
-    vy = mvy;
-    disabled = false;
-    radius = mradius;
+    chain[0] = new ShootySnakeChain(
+      (WIDTH - BALL_SIZE)*2/3,
+      (HEIGHT - BALL_SIZE)/2,
+      BALL_VELOCITY, BALL_VELOCITY,
+      BALL_SIZE,
+      25,
+      WIDTH,
+      HEIGHT);
+    chain[1] = new ShootySnakeChain(
+      (WIDTH - BALL_SIZE)/2,
+      (HEIGHT - BALL_SIZE)/3,
+      -BALL_VELOCITY, -BALL_VELOCITY,
+      BALL_SIZE,
+      25,
+      WIDTH,
+      HEIGHT);
+    chain[2] = new ShootySnakeChain(
+      (WIDTH - BALL_SIZE)/2,
+      (HEIGHT - BALL_SIZE)*2/3,
+      -BALL_VELOCITY, BALL_VELOCITY,
+      BALL_SIZE,
+      25,
+      WIDTH,
+      HEIGHT);
+    chain[3] = new ShootySnakeChain(
+      (WIDTH - BALL_SIZE)/2,
+      (HEIGHT - BALL_SIZE)/2,
+      BALL_VELOCITY, BALL_VELOCITY,
+      BALL_SIZE,
+      25,
+      WIDTH,
+      HEIGHT);
+    chain[4] = new ShootySnakeChain(
+      (WIDTH - BALL_SIZE)/2,
+      (HEIGHT - BALL_SIZE)/2,
+      -BALL_VELOCITY, BALL_VELOCITY,
+      BALL_SIZE,
+      25,
+      WIDTH,
+      HEIGHT);
+    chain[5] = new ShootySnakeChain(
+      (WIDTH - BALL_SIZE)/2,
+      (HEIGHT - BALL_SIZE)/2,
+      BALL_VELOCITY, -BALL_VELOCITY,
+      BALL_SIZE,
+      25,
+      WIDTH,
+      HEIGHT);
+    chain[6] = new ShootySnakeChain(
+      (WIDTH - BALL_SIZE)/2,
+      (HEIGHT - BALL_SIZE)/2,
+      -BALL_VELOCITY, -BALL_VELOCITY,
+      BALL_SIZE,
+      25,
+      WIDTH,
+      HEIGHT);
+    chain[7] = new ShootySnakeChain(
+      (WIDTH - BALL_SIZE)*2/3,
+      (HEIGHT - BALL_SIZE)*2/3,
+      BALL_VELOCITY, -BALL_VELOCITY,
+      BALL_SIZE,
+      100,
+      WIDTH,
+      HEIGHT);
+    chain[8] = new ShootySnakeChain(
+      (WIDTH - BALL_SIZE)/3,
+      (HEIGHT - BALL_SIZE)/3,
+      -BALL_VELOCITY, BALL_VELOCITY,
+      BALL_SIZE,
+      100,
+      WIDTH,
+      HEIGHT);
   }
 
-  public double normalX(double x0, double y0)
+  private void updateLevels()
   {
-    double xDiff = x0 - (x + radius);
-    double yDiff = y0 - (y + radius);
-    double temp = xDiff/java.lang.Math.sqrt(xDiff*xDiff + yDiff*yDiff);
-    return temp;
-  }
-
-  public double normalY(double x0, double y0)
-  {
-    double xDiff = x0 - (x + radius);
-    double yDiff = y0 - (y + radius);
-    double temp = yDiff/java.lang.Math.sqrt(xDiff*xDiff + yDiff*yDiff);
-    return temp;
-  }
-}
-
-
-class Enemy extends Ball{
-  public Boolean leader;
-  public int hitpoints;
-  public java.awt.Color color;
-
-  public Enemy(double mx, double my, double mvx, double mvy, double mradius)
-  {
-    super(mx, my, mvx, mvy, mradius);
-    leader = false;
-    hitpoints = 2;
-    color = Color.BLUE;
-  }
-
-  public void hit(double x0, double y0)
-  {
-    hitpoints--;
-    color = color.darker();
-    if(hitpoints <= 0)
-      disabled = true;
-    else if(leader)
+    if(System.nanoTime() - levelTransitionStart > 4000000000L)
     {
-      vx = 25*normalX(x0, y0);
-      vy = 25*normalY(x0, y0);
-      System.out.println(vx*vx + vy*vy);
-      // if(vx*vx + vy*vy > 2000)
-      // {
-      //   vx = 2000*normalX(0,0);
-      //   vy = 2000*normalY(0,0);
-      // }
-      // if(vx*vx + vy*vy < 100)
-      // {
-      //   vx = 100*normalX(0,0);
-      //   vy = 100*normalY(0,0);
-      // }
-    }
-  }
-
-  public void becomeLeader()
-  {
-    if(!disabled)
-    {
-      leader = true;
-      hitpoints = 3 - (2 - hitpoints);
-      color = Color.CYAN;
-      for(int i = 0; i < 3 - hitpoints; i++)
+      if(activeChains == 0 && level == 1)
       {
-        color = Color.CYAN.darker();
+        activeChains = 1;//begin game
+        disabledChains = 0;
+      }
+      else
+      {
+        if(chain[0].checkDisabled() && level == 1)
+        {
+          newLevel = true;
+          level = 2;
+          levelTransitionStart = System.nanoTime();
+          System.out.println("entered");
+          activeChains = 3;//activate 1 and 2
+          disabledChains = 1;
+        }
+        if(chain[1].checkDisabled() && chain[2].checkDisabled() && level == 2)
+        {
+          newLevel = true;
+          level = 3;
+          levelTransitionStart = System.nanoTime();
+
+          activeChains = 7;//activate 3, 4, 5, 6 and 7
+          disabledChains = 3;
+        }
+        if(chain[3].checkDisabled() && chain[4].checkDisabled() && chain[5].checkDisabled() && chain[6].checkDisabled() && level == 3)
+        {
+          newLevel = true;
+          level = 4;
+          levelTransitionStart = System.nanoTime();
+
+          activeChains = 9;//activate 8 and 9
+          disabledChains = 7;
+        }
+        if(chain[7].checkDisabled() && chain[8].checkDisabled()  && level == 4)
+        {
+          activeChains = 9;//win
+          disabledChains = 9;
+          win();
+        }
       }
     }
+  }
+
+  public void message(String message, int x, int y, int size)
+  {
+    int fontSize = size;
+    imageGraphics.setFont(new Font("TimesRoman", Font.PLAIN, fontSize));
+    imageGraphics.setColor(Color.GREEN);
+    imageGraphics.drawString(message, x, y);
+  }
+
+  public void levelTransition(int num, int x, int y)
+  {
+    System.out.println("levelTransition: 1");
+    if(System.nanoTime() - levelTransitionStart > 4000000000L && !newLevel)
+    {
+      System.out.println("levelTransition: 2");
+      respawnStart = System.nanoTime();
+      lastShot = System.nanoTime();
+      for(int i = 0; i < BEAMS; i++)
+      {
+        beams[i] = new ShootySnakeBall(-100, -100, 0, 0, BEAM_SIZE);
+        beams[i].disabled = true;
+      }
+      player.x = x;
+      player.y = y;
+    }
+    else
+    {
+      newLevel = false;
+      System.out.println("levelTransition: 3");
+    }
+
   }
 }
