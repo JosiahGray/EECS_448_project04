@@ -543,6 +543,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 			} else {
 				if(!isDelayed){
 					update();
+					cLogic.executionTime ++;
 				} else {
 					isDelayed = false;
 					timer.setDelay(5);
@@ -669,6 +670,8 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 		gameGoing = false;
 	}
 	public void newGame(){
+		cLogic.increaseDifficulty = 0.0f;
+		cLogic.executionTime = 0;
 		xloc = 0.0f;
 		depth = 0.0f;
 		squish = 1.0;
