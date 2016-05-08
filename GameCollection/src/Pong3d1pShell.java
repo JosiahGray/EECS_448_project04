@@ -11,11 +11,12 @@ import javax.swing.Timer;
 
 
 public class Pong3d1pShell {
-	public Pong3d1pShell(Pong3d1pGame game){
+	public Pong3d1pShell(){
 		
 		   Pong3d1pControl control= new Pong3d1pControl();
 		   control.addKeyListener(control);
 		   MainFrame display = new MainFrame(control, 700, 500);
+		   
 		
 	}
 
