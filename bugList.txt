@@ -1,1 +1,6 @@
 1. Main menu of games closes when pong game closes.
+2. Pong title remains Pong3d1pControl.java instead of interesting title
+3. PongTest can be run while playing game and therefore fail using game's information
+4. Delay opening up pong
+5. Paddle can move during the "reset freeze" and will be reflected once new match begins
+6. If paddle never moves in beginning of a game, ball will go back and forth forever
