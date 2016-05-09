@@ -11,6 +11,11 @@ import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class ShootySnakeGame extends JFrame {
   /**
@@ -96,9 +101,9 @@ public class ShootySnakeGame extends JFrame {
   */
   private long lastShot;
   /**
-  * The length of time the player should be invulnerable to harm and can't shoot beams after respawning.
+  * The length of time the player should be invulnerable to harm and can't shoot beams after spawning.
   */
-  private final long spawnInvulnerabilityCounter = 4000000000L;
+  private final long spawnInvulnerabilityCounter = 2000000000L;
   /**
   * Contains the nano second (according to nanoTime()) since a player respawned.
   */
@@ -127,6 +132,10 @@ public class ShootySnakeGame extends JFrame {
 
   private Boolean newLevel = true;
   private int level = 1;
+  private int points = 0;
+  private String[] highscores;
+  private Font font = new Font("TimesRoman", Font.PLAIN, 20);
+  private FontMetrics fontmetrics = getFontMetrics(font);
 
   /**
   * Constructor for ShootySnakeGame.  Will initialize the frame, image and game model.
@@ -212,13 +221,12 @@ public class ShootySnakeGame extends JFrame {
   private void renderFrame() {
     imageGraphics.setColor(Color.BLACK);
     imageGraphics.fillRect(0, 0, WIDTH, HEIGHT);
-    if(newLevel && System.nanoTime() - levelTransitionStart < 4000000000L)
+    if(newLevel && System.nanoTime() - levelTransitionStart < spawnInvulnerabilityCounter)
     {
       message("Level " + level, WIDTH/2, HEIGHT/2, 20);
     }
-    else if(newLevel && System.nanoTime() - levelTransitionStart >= 4000000000L)
+    else if(newLevel && System.nanoTime() - levelTransitionStart >= spawnInvulnerabilityCounter)
     {
-      System.out.println("thing 3");
       newLevel = false;
       levelTransition(level, WIDTH/2, HEIGHT/2);
     }
@@ -262,6 +270,7 @@ public class ShootySnakeGame extends JFrame {
 
       //Render lives
       message("LIVES " + lives, 10, 20, 20);
+      message("Points " + points, WIDTH - 100, 20, 20);
 
     }
     else if(gameOver)
@@ -272,7 +281,46 @@ public class ShootySnakeGame extends JFrame {
       else
         message = "You Won!";
 
-      message(message, WIDTH/2, HEIGHT/2, 20);
+      message(message, WIDTH/2 - fontmetrics.	stringWidth(message)/2, HEIGHT/2 - 20*5, 20);
+      message = "High Scores";
+      message(message, WIDTH/2 - fontmetrics.	stringWidth(message)/2, HEIGHT/2 - 20*4, 20);
+      //Do file IO, if can't make a file, then skip and just display score
+      try {
+        highscores = getHighScores();
+      } catch (IOException x) {
+        ;
+      }
+      if(isNewHighScore())
+      {
+        String name = JOptionPane.showInputDialog(panel, "Enter name:", "New High Score!", JOptionPane.PLAIN_MESSAGE);
+        highscores = setHighScore(name + " ", points);
+      }
+      printHighScores();
+      message = "Name:     Score: ";
+      message(message, WIDTH/2 - message.length()*10/2, HEIGHT/2 - 20*3, 20);
+      int topFive = 10;
+      String tempName = "";
+      String tempSpace = "";
+      if(highscores.length < 10)
+        topFive = highscores.length;
+      for(int i = 0; i < topFive; i++)
+      {
+        tempName = highscores[i];
+        tempSpace = "";
+        for(int j = 0; j < 20 - tempName.length(); j++)
+          tempSpace += "\t";
+        message = (i + 2)/2 + ". " + highscores[i] + tempSpace + highscores[i+1];
+        message(message, WIDTH/3, HEIGHT/2 - 20*2 + (i + 1)*22, 20);
+        //message((i + 1) + ". " + highscores[i], WIDTH/2 - highscores[i].length()*10/2, HEIGHT/2 - 20*4 + (i + 1)*22, 20);
+        i++;
+        //message(highscores[i], WIDTH/2 - highscores[i].length()*10/2, HEIGHT/2 - 20*4 + (i + 1)*22, 20);
+      }
+
+      try {
+        writeHighScores();
+      } catch (IOException x) {
+        System.out.println("Can't write highscores to file!");
+      }
     }
 
     // Draw to screen
@@ -405,7 +453,7 @@ public class ShootySnakeGame extends JFrame {
           } else if (ball.y <= 0) {
             ball.vy = -ball.vy;
           }
-          if(i == chain[k].numberOfBalls-1 && chain[k].ball(chain[k].numberOfBalls-1).hitpoints == 3)
+          if(i == chain[k].numberOfBalls-1 && chain[k].ball(i).hitpoints == 3)
           {
             ball.x += ball.vx;
             ball.y += ball.vy;
@@ -517,10 +565,25 @@ public class ShootySnakeGame extends JFrame {
           if(circlesIntersect(beams[i], chain[k].ball(j), BEAM_SIZE/2, BALL_SIZE) && !beams[i].disabled && !chain[k].ball(j).disabled)
           {
             beams[i].disabled = true;
-            chain[k].ball(j).hit(player.x, player.y);
+            points += chain[k].ball(j).hit(player.x, player.y);
             if(chain[k].ball(j).disabled && j > 0)
             {
               chain[k].ball(j-1).becomeLeader();
+              chain[k].ball(j-1).neighbors--;
+              if(chain[k].ball(j-1).neighbors == 0)
+                chain[k].ball(j-1).becomeLoneWolf();
+              if(j < chain[k].numberOfBalls - 1)
+              {
+                chain[k].ball(j+1).neighbors--;
+                if(chain[k].ball(j+1).neighbors == 0)
+                  chain[k].ball(j+1).becomeLoneWolf();
+              }
+            }
+            else if(chain[k].ball(j).disabled && j == 0)
+            {
+              chain[k].ball(j + 1).neighbors--;
+              if(chain[k].ball(j + 1).neighbors == 0)
+                chain[k].ball(j + 1).becomeLoneWolf();
             }
           }
         }
@@ -548,7 +611,10 @@ public class ShootySnakeGame extends JFrame {
   */
   private void respawn()
   {
-    lives--;
+    if(System.nanoTime() - respawnStart > spawnInvulnerabilityCounter)
+    {
+      lives--;
+    }
     respawnStart = System.nanoTime();
     lastShot = System.nanoTime();
     for(int i = 0; i < BEAMS; i++)
@@ -658,7 +724,7 @@ public class ShootySnakeGame extends JFrame {
 
   private void updateLevels()
   {
-    if(System.nanoTime() - levelTransitionStart > 4000000000L)
+    if(System.nanoTime() - levelTransitionStart > spawnInvulnerabilityCounter)
     {
       if(activeChains == 0 && level == 1)
       {
@@ -672,7 +738,6 @@ public class ShootySnakeGame extends JFrame {
           newLevel = true;
           level = 2;
           levelTransitionStart = System.nanoTime();
-          System.out.println("entered");
           activeChains = 3;//activate 1 and 2
           disabledChains = 1;
         }
@@ -714,10 +779,8 @@ public class ShootySnakeGame extends JFrame {
 
   public void levelTransition(int num, int x, int y)
   {
-    System.out.println("levelTransition: 1");
-    if(System.nanoTime() - levelTransitionStart > 4000000000L && !newLevel)
+    if(System.nanoTime() - levelTransitionStart > spawnInvulnerabilityCounter && !newLevel)
     {
-      System.out.println("levelTransition: 2");
       respawnStart = System.nanoTime();
       lastShot = System.nanoTime();
       for(int i = 0; i < BEAMS; i++)
@@ -729,10 +792,112 @@ public class ShootySnakeGame extends JFrame {
       player.y = y;
     }
     else
-    {
       newLevel = false;
-      System.out.println("levelTransition: 3");
-    }
+  }
 
+  private String[] getHighScores() throws IOException {
+    File file = new File("highscores.txt");
+    String[] hs;
+    if(file.exists())
+    {
+      BufferedReader br = new BufferedReader(new FileReader("highscores.txt"));
+
+      //count file contents
+      int count = 0;
+      while((br.readLine()) != null)
+        count++;
+      hs = new String[count];
+      br.close();
+
+      //read file
+      br = new BufferedReader(new FileReader("highscores.txt"));
+      for(int i = 0; i < count; i++)
+        hs[i] = br.readLine();
+      br.close();
+    }
+    else
+      hs = new String[0];
+    return hs; //return string array with file contents
+  }
+
+  private Boolean isNewHighScore()
+  {
+    int count = highscores.length;
+    System.out.println(count);
+    if(count > 10)
+      count = 10;
+    System.out.println(count);
+    Boolean newScore = false;
+    for(int i = 0; i < count; i++)
+    {
+      i++;
+      if(points > Integer.parseInt(highscores[i]))
+        newScore = true;
+    }
+    return newScore;
+  }
+
+  private String[] setHighScore(String mname, int mpoints)
+  {
+    String[] temp = new String[highscores.length + 2];
+    int offset = 0;
+    Boolean foundPlacement = false;
+    if(highscores.length > 0)
+    {
+      for(int i = 0; i < highscores.length; i = i + 2)
+      {
+        if(mpoints >= Integer.parseInt(highscores[i + 1]) && !foundPlacement)
+        {
+          //System.out.println(mpoints + " > " + Integer.parseInt(highscores[i + 1]));
+          temp[i] = mname;
+          temp[i + 1] = mpoints + "";
+          temp[i + 2] = highscores[i];
+          temp[i + 3] = highscores[i + 1];
+          offset = 2;
+          foundPlacement = true;
+          // System.out.println("temp[" + i + "] = " + temp[i]);
+          // System.out.println("temp[" + (i + 1) + "] = " + temp[i + 1]);
+          // System.out.println("temp[" + (i + 2) + "] = " + temp[i + 2]);
+          // System.out.println("temp[" + (i + 3) + "] = " + temp[i + 3]);
+        }
+        else
+        {
+          temp[i + offset] = highscores[i];
+          temp[i + 1 + offset] = highscores[i + 1];
+          // System.out.println("temp[" + (i + offset) + "] = " + temp[i + offset]);
+          // System.out.println("temp[" + (i + 1 + offset) + "] = " + temp[i + 1 + offset]);
+        }
+      }
+    }
+    else
+    {
+      temp[0] = mname;
+      temp[1] = mpoints + "";
+    }
+    return temp;
+  }
+
+  private void printHighScores()
+  {
+    for(int i = 0; i < highscores.length; i++)
+    {
+      System.out.println("name: " + highscores[i]);
+      i++;
+      System.out.println("Score: " + highscores[i]);
+    }
+  }
+
+  private void writeHighScores() throws IOException {
+    File file = new File("highscores.txt");
+    if(file.exists())
+      file.delete();
+    FileWriter fw = new FileWriter(file);
+    for(int i = 0; i < highscores.length - 1; i++)
+    {
+      fw.write(highscores[i]);
+      fw.write(System.lineSeparator());
+    }
+    fw.write(highscores[highscores.length - 1]);
+    fw.close();
   }
 }

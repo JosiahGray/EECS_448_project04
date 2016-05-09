@@ -30,6 +30,13 @@ public class ShootySnakeChain {
         radius
       );
     }
+    for(double i = 0; i < numberOfBalls; i++)
+    {
+      if(i == 0 || i == numberOfBalls - 1)
+        chain[(int)i].neighbors = 1;
+      else
+        chain[(int)i].neighbors = 2;
+    }
     chain[numberOfBalls - 1].becomeLeader();
   }
 
