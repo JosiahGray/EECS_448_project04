@@ -18,7 +18,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class ShootySnakeGame extends JFrame {
-  private static final double ratio = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height/640.0;
+  private static final double ratio = ((double)(java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height + 40.0))/720.0;
   /**
   * WIDTH is the preferred width of the window
   */
