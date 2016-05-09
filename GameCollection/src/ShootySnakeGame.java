@@ -281,9 +281,9 @@ public class ShootySnakeGame extends JFrame {
       else
         message = "You Won!";
 
-      message(message, WIDTH/2 - fontmetrics.	stringWidth(message)/2, HEIGHT/2 - 20*5, 20);
+      message(message, WIDTH/2 - fontmetrics.stringWidth(message)/2, HEIGHT/2 - 20*5, 20);
       message = "High Scores";
-      message(message, WIDTH/2 - fontmetrics.	stringWidth(message)/2, HEIGHT/2 - 20*4, 20);
+      message(message, WIDTH/2 - fontmetrics.stringWidth(message)/2, HEIGHT/2 - 20*4, 20);
       //Do file IO, if can't make a file, then skip and just display score
       try {
         highscores = getHighScores();
@@ -296,8 +296,10 @@ public class ShootySnakeGame extends JFrame {
         highscores = setHighScore(name + " ", points);
       }
       printHighScores();
-      message = "Name:     Score: ";
-      message(message, WIDTH/2 - message.length()*10/2, HEIGHT/2 - 20*3, 20);
+      message = "Name:";
+      message(message, WIDTH*1/4 - fontmetrics.stringWidth(message)/2, HEIGHT/2 - 20*3, 20);
+      message = "Score:";
+      message(message, WIDTH*3/4 - fontmetrics.stringWidth(message)/2, HEIGHT/2 - 20*3, 20);
       int topFive = 10;
       String tempName = "";
       String tempSpace = "";
@@ -305,12 +307,10 @@ public class ShootySnakeGame extends JFrame {
         topFive = highscores.length;
       for(int i = 0; i < topFive; i++)
       {
-        tempName = highscores[i];
-        tempSpace = "";
-        for(int j = 0; j < 20 - tempName.length(); j++)
-          tempSpace += "\t";
-        message = (i + 2)/2 + ". " + highscores[i] + tempSpace + highscores[i+1];
-        message(message, WIDTH/3, HEIGHT/2 - 20*2 + (i + 1)*22, 20);
+        message = (i + 2)/2 + ". " + highscores[i];
+        message(message, WIDTH*1/4 - fontmetrics.stringWidth("Name:")/2, HEIGHT/2 - 20*2 + (i + 1)*22, 20);
+        message = highscores[i+1];
+        message(message, WIDTH*3/4 - fontmetrics.stringWidth(message)/2, HEIGHT/2 - 20*2 + (i + 1)*22, 20);
         //message((i + 1) + ". " + highscores[i], WIDTH/2 - highscores[i].length()*10/2, HEIGHT/2 - 20*4 + (i + 1)*22, 20);
         i++;
         //message(highscores[i], WIDTH/2 - highscores[i].length()*10/2, HEIGHT/2 - 20*4 + (i + 1)*22, 20);
