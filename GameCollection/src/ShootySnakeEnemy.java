@@ -17,7 +17,7 @@ public class ShootySnakeEnemy extends ShootySnakeBall{
     color = Color.BLUE;
   }
 
-  public int hit(double x0, double y0)
+  public int hit(double x0, double y0, double ratio)
   {
     int points = 0;
     hitpoints--;
@@ -26,12 +26,11 @@ public class ShootySnakeEnemy extends ShootySnakeBall{
     {
       disabled = true;
       points = totalHitpoints;
-      System.out.println(points);
     }
     else if(leader)
     {
-      vx = 25*normalX(x0, y0);
-      vy = 25*normalY(x0, y0);
+      vx = 25*ratio*normalX(x0, y0);
+      vy = 25*ratio*normalY(x0, y0);
     }
     return points;
   }
@@ -58,7 +57,6 @@ public class ShootySnakeEnemy extends ShootySnakeBall{
       becomeLeader();
       totalHitpoints = 4;
       hitpoints += 2;
-      System.out.println(hitpoints);
       color = Color.MAGENTA;
       for(int i = 0; i < totalHitpoints - hitpoints; i++)
       {

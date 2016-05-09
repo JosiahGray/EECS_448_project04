@@ -18,14 +18,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class ShootySnakeGame extends JFrame {
+  private static final double ratio = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height/640.0;
   /**
   * WIDTH is the preferred width of the window
   */
-  private static final int WIDTH = 640;
+  private static final int WIDTH = (int)(640*ratio);
   /**
   * HEIGHT is the preferred height of the window
   */
-  private static final int HEIGHT = 480;
+  private static final int HEIGHT = (int)(480*ratio);
   /**
   * The intended frame rate
   */
@@ -62,15 +63,15 @@ public class ShootySnakeGame extends JFrame {
   /**
   * How fast the balls move.
   */
-  private final double BALL_VELOCITY = 2;
+  private final double BALL_VELOCITY = 2*ratio;
   /**
   * Controls the tightness of the chain.  1 is the tightest. Higher is loose.
   */
-  private final double DIV = 10;
+  private final double DIV = 10.0;
   /**
   * How fast the player moves.
   */
-  private final int PLAYER_VELOCITY = 10;
+  private final double PLAYER_VELOCITY = 10*ratio;
   /**
   * JPanel containing the Image image.
   */
@@ -134,7 +135,8 @@ public class ShootySnakeGame extends JFrame {
   private int level = 1;
   private int points = 0;
   private String[] highscores;
-  private Font font = new Font("TimesRoman", Font.PLAIN, 20);
+  private final int fontsize = (int)(20*ratio);
+  private Font font = new Font("TimesRoman", Font.PLAIN, fontsize);
   private FontMetrics fontmetrics = getFontMetrics(font);
 
   /**
@@ -142,6 +144,7 @@ public class ShootySnakeGame extends JFrame {
   * @post The game's frame, image and game model are initialized.
   */
   public ShootySnakeGame() {
+    System.out.println(ratio);
     initFrame();
     initImage();
     initModel();
@@ -208,7 +211,7 @@ public class ShootySnakeGame extends JFrame {
       lastShot = System.nanoTime();
       mouseX = MouseInfo.getPointerInfo().getLocation().x - getLocationOnScreen().x - getComponent(0).getBounds().x;
       mouseY = MouseInfo.getPointerInfo().getLocation().y - getLocationOnScreen().y - getComponent(0).getBounds().y;
-      addBeam(player.x + player.radius, player.y + player.radius, 4*player.normalX(mouseX,mouseY), 4*player.normalY(mouseX,mouseY));
+      addBeam(player.x + player.radius, player.y + player.radius, 4*player.normalX(mouseX,mouseY)*ratio, 4*player.normalY(mouseX,mouseY)*ratio);
     }
     moveBeams();
     findCollisions();
@@ -221,9 +224,11 @@ public class ShootySnakeGame extends JFrame {
   private void renderFrame() {
     imageGraphics.setColor(Color.BLACK);
     imageGraphics.fillRect(0, 0, WIDTH, HEIGHT);
+    String message = "";
     if(newLevel && System.nanoTime() - levelTransitionStart < spawnInvulnerabilityCounter)
     {
-      message("Level " + level, WIDTH/2, HEIGHT/2, 20);
+      message = "Level " + level;
+      message(message, WIDTH/2 - fontmetrics.stringWidth(message)/2, HEIGHT/2, fontsize);
     }
     else if(newLevel && System.nanoTime() - levelTransitionStart >= spawnInvulnerabilityCounter)
     {
@@ -269,21 +274,23 @@ public class ShootySnakeGame extends JFrame {
       }
 
       //Render lives
-      message("LIVES " + lives, 10, 20, 20);
-      message("Points " + points, WIDTH - 100, 20, 20);
+      message = "LIVES " + lives;
+      message(message, (int)(10.0*ratio), (int)(20.0*ratio), fontsize);
+      message = "Points " + points;
+      message(message, (int)(WIDTH - 100.0*ratio), (int)(20*ratio), fontsize);
 
     }
     else if(gameOver)
     {
-      String message;
+      message = "";
       if(!playerWon)
         message = "Game Over!";
       else
         message = "You Won!";
 
-      message(message, WIDTH/2 - fontmetrics.stringWidth(message)/2, HEIGHT/2 - 20*5, 20);
+      message(message, WIDTH/2 - fontmetrics.stringWidth(message)/2, HEIGHT/2 - fontsize*5, fontsize);
       message = "High Scores";
-      message(message, WIDTH/2 - fontmetrics.stringWidth(message)/2, HEIGHT/2 - 20*4, 20);
+      message(message, WIDTH/2 - fontmetrics.stringWidth(message)/2, HEIGHT/2 - fontsize*4, fontsize);
       //Do file IO, if can't make a file, then skip and just display score
       try {
         highscores = getHighScores();
@@ -296,25 +303,6 @@ public class ShootySnakeGame extends JFrame {
         highscores = setHighScore(name + " ", points);
       }
       printHighScores();
-      message = "Name:";
-      message(message, WIDTH*1/4 - fontmetrics.stringWidth(message)/2, HEIGHT/2 - 20*3, 20);
-      message = "Score:";
-      message(message, WIDTH*3/4 - fontmetrics.stringWidth(message)/2, HEIGHT/2 - 20*3, 20);
-      int topFive = 10;
-      String tempName = "";
-      String tempSpace = "";
-      if(highscores.length < 10)
-        topFive = highscores.length;
-      for(int i = 0; i < topFive; i++)
-      {
-        message = (i + 2)/2 + ". " + highscores[i];
-        message(message, WIDTH*1/4 - fontmetrics.stringWidth("Name:")/2, HEIGHT/2 - 20*2 + (i + 1)*22, 20);
-        message = highscores[i+1];
-        message(message, WIDTH*3/4 - fontmetrics.stringWidth(message)/2, HEIGHT/2 - 20*2 + (i + 1)*22, 20);
-        //message((i + 1) + ". " + highscores[i], WIDTH/2 - highscores[i].length()*10/2, HEIGHT/2 - 20*4 + (i + 1)*22, 20);
-        i++;
-        //message(highscores[i], WIDTH/2 - highscores[i].length()*10/2, HEIGHT/2 - 20*4 + (i + 1)*22, 20);
-      }
 
       try {
         writeHighScores();
@@ -423,12 +411,12 @@ public class ShootySnakeGame extends JFrame {
         ShootySnakeEnemy ball = chain[k].ball(i);
         if(ball.leader)
         {
-          while(ball.vx*ball.vx + ball.vy*ball.vy < 4)
+          while(ball.vx*ball.vx + ball.vy*ball.vy < 4*ratio*ratio)
           {
             ball.vx *= 1.10;
             ball.vy *= 1.10;
           }
-          while(ball.vx*ball.vx + ball.vy*ball.vy > 800)
+          while(ball.vx*ball.vx + ball.vy*ball.vy > 800*ratio*ratio)
           {
             ball.vx *= .90;
             ball.vy *= .90;
@@ -565,7 +553,7 @@ public class ShootySnakeGame extends JFrame {
           if(circlesIntersect(beams[i], chain[k].ball(j), BEAM_SIZE/2, BALL_SIZE) && !beams[i].disabled && !chain[k].ball(j).disabled)
           {
             beams[i].disabled = true;
-            points += chain[k].ball(j).hit(player.x, player.y);
+            points += chain[k].ball(j).hit(player.x, player.y, ratio);
             if(chain[k].ball(j).disabled && j > 0)
             {
               chain[k].ball(j-1).becomeLeader();
@@ -769,10 +757,10 @@ public class ShootySnakeGame extends JFrame {
     }
   }
 
-  public void message(String message, int x, int y, int size)
+  public void message(String message, int x, int y, int msize)
   {
-    int fontSize = size;
-    imageGraphics.setFont(new Font("TimesRoman", Font.PLAIN, fontSize));
+    int mfontSize = msize;
+    imageGraphics.setFont(new Font("TimesRoman", Font.PLAIN, mfontSize));
     imageGraphics.setColor(Color.GREEN);
     imageGraphics.drawString(message, x, y);
   }
@@ -823,10 +811,8 @@ public class ShootySnakeGame extends JFrame {
   private Boolean isNewHighScore()
   {
     int count = highscores.length;
-    System.out.println(count);
     if(count > 10)
       count = 10;
-    System.out.println(count);
     Boolean newScore = false;
     for(int i = 0; i < count; i++)
     {
@@ -848,24 +834,17 @@ public class ShootySnakeGame extends JFrame {
       {
         if(mpoints >= Integer.parseInt(highscores[i + 1]) && !foundPlacement)
         {
-          //System.out.println(mpoints + " > " + Integer.parseInt(highscores[i + 1]));
           temp[i] = mname;
           temp[i + 1] = mpoints + "";
           temp[i + 2] = highscores[i];
           temp[i + 3] = highscores[i + 1];
           offset = 2;
           foundPlacement = true;
-          // System.out.println("temp[" + i + "] = " + temp[i]);
-          // System.out.println("temp[" + (i + 1) + "] = " + temp[i + 1]);
-          // System.out.println("temp[" + (i + 2) + "] = " + temp[i + 2]);
-          // System.out.println("temp[" + (i + 3) + "] = " + temp[i + 3]);
         }
         else
         {
           temp[i + offset] = highscores[i];
           temp[i + 1 + offset] = highscores[i + 1];
-          // System.out.println("temp[" + (i + offset) + "] = " + temp[i + offset]);
-          // System.out.println("temp[" + (i + 1 + offset) + "] = " + temp[i + 1 + offset]);
         }
       }
     }
@@ -879,11 +858,21 @@ public class ShootySnakeGame extends JFrame {
 
   private void printHighScores()
   {
-    for(int i = 0; i < highscores.length; i++)
+    String message = "Name:";
+    message(message, WIDTH*1/4 - fontmetrics.stringWidth(message)/2, HEIGHT/2 - fontsize*3, fontsize);
+    message = "Score:";
+    message(message, WIDTH*3/4 - fontmetrics.stringWidth(message)/2, HEIGHT/2 - fontsize*3, fontsize);
+    int topFive = 10;
+    String tempName = "";
+    String tempSpace = "";
+    if(highscores.length < 10)
+      topFive = highscores.length;
+    for(int i = 0; i < topFive; i = i + 2)
     {
-      System.out.println("name: " + highscores[i]);
-      i++;
-      System.out.println("Score: " + highscores[i]);
+      message = (i + 2)/2 + ". " + highscores[i];
+      message(message, WIDTH*1/4 - fontmetrics.stringWidth("Name:")/2, HEIGHT/2 - fontsize*2 + (i + 1)*fontsize, fontsize);
+      message = highscores[i+1];
+      message(message, WIDTH*3/4 - fontmetrics.stringWidth(message)/2, HEIGHT/2 - fontsize*2 + (i + 1)*fontsize, fontsize);
     }
   }
 
