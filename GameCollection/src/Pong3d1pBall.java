@@ -18,7 +18,6 @@ public class Pong3d1pBall{
 	float xLoc;
 	float yLoc;
 	float zLoc;
-	
 	float paddleLength;
 	float paddleWidth;
 	float[] bBounce;

@@ -3,9 +3,6 @@ public class PongTester {
 	//lists of methods 
 	//updatesquish
 	//checkscore
-	//updateball
-	//updatehuman
-	//updatecomputer
 	//reset
 	//isgameover
 	//newgame
@@ -89,6 +86,7 @@ public class PongTester {
 			System.out.println("Test 11: FAIL");
 			overAll = false;
 		}
+		
 		System.out.println("");
 		if(overAll){
 			System.out.println("Overall test results: PASS");
@@ -178,14 +176,14 @@ public class PongTester {
 		control.hxloc = 0.2f;
 		control.computerX = 0.2f;
 		control.reset();
-		System.out.println("   Ball x location before: 1.0f");
-		System.out.println("   Anticipated ball x location: 0.0f");
+		System.out.println("   Ball x location before: 1.0");
+		System.out.println("   Anticipated ball x location: 0.0");
 		System.out.println("   Actual ball x location: " + control.xloc);
 		if(control.xloc != 0.0f){
 			allCorrect = false;
 		}
-		System.out.println("   Ball z location before: 0.5f");
-		System.out.println("   Anticipated ball z location: 0.0f");
+		System.out.println("   Ball z location before: 0.5");
+		System.out.println("   Anticipated ball z location: 0.0");
 		System.out.println("   Actual ball z location: " + control.depth);
 		if(control.depth != 0.0f){
 			allCorrect = false;
@@ -196,14 +194,14 @@ public class PongTester {
 		if(control.squish != 1.0){
 			allCorrect = false;
 		}
-		System.out.println("   Human x location before: 0.2f");
-		System.out.println("   Anticipated human x location: 0.0f");
+		System.out.println("   Human x location before: 0.2");
+		System.out.println("   Anticipated human x location: 0.0");
 		System.out.println("   Actual human x location: " + control.hxloc);
 		if(control.hxloc != 0.0f){
 			allCorrect = false;
 		}
-		System.out.println("   Computer x location before: 0.2f");
-		System.out.println("   Anticpated computer x location: 0.0f");
+		System.out.println("   Computer x location before: 0.2");
+		System.out.println("   Anticpated computer x location: 0.0");
 		System.out.println("   Actual computer x location: " + control.computerX);
 		if(control.computerX != 0.0f){
 			allCorrect = false;
@@ -220,9 +218,9 @@ public class PongTester {
 		System.out.println("  Place ball out of x axis bounds, see if ball returns to bounds");
 		//arbitrary x location 
 		control.xloc = 1.0f;
-		System.out.println("   Ball x location before: 1.0f");
+		System.out.println("   Ball x location before: 1.0");
 		control.updateSquish();
-		System.out.println("   Anticipated ball location: 0.45f");
+		System.out.println("   Anticipated ball location: 0.45");
 		System.out.println("   Actual ball location: " + control.xloc);
 		
 		return (control.xloc == 0.45f);
@@ -244,31 +242,103 @@ public class PongTester {
 	//test8 
 	//check newGame method
 	public boolean test8(Pong3d1pControl control){
+		boolean allCorrect = true;
 		System.out.println("Running test 8...");
-		System.out.println("Description: ");
-		return true;
+		System.out.println(" Description: ");
+		System.out.println(" Put in arbitrary locations. Call newGame and see if positioning is adjusted to beginning values");
+		System.out.println("");
+		//arbitrary locations
+		control.xloc = 1.0f;
+		control.depth = 0.5f;
+		control.squish = 0.2;
+		control.hxloc = 0.2f;
+		control.computerX = 0.2f;
+		control.newGame();
+		System.out.println("   Ball x location before: 1.0");
+		System.out.println("   Anticipated ball x location: 0.0");
+		System.out.println("   Actual ball x location: " + control.xloc);
+		if(control.xloc != 0.0f){
+			allCorrect = false;
+		}
+		System.out.println("   Ball z location before: 0.5");
+		System.out.println("   Anticipated ball z location: 0.0");
+		System.out.println("   Actual ball z location: " + control.depth);
+		if(control.depth != 0.0f){
+			allCorrect = false;
+		}
+		System.out.println("   Squish amount before: 0.2");
+		System.out.println("   Anticipated squish amount: 1.0");
+		System.out.println("   Actual squish amount: " + control.squish);
+		if(control.squish != 1.0){
+			allCorrect = false;
+		}
+		System.out.println("   Human x location before: 0.2");
+		System.out.println("   Anticipated human x location: 0.0");
+		System.out.println("   Actual human x location: " + control.hxloc);
+		if(control.hxloc != 0.0f){
+			allCorrect = false;
+		}
+		System.out.println("   Computer x location before: 0.2");
+		System.out.println("   Anticpated computer x location: 0.0");
+		System.out.println("   Actual computer x location: " + control.computerX);
+		if(control.computerX != 0.0f){
+			allCorrect = false;
+		}
+		System.out.println();
+		
+		return allCorrect;
 	}
 	//test9
 	//put ball up against wall
 	//check squish
 	public boolean test9(Pong3d1pControl control){
 		System.out.println("Running test 9...");
-		System.out.println("Description: ");
-		return true;
+		System.out.println(" Description: ");
+		System.out.println("  Position ball up against wall and check to see it squishes");
+		control.xloc = control.xMAX;
+		System.out.println("   Squish before: " + control.squish);
+		control.updateSquish();
+		System.out.println("   Anticipated squish: 0.5");
+		System.out.println("   Actual squish: " + control.squish);
+		
+		
+		return (control.squish == 0.5f);
 	}
-	//test10
-	//call new game
-	//check if everything is set accordingly
 	public boolean test10(Pong3d1pControl control){
 		System.out.println("Running test 10...");
-		System.out.println("Description: ");
-		return true;
+		System.out.println(" Description: ");
+		System.out.println("  Set computer's  execution time to a mod-able integer,");
+		System.out.println("  see if increaseDifficulty increases");
+		control.cLogic.executionTime = 10000;
+		float before = control.cLogic.increaseDifficulty;
+		System.out.println("   increaseDifficulty before: " +before);
+		control.cLogic.move(control.bCoords, control.cCoords);
+		System.out.println("   Anticipated increaseDifficulty: " + (before + .0005f) );
+		float after = control.cLogic.increaseDifficulty;
+		System.out.println("   increaseDifficulty after: "  +after);
+		
+		return(after == (before + .0005f));
+		
 	}
-	//test11
 	public boolean test11(Pong3d1pControl control){
 		System.out.println("Running test 11...");
-		System.out.println("Description: ");
-		return true;
+		System.out.println(" Description: ");
+		System.out.println("  Set computer's increaseDifficulty and execution time to");
+		System.out.println("  arbitrary numbers, call newGame, see if they reset");
+		control.cLogic.executionTime = 10023;
+		control.cLogic.increaseDifficulty = 0.005f;
+		System.out.println("   executionTime before: 10023");
+		System.out.println("   increaseDifficulty before: 0.005");
+		System.out.println("   Anticipated executionTime: 0");
+		System.out.println("   Anticipated increaseDifficulty: 0.0");
+		control.newGame();
+		int afterET = control.cLogic.executionTime;
+		float afterID = control.cLogic.increaseDifficulty;
+		System.out.println("   executionTime after: " + afterET);
+		System.out.println("   increaseDifficulty after: " + afterID );
+		
+		return ((afterET == 0) && (afterID == 0.0f));
+		
 	}
 
 }

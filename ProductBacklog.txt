@@ -3,39 +3,49 @@
 Name: Main control interface
 Descr: main window that allows user to choose a game.
 Time: few hours
+Status: Complete
 
 Name: Minigame1
 Descr: ball dodging and shooting game, 1-player game, player dodges and shoots balls chained together as they travel around the screen.
 Time: few days
+Status: Complete
 
 Name: Minigame2
 Descr: pong game, 2-player game between player and computer, a each player guards a goal at opposite ends of the screen, points are scored when a ball enters the opponent's goal.
 Time: few days
+Status: Complete
 
 Name: Minigame3
 Descr: nim game, a 2-player game between player and computer, players take turns removing stones from a pile, whoever takes the last stone loses.
 Time: 1-2 days
+Status: Complete
 
 Name: Enhance visuals/graphics
 Descr: improve visuals with better pictures.
 Time: few days to 1 week
+Status: Complete
 
 Name: Multiple difficulties/better AI
 Descr: add multiple difficulty levels for each minigame.
 Time: few days
+Status: Complete
 
 Name: Change program icon
 Descr: change the program icon in the top left corner of the window.
 Time: less than 1 hour
+Status:
 
 Name: Improve menu
 Descr: make start-up game menu frame larger and more visually interesting.
 Time: 1 day
+Status: Complete
 
 Name: Add Sound effects and/or Music
 Descr: Add sound effects to the Games and music.
 Time: 1 day
+Status: Incomplete
 
 Name: Improve Game Mechanics
 Descr: Improve game mechanics so that the games are more fleshed out
 Time: 1 day per game
+Status: Complete

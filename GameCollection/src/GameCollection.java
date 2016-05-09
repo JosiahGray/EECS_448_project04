@@ -123,7 +123,7 @@ public class GameCollection {
 			public void actionPerformed(ActionEvent e)
 			{
 				//set up Pong game
-				Pong3d1pGame game = new Pong3d1pGame();
+				Pong3d1pShell game = new Pong3d1pShell();
 			}
 		};
 
