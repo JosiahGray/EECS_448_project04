@@ -12,5 +12,9 @@
 12. ShootySnake: Game logic still runs in background when ShootySnake screen closed before the end of a game.
 13. Pong test throws out of bounds exception errors on windows during initial condition when testing if ball returns to bounds
 14. Pong game has a little bit of black edge on the side
+15. All games: all buttons and other GUI components look different (thinner/smaller/grayer) on Windows.
+16. Nim: text in labels can disappear/overlap when resizing the window.
+17. Nim: user can just click new game button as much as they want (to change the number of stones to what they want, 21-25 inclusive).
 15. Pong test can be ran and stop the game in the middle of it.
 16. Pong x axis edges extend beyond the screen, I like the aesthetic, but can still be viewed as a bug
+17. Pong uses delay as timer which on a system that interrupts less often than timer delays causes Pong to be sluggish
