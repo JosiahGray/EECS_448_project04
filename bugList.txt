@@ -4,3 +4,5 @@
 4. Delay opening up pong
 5. Paddle can move during the "reset freeze" and will be reflected once new match begins
 6. If paddle never moves in beginning of a game, ball will go back and forth forever
+7. Pong game background does not resize/ not scalable 
+8. To move pong, CapsLock must be off
