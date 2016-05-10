@@ -18,6 +18,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class ShootySnakeGame extends JFrame {
+  /**
+  * ratio keeps track of a rough estimate of the scaling factor needed to adapt to different resolutions.  Height is used as the limiting factor.
+  */
   private static final double ratio = ((double)(java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height + 40.0))/720.0;
   /**
   * WIDTH is the preferred width of the window
@@ -109,7 +112,9 @@ public class ShootySnakeGame extends JFrame {
   * Contains the nano second (according to nanoTime()) since a player respawned.
   */
   private long respawnStart;
-
+  /**
+  * Contains the nano second (according to nanoTime()) since the level transition period began.
+  */
   private long levelTransitionStart;
   /**
   * The number of lives the player has left before they lose.  Getting struck by an enemy ball when the player has 0 will cause them to lose.
@@ -123,21 +128,54 @@ public class ShootySnakeGame extends JFrame {
   * The playerWon flag, when gameOver is true, tells the game whether the player has won (true) or lost (false).
   */
   private Boolean playerWon;
-
+  /**
+  * Contains a true/false value depending on the state of the left mouse button.
+  */
   private volatile Boolean mouseDown = false;
-
+  /**
+  * Contains the current x position of the mouse on the screen.
+  */
   private volatile int mouseX;
+  /**
+  * Contains the current y position of the mouse on the screen.
+  */
   private volatile int mouseY;
+  /**
+  * Contains the number of active chains on the screen, including disabled chains.
+  */
   private int activeChains = 0;
+  /**
+  * Contains the number of active chains that have been disabled.
+  */
   private int disabledChains = 0;
-
+  /**
+  * True if a new level should be transitioned to. False else.
+  */
   private Boolean newLevel = true;
+  /**
+  * Contains the integer ID of the current level (These are currently: 1, 2, 3, 4)
+  */
   private int level = 1;
+  /**
+  * Contains and integer counting of the current player's point total.
+  */
   private int points = 0;
+  /**
+  * Contains a list of even strings, alternating between a player's name and their highscore (as a string)
+  */
   private String[] highscores;
+  /**
+  * Contains an often used font size
+  */
   private final int fontsize = (int)(20*ratio);
-  private Font font = new Font("TimesRoman", Font.PLAIN, fontsize);
-  private FontMetrics fontmetrics = getFontMetrics(font);
+  /**
+  * Contains an often used Font object.
+  */
+  private final Font font = new Font("TimesRoman", Font.PLAIN, fontsize);
+  /**
+  * Contains an often used FontMeterics.
+  */
+  private final FontMetrics fontmetrics = getFontMetrics(font);
 
   /**
   * Constructor for ShootySnakeGame.  Will initialize the frame, image and game model.

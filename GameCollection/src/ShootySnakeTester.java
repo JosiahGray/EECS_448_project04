@@ -1,3 +1,10 @@
+/*
+ *  @author Paul McElroy
+ *
+ * A test suite to test the public methods used by the ShootySnakeGame, Ball and Enemy classes.
+ * Constructors, graphical methods, private methods and things that are for loop initializers are excluded.
+ *
+ */
 public class ShootySnakeTester {
     //public Random rn = new Random();
     public ShootySnakeTester(){}
