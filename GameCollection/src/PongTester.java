@@ -6,8 +6,17 @@ public class PongTester {
 	//reset
 	//isgameover
 	//newgame
-	
+	/**
+	 * PongTester()
+	 * @post constructs a new pongTester instance
+	 */
 	public PongTester(){}
+	/**
+	 * test(Pong3d1pControl)
+	 * @param control the Pong3d1pControl to be referenced in the testing
+	 * @post tests the Pong3d game
+	 * Runs a test on the pong game testing for logical accuracies
+	 */
 	public void test(Pong3d1pControl control){
 		boolean overAll = true;
 		if(test1(control)){
@@ -86,6 +95,20 @@ public class PongTester {
 			System.out.println("Test 11: FAIL");
 			overAll = false;
 		}
+		System.out.println("");
+		if(test12(control)){
+			System.out.println("Test 12: PASS");
+		} else {
+			System.out.println("Test 12: FAIL");
+			overAll = false;
+		}
+		System.out.println("");
+		if(test13(control)){
+			System.out.println("Test 13: PASS");
+		} else {
+			System.out.println("Test 13: FAIL");
+			overAll = false;
+		}
 		
 		System.out.println("");
 		if(overAll){
@@ -103,6 +126,12 @@ public class PongTester {
 	//test 1
 	//ball is set up where opponent scores
 	//check opponent score
+	/**
+	 * test1(Pong3d1pControl control)
+	 * @param control The Pong3d1pControl being refered to for this game
+	 * @return true for pass, false for fail
+	 * Tests logic where computer should score
+	 */
 	public boolean test1(Pong3d1pControl control){
 		System.out.println("Running test 1...");
 		System.out.println(" Description: ");
@@ -117,6 +146,12 @@ public class PongTester {
 	//test 2
 	//ball is set up where player scores
 	//check player score
+	/**
+	 * test2(Pong3d1pControl control)
+	 * @param control The Pong3d1pControl being refered to for this game
+	 * @return true for pass, false for fail
+	 * Tests logic where human should score
+	 */
 	public boolean test2(Pong3d1pControl control){
 		System.out.println("Running test 2...");
 		System.out.println(" Description: ");
@@ -131,6 +166,12 @@ public class PongTester {
 	//test3
 	//ball is up against wall
 	//check to see if direction changes
+	/**
+	 * test3(Pong3d1pControl control)
+	 * @param control The Pong3d1pControl being refered to for this game
+	 * @return true for pass, false for fail
+	 * Tests logic where ball should switch direction
+	 */
 	public boolean test3(Pong3d1pControl control){
 		System.out.println("Running test 3...");
 		System.out.println(" Description: ");
@@ -147,6 +188,12 @@ public class PongTester {
 	//test4 
 	//ball is up against other wall
 	//time delay, check to see if ball is off wall
+	/**
+	 * test4(Pong3d1pControl control)
+	 * @param control The Pong3d1pControl being refered to for this game
+	 * @return true for pass, false for fail
+	 * Tests logic where ball should switch direction (other wall)
+	 */
 	public boolean test4(Pong3d1pControl control){
 		System.out.println("Running test 4...");
 		System.out.println(" Description: ");
@@ -163,6 +210,12 @@ public class PongTester {
 	//test5
 	//reset
 	//check to see if positioning have been adjusted
+	/**
+	 * test5(Pong3d1pControl control)
+	 * @param control The Pong3d1pControl being refered to for this game
+	 * @return true for pass, false for fail
+	 * Tests logic where ball position should reset to beginning
+	 */
 	public boolean test5(Pong3d1pControl control){
 		boolean allCorrect = true;
 		System.out.println("Running test 5...");
@@ -212,13 +265,19 @@ public class PongTester {
 	}
 	//test6
 	//put ball out of bounds, update,  see if ball stays in bounds
+	/**
+	 * test6(Pong3d1pControl control)
+	 * @param control The Pong3d1pControl being refered to for this game
+	 * @return true for pass, false for fail
+	 * Tests logic where ball is placed out of x axis bounds and returns to max x axis
+	 */
 	public boolean test6(Pong3d1pControl control){
 		System.out.println("Running test 6...");
 		System.out.println(" Description: ");
 		System.out.println("  Place ball out of x axis bounds, see if ball returns to bounds");
 		//arbitrary x location 
-		control.xloc = 1.0f;
-		System.out.println("   Ball x location before: 1.0");
+		control.xloc = 0.5f;
+		System.out.println("   Ball x location before: 0.5");
 		control.updateSquish();
 		System.out.println("   Anticipated ball location: 0.45");
 		System.out.println("   Actual ball location: " + control.xloc);
@@ -228,6 +287,12 @@ public class PongTester {
 	}
 	//test7 
 	//see if game discontinues after a score of 5
+	/**
+	 * test7(Pong3d1pControl control)
+	 * @param control The Pong3d1pControl being refered to for this game
+	 * @return true for pass, false for fail
+	 * Tests logic where score of 5 ends the game
+	 */
 	public boolean test7(Pong3d1pControl control){
 		System.out.println("Running test 7...");
 		System.out.println(" Description: ");
@@ -241,6 +306,12 @@ public class PongTester {
 	}
 	//test8 
 	//check newGame method
+	/**
+	 * test8(Pong3d1pControl control)
+	 * @param control The Pong3d1pControl being refered to for this game
+	 * @return true for pass, false for fail
+	 * Tests logic where paddles and ball return to the newGame intended position
+	 */
 	public boolean test8(Pong3d1pControl control){
 		boolean allCorrect = true;
 		System.out.println("Running test 8...");
@@ -291,6 +362,12 @@ public class PongTester {
 	//test9
 	//put ball up against wall
 	//check squish
+	/**
+	 * test9(Pong3d1pControl control)
+	 * @param control The Pong3d1pControl being refered to for this game
+	 * @return true for pass, false for fail
+	 * Tests logic where ball is positioned up against wall and squishes
+	 */
 	public boolean test9(Pong3d1pControl control){
 		System.out.println("Running test 9...");
 		System.out.println(" Description: ");
@@ -304,6 +381,12 @@ public class PongTester {
 		
 		return (control.squish == 0.5f);
 	}
+	/**
+	 * test10(Pong3d1pControl control)
+	 * @param control The Pong3d1pControl being refered to for this game
+	 * @return true for pass, false for fail
+	 * Tests logic where computer increaseDifficulty should increase
+	 */
 	public boolean test10(Pong3d1pControl control){
 		System.out.println("Running test 10...");
 		System.out.println(" Description: ");
@@ -320,6 +403,12 @@ public class PongTester {
 		return(after == (before + .0005f));
 		
 	}
+	/**
+	 * test11(Pong3d1pControl control)
+	 * @param control The Pong3d1pControl being refered to for this game
+	 * @return true for pass, false for fail
+	 * Tests logic where computer's increaseDifficulty and executionTime reset to zero after newGame is called
+	 */
 	public boolean test11(Pong3d1pControl control){
 		System.out.println("Running test 11...");
 		System.out.println(" Description: ");
@@ -339,6 +428,26 @@ public class PongTester {
 		
 		return ((afterET == 0) && (afterID == 0.0f));
 		
+	}
+	public boolean test12(Pong3d1pControl control){
+		System.out.println("Running test 12...");
+		System.out.println(" Description: ");
+		System.out.println("  Set computer to winner, check message at top.");
+		control.computerScore = 5;
+		control.isGameOver();
+		System.out.println("   Anticipated string: you lose... (-_-)");
+		System.out.println("   Actual string: " + control.winner.getText());
+		return(control.winner.getText() == "you lose... (-_-)");
+	}
+	public boolean test13(Pong3d1pControl control){
+		System.out.println("Running test 13...");
+		System.out.println(" Description: ");
+		System.out.println("  Set human to winner, check message at top.");
+		control.humanScore = 5;
+		control.isGameOver();
+		System.out.println("   Anticipated string: YOU WIN!!! d^_^b");
+		System.out.println("   Actual string: " + control.winner.getText());
+		return(control.winner.getText() == "YOU WIN!!! d^_^b");
 	}
 
 }
