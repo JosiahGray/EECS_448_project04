@@ -173,7 +173,7 @@ public class ShootySnakeGame extends JFrame {
   }
 
   /**
-  * Updates the game model containing the enemy balls, player, beams and the win/lose state.
+  * updateModel Updates the game model containing the enemy balls, player, beams, levels and the win/lose state.
   * @post The game model is updated for the current frame.
   */
   private void updateModel() {
@@ -183,7 +183,7 @@ public class ShootySnakeGame extends JFrame {
     // Check if level is disabled
     if(newLevel)
     {
-      levelTransition(level, WIDTH/2, HEIGHT/2);
+      levelTransition(WIDTH/2, HEIGHT/2);
     }
     else
     {
@@ -215,7 +215,7 @@ public class ShootySnakeGame extends JFrame {
   }
 
   /**
-  * Obtains information produced by the updateModel method to produce an image of each frame's state of play.
+  * renderFrame Obtains information produced by the updateModel method to produce an image of each frame's state of play. Also handles level screens and the game over screen with the highscores.
   * @post The graphics container is updated for the current frame.
   */
   private void renderFrame() {
@@ -230,7 +230,7 @@ public class ShootySnakeGame extends JFrame {
     else if(newLevel && System.nanoTime() - levelTransitionStart >= spawnInvulnerabilityCounter)
     {
       newLevel = false;
-      levelTransition(level, WIDTH/2, HEIGHT/2);
+      levelTransition(WIDTH/2, HEIGHT/2);
     }
 
     if(!gameOver && !newLevel)
@@ -317,7 +317,7 @@ public class ShootySnakeGame extends JFrame {
   }
 
   /**
-  * Initializes the JFrame with proper naming, setting Resizeable to false, setting the size to WIDTH and HEIGHT and putting the window in the center.
+  * initFrame Initializes the JFrame with proper naming, setting Resizeable to false, setting the size to WIDTH and HEIGHT and putting the window in the center.
   * @post The JFrame is initialized.
   */
   private void initFrame() {
@@ -354,7 +354,7 @@ public class ShootySnakeGame extends JFrame {
   }
 
   /**
-  * Initializes the Image image which will house the graphics that will be drawn to the JFrame.
+  * initImage Initializes the Image image which will house the graphics that will be drawn to the JFrame.
   * @post The Image is initialized.
   */
   private void initImage() {
@@ -363,7 +363,7 @@ public class ShootySnakeGame extends JFrame {
   }
 
   /**
-  * Initializes the game model.  All values are default.
+  * initModel Initializes the game model.  All values are default.
   * @post The game model is initialized.
   */
   private void initModel() {
@@ -396,7 +396,7 @@ public class ShootySnakeGame extends JFrame {
 
 
   /**
-  * Moves the balls in the balls array according to their position, velocity and disabled status of their leading members.
+  * moveBalls Moves the balls in the balls array according to their position, velocity and disabled status of their leading members.
   * @post The balls array's Ball objects have updated positions and velocities.
   */
   private void moveBalls()
@@ -454,7 +454,7 @@ public class ShootySnakeGame extends JFrame {
   }
 
   /**
-  * Removes the oldest beam object from the end of the array and adding a newly created beam object to its beginning.
+  * addBeam Removes the oldest beam object from the end of the array and adding a newly created beam object to its beginning.
   * @param  x The x coordinate of the new beam object.
   * @param  y The t coordinate of the new beam object.
   * @param  vx The horizontal component of velocity of the new beam object.
@@ -469,11 +469,10 @@ public class ShootySnakeGame extends JFrame {
   }
 
   /**
-  * Moves the beams along their trajectory, given their velocity and position.
+  * moveBeams Moves the beams along their trajectory, given their velocity and position.
   * @post Beam locations are updated.
   */
-  private void moveBeams()
-  {
+  private void moveBeams() {
     for(int i = 0; i < BEAMS; i++)
     {
       ShootySnakeBall beam = beams[i];
@@ -486,8 +485,7 @@ public class ShootySnakeGame extends JFrame {
   * Call functions to check for collisions and take appropriate actions amongst the actors.
   * @post Runs ballHitsPlayer and beamHitsBall.
   */
-  private void findCollisions()
-  {
+  private void findCollisions() {
       ballHitsPlayer();
       beamHitsBall();
   }
@@ -496,8 +494,7 @@ public class ShootySnakeGame extends JFrame {
   * Checks if any enabled balls in the balls array have hit the player this frame.
   * @post If the player is hit, they are respawned or lose, else nothing happens.
   */
-  private void ballHitsPlayer()
-  {
+  private void ballHitsPlayer() {
     if(System.nanoTime() - respawnStart > spawnInvulnerabilityCounter)
       for(int k = disabledChains; k < activeChains; k++)
       {
@@ -515,11 +512,10 @@ public class ShootySnakeGame extends JFrame {
   }
 
   /**
-  * Checks if any enabled balls in the balls array have hit any enabled beams in the beams array.
+  * beamHitsBall Checks if any enabled balls in the balls array have hit any enabled beams in the beams array.
   * @post Any hit balls are disabled.
   */
-  private void beamHitsBall()
-  {
+  private void beamHitsBall() {
     for(int i = 0; i < BEAMS; i++)
     {
       for(int k = disabledChains; k < activeChains; k++)
@@ -557,24 +553,22 @@ public class ShootySnakeGame extends JFrame {
   }
 
   /**
-  * Checks for intersection between two circles.
+  * circlesIntersect Checks for intersection between two circles.
   * @param b1 The first Ball object to check.
   * @param b2 The second Ball object to check.
   * @param size1 The radius of the first Ball object.
   * @param size2 The radius of the second Ball object.
   * @return True if the Ball objects are intersecting, False otherwise.
   */
-  private Boolean circlesIntersect(ShootySnakeBall b1, ShootySnakeBall b2, double size1, double size2)
-  {
+  private Boolean circlesIntersect(ShootySnakeBall b1, ShootySnakeBall b2, double size1, double size2) {
     return java.awt.geom.Point2D.distance(b1.x + size1, b1.y + size1, b2.x + size2, b2.y + size2) < size1 + size2;
   }
 
   /**
-  * Respawns the player in the center of the screen with a cooldown period until they can be hit again and before they can fire again.
+  * respawn Respawns the player in the center of the screen with a cooldown period until they can be hit again and before they can fire again.
   * @post Number of lives reduced by 1, the beams array is reset to default.  The player is placed in the center of the screen and the timer for respawn invulnerability is set.
   */
-  private void respawn()
-  {
+  private void respawn() {
     if(System.nanoTime() - respawnStart > spawnInvulnerabilityCounter)
     {
       lives--;
@@ -591,25 +585,30 @@ public class ShootySnakeGame extends JFrame {
   }
 
   /**
-  * Sets the flags indicating end game lose.
+  * lose Sets the flags indicating end game lose.
   * @post The game ends and the lose screen is brought up.
   */
-  private void lose()
-  {
+  private void lose() {
     gameOver = true;
     playerWon = false;
   }
 
   /**
-  * Sets the flags indicating end game victory.
+  * win Sets the flags indicating end game victory.
   * @post The game ends and the victory screen is brought up.
   */
-  private void win()
-  {
+  private void win() {
     gameOver = true;
     playerWon = true;
   }
 
+  /**
+  * initLevels fills the chain array chain
+  * with ShootySnakeChains of ShootySnakeEnemy's.
+  * The chains are used by index in the updateLevels
+  * method to construct the levels.
+  * @post The chain array is filled with the necessary ShootySnakeChain objects to make the levels.
+  */
   private void initLevels()
   {
     chain[0] = new ShootySnakeChain(
@@ -686,8 +685,13 @@ public class ShootySnakeGame extends JFrame {
       HEIGHT);
   }
 
-  private void updateLevels()
-  {
+  /**
+  * updateLevels Keeps track of which level the player should be on, moving
+  * to the next and activating the next collection of chains when appropriate
+  * conditions are met.
+  * @post If the current level's chains are disabled, then the next level is activated.
+  */
+  private void updateLevels() {
     if(System.nanoTime() - levelTransitionStart > spawnInvulnerabilityCounter)
     {
       if(activeChains == 0 && level == 1)
@@ -733,16 +737,28 @@ public class ShootySnakeGame extends JFrame {
     }
   }
 
-  public void message(String message, int x, int y, int msize)
-  {
+  /**
+  * message will create a GREEN colored, TimesRoman fonted message of size msize at the coordinates x and y on the screen.
+  * @param message The String to draw to the screen.
+  * @param x The x coordinate to draw the string at.
+  * @param y The y coordinate to draw the string at.
+  * @param msize The size of the text the string will be drawn.
+  */
+  public void message(String message, int x, int y, int msize) {
     int mfontSize = msize;
     imageGraphics.setFont(new Font("TimesRoman", Font.PLAIN, mfontSize));
     imageGraphics.setColor(Color.GREEN);
     imageGraphics.drawString(message, x, y);
   }
 
-  public void levelTransition(int num, int x, int y)
-  {
+  /**
+  * levelTransition When updateLevels calls for a new level, levelTransition
+  * will reposition the player and activate the invulnerability timer when appropriate.
+  * @param x The x coordinate to reposition the player at (default is WIDTH/2)
+  * @param y The y coordinate to reposition the player at (default is HEIGHT/2)
+  * @post The player is repositioned to the coordinates (x,y) The player's beams are reset and he is invulnerable for a time.
+  */
+  public void levelTransition(int x, int y) {
     if(System.nanoTime() - levelTransitionStart > spawnInvulnerabilityCounter && !newLevel)
     {
       respawnStart = System.nanoTime();
@@ -759,6 +775,10 @@ public class ShootySnakeGame extends JFrame {
       newLevel = false;
   }
 
+  /**
+  * readHighScores  Reads in the "highscores.txt" file, if available, from the src directory to obtain the current highscores list.
+  * @return A String array with names and scores from file. Can handle empty, but not oddly lined files.
+  */
   private String[] readHighScores() throws IOException {
     File file = new File("highscores.txt");
     String[] hs;
@@ -784,8 +804,12 @@ public class ShootySnakeGame extends JFrame {
     return hs; //return string array with file contents
   }
 
-  private Boolean isNewHighScore(int mpoints, String[] hs)
-  {
+  /**
+  * isNewHighScore Determines if the passed in score, mpoints, belongs in the top five positions of the passed in String array, hs, of highscores.
+  * @pre hs contains an even number of lines where every other line is a positive integer
+  * @return True if mpoints belongs in the top five highscores.  False else.
+  */
+  private Boolean isNewHighScore(int mpoints, String[] hs) {
     int count = hs.length;
     if(count > 10)
       count = 10;
@@ -799,8 +823,12 @@ public class ShootySnakeGame extends JFrame {
     return addScore;
   }
 
-  private String[] setHighScore(String mname, int mpoints)
-  {
+  /**
+  * setHighScore Places mname and mpoints in the appropriate spots the class's highscores variable.
+  * @pre mpoints belongs among the top five positions of the highscores class variable array.
+  * @return Returns an updated highscores String array, which can then be stored in the highscores member array.
+  */
+  private String[] setHighScore(String mname, int mpoints) {
     String[] temp = new String[highscores.length + 2];
     int offset = 0;
     Boolean foundPlacement = false;
@@ -832,8 +860,11 @@ public class ShootySnakeGame extends JFrame {
     return temp;
   }
 
-  private void printHighScores(String[] hs)
-  {
+  /**
+  * printHighScores Places the High Scores information from the String array member variable, highscores, in a formatted table on the member image.
+  * @post The High Scores are drawn to the screen.
+  */
+  private void printHighScores(String[] hs) {
     String message = "Name:";
     message(message, WIDTH*1/4 - fontmetrics.stringWidth(message)/2, HEIGHT/2 - fontsize*3, fontsize);
     message = "Score:";
@@ -852,6 +883,10 @@ public class ShootySnakeGame extends JFrame {
     }
   }
 
+  /**
+  * writeHighScores Writes the current String array highscores to the file "highscores.txt" in the local directory.
+  * @post The current highscores array is stored in a local file called "highscores.txt"
+  */
   private void writeHighScores() throws IOException {
     File file = new File("highscores.txt");
     if(file.exists())
@@ -867,6 +902,24 @@ public class ShootySnakeGame extends JFrame {
   }
 
   //getters for code testing:
+  /**
+  * getLives Gets the current value of the lives member variable
+  * @return The current value of the lives member variable, an integer.
+  */
+  public int getLives()
+  {
+    return lives;
+  }
+
+  /**
+  * getGameOver Gets the current value of the gameOver member variable
+  * @return The current value of the gameOver member variable, a Boolean.
+  */
+  public Boolean getGameOver()
+  {
+    return gameOver;
+  }
+
   // public double getRatio()
   // {
   //   return ratio;
@@ -960,14 +1013,7 @@ public class ShootySnakeGame extends JFrame {
   // {
   //   return levelTransitionStart;
   // }
-  public int getLives()
-  {
-    return lives;
-  }
-  public Boolean getGameOver()
-  {
-    return gameOver;
-  }
+
   // public Boolean getPlayerWon()
   // {
   //   return playerWon;
