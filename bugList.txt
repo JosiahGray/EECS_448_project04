@@ -6,3 +6,5 @@
 6. If paddle never moves in beginning of a game, ball will go back and forth forever
 7. Pong game background does not resize/ not scalable 
 8. To move pong, CapsLock must be off
+9. Pong test throws out of bounds exception errors on windows during initial condition when testing if ball returns to bounds
+10. Pong game has a little bit of black edge on the side
