@@ -214,13 +214,10 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	 * An int representing the counter for number of games played
 	 */
 	int gameCount = 0;
-<<<<<<< HEAD
 
-=======
 	Panel panel;
 	Label winner;
 
->>>>>>> 746a1e96cd80f845f40666bcb6902c53afa5061d
 	//constructor
 	/**
 	 * The Pong3d1pControl constructor
@@ -244,12 +241,10 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 		winner = new Label("                                      ");
 		//add buttons
 		panel.add(go);
-<<<<<<< HEAD
-		//panel.add(test);
-=======
+
 		panel.add(winner);
-		panel.add(test);
->>>>>>> 746a1e96cd80f845f40666bcb6902c53afa5061d
+		//panel.add(test);
+
 		//put it at the top, lulz north...
 		add("North",panel);
 		//add listeners
@@ -521,14 +516,14 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	 */
 	public void keyPressed(KeyEvent e) {
 		//this will take over for human paddle
-<<<<<<< HEAD
-
-		if (e.getKeyChar()=='s'){
-			if(hxloc < 0.45f){
-				hxloc = hxloc + .015f;
-			} else {
-				hxloc = 0.45f;
-=======
+// <<<<<<< HEAD
+//
+// 		if (e.getKeyChar()=='s'){
+// 			if(hxloc < 0.45f){
+// 				hxloc = hxloc + .015f;
+// 			} else {
+// 				hxloc = 0.45f;
+// =======
 		if(!isDelayed){
 			if (e.getKeyChar()=='s'){
 				if(hxloc < 0.45f){
@@ -536,7 +531,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 				} else {
 					hxloc = 0.45f;
 				}
->>>>>>> 746a1e96cd80f845f40666bcb6902c53afa5061d
+// >>>>>>> 746a1e96cd80f845f40666bcb6902c53afa5061d
 			}
 			if (e.getKeyChar()=='a'){
 				if(hxloc > -0.45f){
@@ -724,9 +719,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 		humanTrans.setTransform(hTrans);
 		hCoords.setCoordinates(hxloc, ground, z);
 	}
-<<<<<<< HEAD
 
-=======
 	/**
 	 * updateComputer()
 	 * @post updates the computer's paddle location
@@ -734,7 +727,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	 * catches if computer moves out of bounds
 	 * sets location and associated coordinates accordingly
 	 */
->>>>>>> 746a1e96cd80f845f40666bcb6902c53afa5061d
+
 	public void updateComputer(){
 		float nextLoc = cLogic.move(bCoords, cCoords);
 		computerX += nextLoc;

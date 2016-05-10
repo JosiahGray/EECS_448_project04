@@ -280,15 +280,11 @@ public class PongTester {
 		System.out.println("Running test 6...");
 		System.out.println(" Description: ");
 		System.out.println("  Place ball out of x axis bounds, see if ball returns to bounds");
-<<<<<<< HEAD
-		//arbitrary x location
-		control.xloc = 1.0f;
-		System.out.println("   Ball x location before: 1.0");
-=======
+
 		//arbitrary x location
 		control.xloc = 0.5f;
 		System.out.println("   Ball x location before: 0.5");
->>>>>>> 746a1e96cd80f845f40666bcb6902c53afa5061d
+
 		control.updateSquish();
 		System.out.println("   Anticipated ball location: 0.45");
 		System.out.println("   Actual ball location: " + control.xloc);
