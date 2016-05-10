@@ -144,12 +144,9 @@ public class ShootySnakeGame extends JFrame {
   * @post The game's frame, image and game model are initialized.
   */
   public ShootySnakeGame() {
-
     initFrame();
     initImage();
     initModel();
-    ShootySnakeTester tester = new ShootySnakeTester();
-    tester.test(this);
   }
 
   /**
