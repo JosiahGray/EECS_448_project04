@@ -112,7 +112,6 @@ public class PongTester {
 			System.out.println("Test 13: FAIL");
 			overAll = false;
 		}
-<<<<<<< HEAD
 		System.out.println("");
 		if(test14(control)){
 			System.out.println("Test 14: PASS");
@@ -135,9 +134,6 @@ public class PongTester {
 			overAll = false;
 		}
 		
-=======
-
->>>>>>> e4f76c8a6c556aca4a24eb1e810598b383797ed1
 		System.out.println("");
 		if(overAll){
 			System.out.println("Overall test results: PASS");
