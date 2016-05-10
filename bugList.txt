@@ -6,5 +6,9 @@
 6. If paddle never moves in beginning of a game, ball will go back and forth forever
 7. Pong game background does not resize/ not scalable 
 8. To move pong, CapsLock must be off
-9. Pong test throws out of bounds exception errors on windows during initial condition when testing if ball returns to bounds
-10. Pong game has a little bit of black edge on the side
+9. ShootySnake: Shooting balls offscreen can cause them not to appear making the game unwinnable.
+10. ShootySnake: Changing resolutions can sometimes change the spacing of the following balls, making the speeds different.
+11. ShootySnake: Sometimes balls will speed ahead for a split second before slowing down- need better velocity limiters.
+12. ShootySnake: Game logic still runs in background when ShootySnake screen closed before the end of a game.
+13. Pong test throws out of bounds exception errors on windows during initial condition when testing if ball returns to bounds
+14. Pong game has a little bit of black edge on the side

@@ -144,10 +144,12 @@ public class ShootySnakeGame extends JFrame {
   * @post The game's frame, image and game model are initialized.
   */
   public ShootySnakeGame() {
-    System.out.println(ratio);
+
     initFrame();
     initImage();
     initModel();
+    ShootySnakeTester tester = new ShootySnakeTester();
+    tester.test(this);
   }
 
   /**
@@ -181,8 +183,6 @@ public class ShootySnakeGame extends JFrame {
 
     // Move the balls
     moveBalls();
-    // Check if all balls are disabled
-    checkBalls(); //victory condition
     // Check if level is disabled
     if(newLevel)
     {
@@ -293,16 +293,16 @@ public class ShootySnakeGame extends JFrame {
       message(message, WIDTH/2 - fontmetrics.stringWidth(message)/2, HEIGHT/2 - fontsize*4, fontsize);
       //Do file IO, if can't make a file, then skip and just display score
       try {
-        highscores = getHighScores();
+        highscores = readHighScores();
       } catch (IOException x) {
         ;
       }
-      if(isNewHighScore())
+      if(isNewHighScore(points, highscores))
       {
         String name = JOptionPane.showInputDialog(panel, "Enter name:", "New High Score!", JOptionPane.PLAIN_MESSAGE);
         highscores = setHighScore(name + " ", points);
       }
-      printHighScores();
+      printHighScores(highscores);
 
       try {
         writeHighScores();
@@ -454,27 +454,6 @@ public class ShootySnakeGame extends JFrame {
         }
       }
     }
-  }
-
-  /**
-  * Checks for the victory condition that all enemy balls have been hit with beams so that they are all disabled.
-  * @post  If all balls are disabled, the player wins, else nothing.
-  */
-  private void checkBalls()
-  {
-    // for(int k = disabledChains; k < activeChains; k++)
-    // {
-    //   int count = 0;
-    //   for(int i = 0; i < BALLS; i++)
-    //   {
-    //     if(chain[k].ball(i).disabled)
-    //       count++;
-    //   }
-    //   if(count >= BALLS)
-    //   {
-    //     win();
-    //   }
-    // }
   }
 
   /**
@@ -783,7 +762,7 @@ public class ShootySnakeGame extends JFrame {
       newLevel = false;
   }
 
-  private String[] getHighScores() throws IOException {
+  private String[] readHighScores() throws IOException {
     File file = new File("highscores.txt");
     String[] hs;
     if(file.exists())
@@ -808,19 +787,19 @@ public class ShootySnakeGame extends JFrame {
     return hs; //return string array with file contents
   }
 
-  private Boolean isNewHighScore()
+  private Boolean isNewHighScore(int mpoints, String[] hs)
   {
-    int count = highscores.length;
+    int count = hs.length;
     if(count > 10)
       count = 10;
-    Boolean newScore = false;
+    Boolean addScore = false;
     for(int i = 0; i < count; i++)
     {
       i++;
-      if(points > Integer.parseInt(highscores[i]))
-        newScore = true;
+      if(mpoints > Integer.parseInt(hs[i]))
+        addScore = true;
     }
-    return newScore;
+    return addScore;
   }
 
   private String[] setHighScore(String mname, int mpoints)
@@ -856,7 +835,7 @@ public class ShootySnakeGame extends JFrame {
     return temp;
   }
 
-  private void printHighScores()
+  private void printHighScores(String[] hs)
   {
     String message = "Name:";
     message(message, WIDTH*1/4 - fontmetrics.stringWidth(message)/2, HEIGHT/2 - fontsize*3, fontsize);
@@ -869,9 +848,9 @@ public class ShootySnakeGame extends JFrame {
       topFive = highscores.length;
     for(int i = 0; i < topFive; i = i + 2)
     {
-      message = (i + 2)/2 + ". " + highscores[i];
+      message = (i + 2)/2 + ". " + hs[i];
       message(message, WIDTH*1/4 - fontmetrics.stringWidth("Name:")/2, HEIGHT/2 - fontsize*2 + (i + 1)*fontsize, fontsize);
-      message = highscores[i+1];
+      message = hs[i+1];
       message(message, WIDTH*3/4 - fontmetrics.stringWidth(message)/2, HEIGHT/2 - fontsize*2 + (i + 1)*fontsize, fontsize);
     }
   }
@@ -888,5 +867,160 @@ public class ShootySnakeGame extends JFrame {
     }
     fw.write(highscores[highscores.length - 1]);
     fw.close();
+  }
+
+  //getters for code testing:
+  public double getRatio()
+  {
+    return ratio;
+  }
+
+  public int getWidth()
+  {
+    return WIDTH;
+  }
+  public int getHeight()
+  {
+    return HEIGHT;
+  }
+  public int getFPS()
+  {
+    return FRAMES_PER_SECOND;
+  }
+  public long getFP()
+  {
+    return FRAME_PERIOD;
+  }
+  public boolean[] getKeys()
+  {
+    return KEYS;
+  }
+  public int getBALLS()
+  {
+    return BALLS;
+  }
+  public int getBEAMS()
+  {
+    return BEAMS;
+  }
+  public double getBallSize()
+  {
+    return BALL_SIZE;
+  }
+  public double getBeamSize()
+  {
+    return BEAM_SIZE;
+  }
+  public double getPlayerSize()
+  {
+    return PLAYER_SIZE;
+  }
+  public double getDIV()
+  {
+    return DIV;
+  }
+  public double getPV()
+  {
+    return PLAYER_VELOCITY;
+  }
+  public JPanel getPanel()
+  {
+    return panel;
+  }
+  public Image getImage()
+  {
+    return image;
+  }
+  public Graphics getImageGraphics()
+  {
+    return imageGraphics;
+  }
+  public ShootySnakeChain[] getChain()
+  {
+    return chain;
+  }
+  public ShootySnakeBall[] getBeamArray()
+  {
+    return beams;
+  }
+  public ShootySnakeBall getPlayer()
+  {
+    return player;
+  }
+  public long getLastShot()
+  {
+    return lastShot;
+  }
+  public long getSIC()
+  {
+    return spawnInvulnerabilityCounter;
+  }
+  public long getRespawnStart()
+  {
+    return respawnStart;
+  }
+  public long getLevelTransitionStart()
+  {
+    return levelTransitionStart;
+  }
+  public int getLives()
+  {
+    return lives;
+  }
+  public Boolean getGameOver()
+  {
+    return gameOver;
+  }
+  public Boolean getPlayerWon()
+  {
+    return playerWon;
+  }
+  public Boolean getMouseDown()
+  {
+    return mouseDown;
+  }
+  public int getMouseX()
+  {
+    return mouseX;
+  }
+  public int getMouseY()
+  {
+    return mouseY;
+  }
+  public int getActiveChains()
+  {
+    return activeChains;
+  }
+  public int getDisabledChains()
+  {
+    return disabledChains;
+  }
+  public Boolean getNewLevel()
+  {
+    return newLevel;
+  }
+  public int getLevel()
+  {
+    return level;
+  }
+  public int getPoints()
+  {
+    return points;
+  }
+  public String[] getHighScores()
+  {
+    return highscores;
+  }
+  public int getFontSize()
+  {
+    return fontsize;
+  }
+  public Font getFONT()
+  {
+    return font;
+  }
+  public FontMetrics getFONTM()
+  {
+    return fontmetrics;
   }
 }

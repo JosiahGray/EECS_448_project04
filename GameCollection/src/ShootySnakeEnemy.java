@@ -17,20 +17,20 @@ public class ShootySnakeEnemy extends ShootySnakeBall{
     color = Color.BLUE;
   }
 
-  public int hit(double x0, double y0, double ratio)
+  public int hit(double x0, double y0, double mratio)
   {
     int points = 0;
     hitpoints--;
     color = color.darker();
-    if(hitpoints <= 0)
+    if(hitpoints <= 0 && !disabled)
     {
       disabled = true;
       points = totalHitpoints;
     }
     else if(leader)
     {
-      vx = 25*ratio*normalX(x0, y0);
-      vy = 25*ratio*normalY(x0, y0);
+      vx = 25*mratio*normalX(x0, y0);
+      vy = 25*mratio*normalY(x0, y0);
     }
     return points;
   }

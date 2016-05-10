@@ -43,7 +43,11 @@ public class ShootySnakeBall {
   {
     double xDiff = x0 - (x + radius);
     double yDiff = y0 - (y + radius);
-    double temp = xDiff/java.lang.Math.sqrt(xDiff*xDiff + yDiff*yDiff);
+    double temp = 0.0;
+    if(xDiff != 0.0)
+      temp = xDiff/java.lang.Math.sqrt(xDiff*xDiff + yDiff*yDiff);
+    else
+      temp = 0.0;
     return temp;
   }
 
@@ -51,7 +55,11 @@ public class ShootySnakeBall {
   {
     double xDiff = x0 - (x + radius);
     double yDiff = y0 - (y + radius);
-    double temp = yDiff/java.lang.Math.sqrt(xDiff*xDiff + yDiff*yDiff);
+    double temp = 0.0;
+    if(yDiff != 0.0)
+      temp = yDiff/java.lang.Math.sqrt(xDiff*xDiff + yDiff*yDiff);
+    else
+      temp = 0.0;
     return temp;
   }
 }
