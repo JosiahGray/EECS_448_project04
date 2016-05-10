@@ -64,7 +64,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	/**
 	 * 	Pong tester used to test the pong game
 	 */
-	PongTester tester = new PongTester();
+	//PongTester tester = new PongTester();
 	/**
 	 * The button which will start a new game of pong
 	 */
@@ -72,7 +72,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	/**
 	 * The button which will call the test function of PongTester test
 	 */
-	Button test = new Button("Test Game");
+	//Button test = new Button("Test Game");
 	/**
 	 *  The transform group which will determine the placement of the ball in the universe
 	 */
@@ -229,21 +229,21 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 		//be able to listen for key presses
 		canvas.addKeyListener(this);
 		//how fast everything updates
-		timer = new Timer(5,this); 
+		timer = new Timer(5,this);
 		//add panel
 		panel =new Panel();
 		winner = new Label("                                      ");
 		//add buttons
 		panel.add(go);
 		panel.add(winner);
-		panel.add(test);
+		//panel.add(test);
 		//put it at the top, lulz north...
 		add("North",panel);
 		//add listeners
 		go.addActionListener(this);
 		go.addKeyListener(this);
-		test.addActionListener(this);
-		test.addKeyListener(this);
+		//test.addActionListener(this);
+		//test.addKeyListener(this);
 		// Create a simple scene and attach it to universe
 		BranchGroup scene = createSceneGraph();
 		//make universe and add canvas
@@ -543,16 +543,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	 * Drives the game, will conduct a test, begin a game, or updates each timer execution to move game along
 	 */
 	public void actionPerformed(ActionEvent e ) {
-		//if the button was to test
-		if(e.getSource() == test){
-			tester.test(this);
-			humanScore = 5;
-			newGame();
-			winner.setText("                                  ");
-		}
-		//otherwise gear towards game
-		else{
-		// start timer when button is pressed
+	
 			if (e.getSource()==go){
 				//if the timer isn't running and there's no game going
 				if (!timer.isRunning() && !gameGoing) {
@@ -581,7 +572,6 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 				}
 
 			}
-		}
 	}
 	/**
 	 * update()

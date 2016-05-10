@@ -1,4 +1,7 @@
 public class ShootySnakeChain {
+  /**
+  *
+  */
   public int numberOfBalls;
   public double initialX;
   public double initialY;
