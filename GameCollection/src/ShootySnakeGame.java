@@ -867,99 +867,99 @@ public class ShootySnakeGame extends JFrame {
   }
 
   //getters for code testing:
-  public double getRatio()
-  {
-    return ratio;
-  }
-
-  public int getWidth()
-  {
-    return WIDTH;
-  }
-  public int getHeight()
-  {
-    return HEIGHT;
-  }
-  public int getFPS()
-  {
-    return FRAMES_PER_SECOND;
-  }
-  public long getFP()
-  {
-    return FRAME_PERIOD;
-  }
-  public boolean[] getKeys()
-  {
-    return KEYS;
-  }
-  public int getBALLS()
-  {
-    return BALLS;
-  }
-  public int getBEAMS()
-  {
-    return BEAMS;
-  }
-  public double getBallSize()
-  {
-    return BALL_SIZE;
-  }
-  public double getBeamSize()
-  {
-    return BEAM_SIZE;
-  }
-  public double getPlayerSize()
-  {
-    return PLAYER_SIZE;
-  }
-  public double getDIV()
-  {
-    return DIV;
-  }
-  public double getPV()
-  {
-    return PLAYER_VELOCITY;
-  }
-  public JPanel getPanel()
-  {
-    return panel;
-  }
-  public Image getImage()
-  {
-    return image;
-  }
-  public Graphics getImageGraphics()
-  {
-    return imageGraphics;
-  }
-  public ShootySnakeChain[] getChain()
-  {
-    return chain;
-  }
-  public ShootySnakeBall[] getBeamArray()
-  {
-    return beams;
-  }
-  public ShootySnakeBall getPlayer()
-  {
-    return player;
-  }
-  public long getLastShot()
-  {
-    return lastShot;
-  }
-  public long getSIC()
-  {
-    return spawnInvulnerabilityCounter;
-  }
-  public long getRespawnStart()
-  {
-    return respawnStart;
-  }
-  public long getLevelTransitionStart()
-  {
-    return levelTransitionStart;
-  }
+  // public double getRatio()
+  // {
+  //   return ratio;
+  // }
+  //
+  // public int getWidth()
+  // {
+  //   return WIDTH;
+  // }
+  // public int getHeight()
+  // {
+  //   return HEIGHT;
+  // }
+  // public int getFPS()
+  // {
+  //   return FRAMES_PER_SECOND;
+  // }
+  // public long getFP()
+  // {
+  //   return FRAME_PERIOD;
+  // }
+  // public boolean[] getKeys()
+  // {
+  //   return KEYS;
+  // }
+  // public int getBALLS()
+  // {
+  //   return BALLS;
+  // }
+  // public int getBEAMS()
+  // {
+  //   return BEAMS;
+  // }
+  // public double getBallSize()
+  // {
+  //   return BALL_SIZE;
+  // }
+  // public double getBeamSize()
+  // {
+  //   return BEAM_SIZE;
+  // }
+  // public double getPlayerSize()
+  // {
+  //   return PLAYER_SIZE;
+  // }
+  // public double getDIV()
+  // {
+  //   return DIV;
+  // }
+  // public double getPV()
+  // {
+  //   return PLAYER_VELOCITY;
+  // }
+  // public JPanel getPanel()
+  // {
+  //   return panel;
+  // }
+  // public Image getImage()
+  // {
+  //   return image;
+  // }
+  // public Graphics getImageGraphics()
+  // {
+  //   return imageGraphics;
+  // }
+  // public ShootySnakeChain[] getChain()
+  // {
+  //   return chain;
+  // }
+  // public ShootySnakeBall[] getBeamArray()
+  // {
+  //   return beams;
+  // }
+  // public ShootySnakeBall getPlayer()
+  // {
+  //   return player;
+  // }
+  // public long getLastShot()
+  // {
+  //   return lastShot;
+  // }
+  // public long getSIC()
+  // {
+  //   return spawnInvulnerabilityCounter;
+  // }
+  // public long getRespawnStart()
+  // {
+  //   return respawnStart;
+  // }
+  // public long getLevelTransitionStart()
+  // {
+  //   return levelTransitionStart;
+  // }
   public int getLives()
   {
     return lives;
@@ -968,56 +968,56 @@ public class ShootySnakeGame extends JFrame {
   {
     return gameOver;
   }
-  public Boolean getPlayerWon()
-  {
-    return playerWon;
-  }
-  public Boolean getMouseDown()
-  {
-    return mouseDown;
-  }
-  public int getMouseX()
-  {
-    return mouseX;
-  }
-  public int getMouseY()
-  {
-    return mouseY;
-  }
-  public int getActiveChains()
-  {
-    return activeChains;
-  }
-  public int getDisabledChains()
-  {
-    return disabledChains;
-  }
-  public Boolean getNewLevel()
-  {
-    return newLevel;
-  }
-  public int getLevel()
-  {
-    return level;
-  }
-  public int getPoints()
-  {
-    return points;
-  }
-  public String[] getHighScores()
-  {
-    return highscores;
-  }
-  public int getFontSize()
-  {
-    return fontsize;
-  }
-  public Font getFONT()
-  {
-    return font;
-  }
-  public FontMetrics getFONTM()
-  {
-    return fontmetrics;
-  }
+  // public Boolean getPlayerWon()
+  // {
+  //   return playerWon;
+  // }
+  // public Boolean getMouseDown()
+  // {
+  //   return mouseDown;
+  // }
+  // public int getMouseX()
+  // {
+  //   return mouseX;
+  // }
+  // public int getMouseY()
+  // {
+  //   return mouseY;
+  // }
+  // public int getActiveChains()
+  // {
+  //   return activeChains;
+  // }
+  // public int getDisabledChains()
+  // {
+  //   return disabledChains;
+  // }
+  // public Boolean getNewLevel()
+  // {
+  //   return newLevel;
+  // }
+  // public int getLevel()
+  // {
+  //   return level;
+  // }
+  // public int getPoints()
+  // {
+  //   return points;
+  // }
+  // public String[] getHighScores()
+  // {
+  //   return highscores;
+  // }
+  // public int getFontSize()
+  // {
+  //   return fontsize;
+  // }
+  // public Font getFONT()
+  // {
+  //   return font;
+  // }
+  // public FontMetrics getFONTM()
+  // {
+  //   return fontmetrics;
+  // }
 }
