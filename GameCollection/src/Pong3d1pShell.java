@@ -11,6 +11,11 @@ import javax.swing.Timer;
 
 
 public class Pong3d1pShell {
+	/**
+	 * Pong3d1pShell()
+	 * @post constructs a new Pong3d1pShell instance with control and mainframe
+	 * Creates the mainframe to display and control to implement for a new pong game
+	 */
 	public Pong3d1pShell(){
 		
 		   Pong3d1pControl control= new Pong3d1pControl();

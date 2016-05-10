@@ -16,6 +16,9 @@ import java.awt.*;
  * @source https://docs.oracle.com/javase/tutorial/2d/images/loadimage.html
  * @source http://www.java3d.org/starting.html
  * @source https://community.oracle.com/thread/1275874?start=0&tstart=0
+ * @source Java3D Documentation
+ * @source http://download.java.net/media/java3d/javadoc/1.3.2/com/sun/j3d/utils/applet/MainFrame.html
+ * @source https://docs.oracle.com/javase/7/docs/api/java/awt/Panel.html
  *
  */
 

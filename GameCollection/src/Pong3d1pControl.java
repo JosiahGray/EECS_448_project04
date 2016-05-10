@@ -159,11 +159,6 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	int size = 5;
 	/**
 	 * An array of floats of size size representing each of the different components used in the ball logic calculation
-	 * 0 =
-	 * 1 =
-	 * 2 =
-	 * 3 =
-	 * 4 =
 	 */
 	float[] bBounce = new float[size];
 	/**

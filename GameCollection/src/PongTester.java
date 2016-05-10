@@ -109,6 +109,27 @@ public class PongTester {
 			System.out.println("Test 13: FAIL");
 			overAll = false;
 		}
+		System.out.println("");
+		if(test14(control)){
+			System.out.println("Test 14: PASS");
+		} else {
+			System.out.println("Test 14: FAIL");
+			overAll = false;
+		}
+		System.out.println("");
+		if(test15(control)){
+			System.out.println("Test 15: PASS");
+		} else {
+			System.out.println("Test 15: FAIL");
+			overAll = false;
+		}
+		System.out.println("");
+		if(test16(control)){
+			System.out.println("Test 16: PASS");
+		} else {
+			System.out.println("Test 16: FAIL");
+			overAll = false;
+		}
 		
 		System.out.println("");
 		if(overAll){
@@ -448,6 +469,70 @@ public class PongTester {
 		System.out.println("   Anticipated string: YOU WIN!!! d^_^b");
 		System.out.println("   Actual string: " + control.winner.getText());
 		return(control.winner.getText() == "YOU WIN!!! d^_^b");
+	}
+	//test coordinates
+	public boolean test14(Pong3d1pControl control){
+		System.out.println("Running test 14...");
+		System.out.println(" Description: ");
+		System.out.println("  Set ball coordinates, test to see if coordinates were set properly.");
+		control.bCoords.setCoordinates(1.0f, 2.3f, 4.7f);
+		System.out.println("   Setting coordinates to: 1.0, 2.3, 4.7");
+		System.out.println("   Ball x coordinate: " + control.bCoords.x);
+		System.out.println("   Ball y coordinate: " + control.bCoords.y);
+		System.out.println("   Ball z coordinate: " + control.bCoords.z);
+		return(control.bCoords.x == 1.0f && control.bCoords.y == 2.3f && control.bCoords.z == 4.7f);
+	}
+	//test coordinates
+	public boolean test15(Pong3d1pControl control){
+		System.out.println("Running test 15...");
+		System.out.println(" Description: ");
+		System.out.println("  Set human coordinates, test to see if coordinates were set properly.");
+		control.hCoords.setCoordinates(1.0f, 2.3f, 4.7f);
+		System.out.println("   Setting coordinates to: 1.0, 2.3, 4.7");
+		System.out.println("   Human x coordinate: " + control.hCoords.x);
+		System.out.println("   Human y coordinate: " + control.hCoords.y);
+		System.out.println("   Human z coordinate: " + control.hCoords.z);
+		return(control.hCoords.x == 1.0f && control.hCoords.y == 2.3f && control.hCoords.z == 4.7f);
+	}
+	//test coordinates
+	public boolean test16(Pong3d1pControl control){
+		System.out.println("Running test 16...");
+		System.out.println(" Description: ");
+		System.out.println("  Set computer coordinates, test to see if coordinates were set properly.");
+		control.cCoords.setCoordinates(1.0f, 2.3f, 4.7f);
+		System.out.println("   Setting coordinates to: 1.0, 2.3, 4.7");
+		System.out.println("   Computer x coordinate: " + control.cCoords.x);
+		System.out.println("   Computer y coordinate: " + control.cCoords.y);
+		System.out.println("   Computer z coordinate: " + control.cCoords.z);
+		return(control.cCoords.x == 1.0f && control.cCoords.y == 2.3f && control.cCoords.z == 4.7f);
+	}
+	//test ball logic
+	public boolean test17(Pong3d1pControl control){
+		return true;
+	}
+	//test ball reset
+	public boolean test18(Pong3d1pControl control){
+		boolean correct = true;
+		System.out.println("Running test 18...");
+		System.out.println(" Description: ");
+		System.out.println("  Set ball bounce coordinates randomly, call reset, check if they get reset to default values");
+		for(int i = 0; i < 5; i++){
+			control.bLogic.bBounce[i] = 2.5f;
+		}
+		System.out.println("   All bBounce components set to 2.5");
+		System.out.println("   Anticipated 1.0, 1.0, 1.0, 1.0, 0.0");
+		control.bLogic.reset();
+		for(int i =0; i<5; i++){
+			System.out.println("   bLogic at "+ i+ " = "+ control.bLogic.bBounce[i]);
+			if(i!=4 && control.bLogic.bBounce[i]!= 1.0f){
+				correct = false;
+			}
+		}
+		if(control.bLogic.bBounce[4] != 0.0f){
+			correct = false;
+		}
+	
+		return correct;
 	}
 
 }

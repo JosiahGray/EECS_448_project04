@@ -14,14 +14,43 @@ import com.sun.j3d.utils.geometry.Sphere;
 import javax.swing.Timer;
 
 public class Pong3d1pBall{
+	/**
+	 * float representing the radius of the ball in the game
+	 */
 	float radius;
+	/**
+	 * float representing the x location of the ball in the game
+	 */
 	float xLoc;
+	/**
+	 * float representing the y location of the ball in the game
+	 */
 	float yLoc;
+	/**
+	 * float representing the z location of the ball in the game
+	 */
 	float zLoc;
+	/**
+	 * float representing the paddle length of the 2 players
+	 */
 	float paddleLength;
+	/**
+	 * float representing the paddle width of the 2 players
+	 */
 	float paddleWidth;
+	/**
+	 * an array of floats representing the different components of a ball bounce
+	 */
 	float[] bBounce;
+	/** 
+	 * int size of the bBounce array
+	 */
 	int size =5;
+	/**
+	 * Pong3d1pBall()
+	 * @post constructs a new Pong3d1pBall ball logic instance
+	 * The constructor for the Pong3d1pBall ball logic
+	 */
 	public Pong3d1pBall(){
 		//get this from Pong Control
 		radius = 0.025f; 
@@ -35,8 +64,15 @@ public class Pong3d1pBall{
 		bBounce[4] = 0.0f;
 	}
 	
-	//MAKE THIS AN ARRAY SO THAT BALL CAN SQUISH
-	//array = (vector x, vector z, x squish, z squish, speed up ball)
+	/**
+	 * float[] move(Coordinates bCoords, Coordinates hCoords, Coordinates cCoords)
+	 * @param bCoords Coordinates representing the location of the ball
+	 * @param hCoords Coordinates representing the location of the human
+	 * @param cCoords Coordinates representing the location of the computer
+	 * @return a float array with the bounce instructions for the ball
+	 * Determines the next location of the ball, checks for collision with either paddle and sets the direction
+	 * the ball will move in the z direction
+	 */
 	public float[] move(Coordinates bCoords, Coordinates hCoords, Coordinates cCoords){
 		bBounce[3] = 0.0f;
 		//put in bounds for where ball is located
@@ -69,6 +105,11 @@ public class Pong3d1pBall{
 
 		return bBounce;
 	}
+	/**
+	 * reset()
+	 * @post resets float bBounce array to default values
+	 * Resets float bBounce array to default values 
+	 */
 	public void reset(){
 		for(int i=0; i< size; i++){
 			bBounce[i]=1.0f;
