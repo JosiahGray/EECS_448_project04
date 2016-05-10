@@ -1,6 +1,9 @@
 public class ShootySnakeTester {
     //public Random rn = new Random();
-    public ShootySnakeTester(){}
+    public ShootySnakeTester(){
+      ShootySnakeGame game = new ShootySnakeGame();
+      test(game);
+    }
 
     public void test(ShootySnakeGame game) {
       if(test1())

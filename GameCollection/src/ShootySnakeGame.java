@@ -148,8 +148,8 @@ public class ShootySnakeGame extends JFrame {
     initFrame();
     initImage();
     initModel();
-    ShootySnakeTester tester = new ShootySnakeTester();
-    tester.test(this);
+    // ShootySnakeTester tester = new ShootySnakeTester();
+    // tester.test(this);
   }
 
   /**

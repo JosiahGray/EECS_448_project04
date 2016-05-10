@@ -1,13 +1,16 @@
 
 public class PongTester {
-	//lists of methods 
+	//lists of methods
 	//updatesquish
 	//checkscore
 	//reset
 	//isgameover
 	//newgame
-	
-	public PongTester(){}
+
+	public PongTester(){
+		Pong3d1pControl control = new Pong3d1pControl();
+		test(control);
+	}
 	public void test(Pong3d1pControl control){
 		boolean overAll = true;
 		if(test1(control)){
@@ -86,7 +89,7 @@ public class PongTester {
 			System.out.println("Test 11: FAIL");
 			overAll = false;
 		}
-		
+
 		System.out.println("");
 		if(overAll){
 			System.out.println("Overall test results: PASS");
@@ -97,9 +100,9 @@ public class PongTester {
 		System.out.println("");
 		System.out.println("Testing complete. Go back to pong to run test again or to play a game.");
 		System.out.println("");
-		
+
 	}
-	
+
 	//test 1
 	//ball is set up where opponent scores
 	//check opponent score
@@ -141,10 +144,10 @@ public class PongTester {
 		control.updateSquish();
 		float dirAft = control.dir;
 		System.out.println("   Ball direction after: " + dirAft);
-		
+
 		return (!(direction == dirAft));
 	}
-	//test4 
+	//test4
 	//ball is up against other wall
 	//time delay, check to see if ball is off wall
 	public boolean test4(Pong3d1pControl control){
@@ -157,7 +160,7 @@ public class PongTester {
 		control.updateSquish();
 		float dirAft = control.dir;
 		System.out.println("   Ball direction after: " + dirAft);
-		
+
 		return (!(direction == dirAft));
 	}
 	//test5
@@ -207,7 +210,7 @@ public class PongTester {
 			allCorrect = false;
 		}
 		System.out.println();
-		
+
 		return allCorrect;
 	}
 	//test6
@@ -216,17 +219,17 @@ public class PongTester {
 		System.out.println("Running test 6...");
 		System.out.println(" Description: ");
 		System.out.println("  Place ball out of x axis bounds, see if ball returns to bounds");
-		//arbitrary x location 
+		//arbitrary x location
 		control.xloc = 1.0f;
 		System.out.println("   Ball x location before: 1.0");
 		control.updateSquish();
 		System.out.println("   Anticipated ball location: 0.45");
 		System.out.println("   Actual ball location: " + control.xloc);
-		
+
 		return (control.xloc == 0.45f);
-		
+
 	}
-	//test7 
+	//test7
 	//see if game discontinues after a score of 5
 	public boolean test7(Pong3d1pControl control){
 		System.out.println("Running test 7...");
@@ -237,9 +240,9 @@ public class PongTester {
 		System.out.println("   Anticipated gameGoing truth value: false");
 		System.out.println("   Actual gameGoing truth value: " + control.gameGoing);
 		return (!control.gameGoing);
-		
+
 	}
-	//test8 
+	//test8
 	//check newGame method
 	public boolean test8(Pong3d1pControl control){
 		boolean allCorrect = true;
@@ -285,7 +288,7 @@ public class PongTester {
 			allCorrect = false;
 		}
 		System.out.println();
-		
+
 		return allCorrect;
 	}
 	//test9
@@ -300,8 +303,8 @@ public class PongTester {
 		control.updateSquish();
 		System.out.println("   Anticipated squish: 0.5");
 		System.out.println("   Actual squish: " + control.squish);
-		
-		
+
+
 		return (control.squish == 0.5f);
 	}
 	public boolean test10(Pong3d1pControl control){
@@ -316,9 +319,9 @@ public class PongTester {
 		System.out.println("   Anticipated increaseDifficulty: " + (before + .0005f) );
 		float after = control.cLogic.increaseDifficulty;
 		System.out.println("   increaseDifficulty after: "  +after);
-		
+
 		return(after == (before + .0005f));
-		
+
 	}
 	public boolean test11(Pong3d1pControl control){
 		System.out.println("Running test 11...");
@@ -336,9 +339,9 @@ public class PongTester {
 		float afterID = control.cLogic.increaseDifficulty;
 		System.out.println("   executionTime after: " + afterET);
 		System.out.println("   increaseDifficulty after: " + afterID );
-		
+
 		return ((afterET == 0) && (afterID == 0.0f));
-		
+
 	}
 
 }

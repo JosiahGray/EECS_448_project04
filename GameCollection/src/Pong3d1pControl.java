@@ -64,7 +64,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	/**
 	 * 	Pong tester used to test the pong game
 	 */
-	PongTester tester = new PongTester();
+	//PongTester tester = new PongTester();
 	/**
 	 * The button which will start a new game of pong
 	 */
@@ -72,7 +72,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	/**
 	 * The button which will call the test function of PongTester test
 	 */
-	Button test = new Button("Test Game");
+	//Button test = new Button("Test Game");
 	/**
 	 *  The transform group which will determine the placement of the ball in the universe
 	 */
@@ -159,11 +159,11 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	int size = 5;
 	/**
 	 * An array of floats of size size representing each of the different components used in the ball logic calculation
-	 * 0 = 
+	 * 0 =
 	 * 1 =
 	 * 2 =
 	 * 3 =
-	 * 4 = 
+	 * 4 =
 	 */
 	float[] bBounce = new float[size];
 	/**
@@ -214,7 +214,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	 * An int representing the counter for number of games played
 	 */
 	int gameCount = 0;
-	
+
 	//constructor
 	/**
 	 * The Pong3d1pControl constructor
@@ -232,19 +232,19 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 		//be able to listen for key presses
 		canvas.addKeyListener(this);
 		//how fast everything updates
-		timer = new Timer(5,this); 
+		timer = new Timer(5,this);
 		//add panel
 		Panel panel =new Panel();
 		//add buttons
 		panel.add(go);
-		panel.add(test);
+		//panel.add(test);
 		//put it at the top, lulz north...
 		add("North",panel);
 		//add listeners
 		go.addActionListener(this);
 		go.addKeyListener(this);
-		test.addActionListener(this);
-		test.addKeyListener(this);
+		//test.addActionListener(this);
+		//test.addKeyListener(this);
 		// Create a simple scene and attach it to universe
 		BranchGroup scene = createSceneGraph();
 		//make universe and add canvas
@@ -269,10 +269,10 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   BranchGroup pongRoot = new BranchGroup();
 	   //the primitive flags needed in order to alter any of the shape nodes during the game when they go "live"
 	   int primflags = Primitive.GENERATE_NORMALS + Primitive.GENERATE_TEXTURE_COORDS;
-	   
+
 	   //Allow any children of the branch group to have member variables set at any point in the game
 	   pongRoot.setCapability(BranchGroup.ALLOW_CHILDREN_WRITE);
-	   
+
 	   //all ball
 	   //create the custom ball texture
 	   BufferedImage bBall = null;
@@ -280,7 +280,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 		   bBall = ImageIO.read(new File("suntexture.jpg"));
 	   }
 	   catch (IOException e){
-		   
+
 	   }
 	   TextureLoader tl = new TextureLoader(bBall);
 	   Texture sun = tl.getTexture();
@@ -290,13 +290,13 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   Appearance ballA = new Appearance();
 	   ballA.setTexture(sun);
 	   ballA.setTextureAttributes(ta);
-	   
+
 	   //set material to the colors of the image to enhance the texture colors
 	   Color3f black = new Color3f(0.0f, 0.0f, 0.0f);
 	   Color3f white = new Color3f(1.0f, 1.0f, 1.0f);
 	   Color3f orange = new Color3f(0.8f, 0.5f, 0.0f);
 	   ballA.setMaterial(new Material (orange, white, orange, black, 1.0f));
-	   
+
 	   //create the flag according to the primitive flags and the appearance just created
 	   Sphere ball = new Sphere(0.025f, primflags, ballA);
 	   //initialize the transform group
@@ -314,9 +314,9 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   ballTrans.addChild(ball);
 	   //add the transform group to the branchgroup
 	   pongRoot.addChild(ballTrans);
-	   
-	   
-	   
+
+
+
 	   // create the balls representing the "lives"
 	   //each ball will have a different transform group, so make an array of them
 	   TransformGroup[] pointCompTrans = new TransformGroup[5];
@@ -343,7 +343,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 		   pointCompTrans[i].addChild(compPoints[i]);
 		   //add transform group to branch group
 		   pongRoot.addChild(pointCompTrans[i]);
-		   
+
 		   //initialize individual transform group
 		   pointHumanTrans[i] = new TransformGroup();
 		   //make new sphere, allow textures, normals, and ability to modify during "live" play
@@ -359,12 +359,12 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 		   pointHumanTrans[i].addChild(humanPoints[i]);
 		   //ad transform group to the branch group
 		   pongRoot.addChild(pointHumanTrans[i]);
-		   
+
 	   }
-	   
-	   
-	   
-	   
+
+
+
+
 	   //human
 	   //create texture loader for the paddle texture
 	   TextureLoader tlp = new TextureLoader("paddletexture.jpg", "LUMINANCE", new Container());
@@ -375,10 +375,10 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   Appearance a = new Appearance();
 	   a.setTexture(paddle);
 	   a.setTextureAttributes(tap);
-	   
-	   
-	   
-	   
+
+
+
+
 	   //create color to enhance texture
 	   Color3f ambientC = new Color3f(1.0f, 1.0f, 1.0f);
 	   Color3f diffuseC = new Color3f(1.0f, 1.0f, 1.0f);
@@ -394,7 +394,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   //make paddle slightly transparent to see ball coming through
 	   TransparencyAttributes transpa = new TransparencyAttributes(TransparencyAttributes.BLENDED, 0.15f);
 	   a.setTransparencyAttributes(transpa);
-	   
+
 	   //create new box (Box belongs to more than one library so have to be specific) using dimensions, previous primitive flags, and freshly constructed appearance
 	   com.sun.j3d.utils.geometry.Box human = new com.sun.j3d.utils.geometry.Box(0.1f, 0.03f, 0.025f, primflags, a);
 	   //initialize transformgroup
@@ -403,7 +403,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   humanTrans.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
 	   humanTrans.setCapability(human.ENABLE_APPEARANCE_MODIFY);
 	   humanTrans.setCapability(human.ENABLE_COLLISION_REPORTING);
-	   
+
 	   //initialize transform 3d
 	   Transform3D hpos = new Transform3D();
 	   //set coordinates to the default
@@ -413,13 +413,13 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   humanTrans.addChild(human);
 	   //add transform group to branch group
 	   pongRoot.addChild(humanTrans);
-	   
+
 	   //computer
 	   //set appearance to same as human
 	   Appearance a1 = new Appearance();
 	   a1.setTexture(paddle);
 	   a1.setTextureAttributes(tap);
-	   
+
 	 //create new box (Box belongs to more than one library so have to be specific) using dimensions, previous primitive flags, and appearance
 	   com.sun.j3d.utils.geometry.Box computer = new com.sun.j3d.utils.geometry.Box(0.1f, 0.03f, 0.025f, primflags, a1);
 	   computerTrans = new TransformGroup();
@@ -427,7 +427,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   computerTrans.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
 	   computerTrans.setCapability(computer.ENABLE_APPEARANCE_MODIFY);
 	   computerTrans.setCapability(computer.ENABLE_COLLISION_REPORTING);
-	   
+
 	   //initialize transform 3d
 	   Transform3D cpos = new Transform3D();
 	   //set coordinates to the default
@@ -437,11 +437,11 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   computerTrans.addChild(computer);
 	   //add transform group to branch group
 	   pongRoot.addChild(computerTrans);
-	   
+
 	   //add a bounding box to limit the view of the universe
 	   BoundingBox bounds = new BoundingBox(new Point3d(-0.5f,ground - 0.2f,computerZ-0.5f), new Point3d(0.5f, 1.0, z+0.5f)); //SEE IF YOU NEED BOUNDING BOX
-	 
-	   
+
+
 	   //first light to light up the universe, making it blue green tint
 	   Color3f light1Color = new Color3f(0.0f, 1.0f, 1.0f);
 	   //make direction looking up, lighting bottom
@@ -452,7 +452,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   light1.setInfluencingBounds(bounds);
 	   //add to branch group
 	   pongRoot.addChild(light1);
-	   
+
 	   //add second color, more blue
 	   Color3f light2Color = new Color3f(0.5f, 0.6f, 0.88f);
 	   //make direction looking down
@@ -472,7 +472,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   ambientLightNode.setInfluencingBounds(bounds);
 	   //add to branch group
 	   pongRoot.addChild(ambientLightNode);
-	   
+
 	   //https://docs.oracle.com/javase/tutorial/2d/images/loadimage.html
 	   //add bacground
 	   BufferedImage bi = null;
@@ -480,10 +480,10 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 		   bi = ImageIO.read(new File("Background1.jpg"));
 	   }
 	   catch (IOException e){
-		   
+
 	   }
 	   RenderedImage ri = bi;
-	   
+
 	   //make a imagecomponent2d
 	   ImageComponent2D ic = new ImageComponent2D(ImageComponent2D.FORMAT_RGB, ri);
 	   //ic.set(bi);
@@ -496,14 +496,14 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   bkgd.setColor(0.1f, 0.1f, 0.1f);
 	   //add background to branch group
 	   pongRoot.addChild(bkgd);
-	   
+
 	   //FINALLY DONE ADDING EVERYTHING, RETURN THE BRANCHING GROUP
 	   return pongRoot;
 
 	}
 	public void keyPressed(KeyEvent e) {
 		//this will take over for human paddle
-		
+
 		if (e.getKeyChar()=='s'){
 			if(hxloc < 0.45f){
 				hxloc = hxloc + .015f;
@@ -523,15 +523,15 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	public void keyReleased(KeyEvent e){}
 	public void keyTyped(KeyEvent e){}
 	public void actionPerformed(ActionEvent e ) {
-		if(e.getSource() == test){
-			tester.test(this);
-			humanScore = 5;
-			newGame();
-		}
-		else{
+		// if(e.getSource() == test){
+		// 	tester.test(this);
+		// 	humanScore = 5;
+		// 	newGame();
+		// }
+		// else{
 		// start timer when button is pressed
 			if (e.getSource()==go){
-			
+
 				if (!timer.isRunning() && !gameGoing) {
 					if(gameCount > 0){
 						newGame();
@@ -548,9 +548,9 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 					isDelayed = false;
 					timer.setDelay(5);
 				}
-			
+
 			}
-		}
+		//}
 	}
 	public void update(){
 		updateSquish();
@@ -570,7 +570,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 			xloc = xMAX;
 			dir = -1.0f;
 			squish = 0.5;
-				
+
 		} else if(xloc<= -xMAX){
 			xloc = -xMAX;
 			dir = 1.0f;
@@ -582,11 +582,11 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 				squish = 1.0;
 			}
 		}
-			
+
 	}
 	public void checkScore(){
 		if(depth >= z + .5f){
-			
+
 			//goal on human
 			Color3f black = new Color3f(0.0f, 0.0f, 0.0f);
 			Appearance goalA = new Appearance();
@@ -595,7 +595,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 			humanPoints[computerScore].setAppearance(goalA);
 			computerScore++;
 			reset();
-				
+
 		} else if (depth <= computerZ - .5f){
 			Color3f black = new Color3f(0.0f, 0.0f, 0.0f);
 			Appearance goalA = new Appearance();
@@ -605,11 +605,11 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 			//goal on computer
 			humanScore++;
 			reset();
-			
-				
+
+
 		} else {
-			//do ball collision logic			
-			
+			//do ball collision logic
+
 
 		}
 	}
@@ -628,9 +628,9 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 		humanTrans.setTransform(hTrans);
 		hCoords.setCoordinates(hxloc, ground, z);
 	}
-	
+
 	public void updateComputer(){
-		float nextLoc = cLogic.move(bCoords, cCoords);	
+		float nextLoc = cLogic.move(bCoords, cCoords);
 		computerX += nextLoc;
 		if(computerX <= -0.45f){
 			computerX = -0.45f;
@@ -654,7 +654,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 		timer.setDelay(2000);
 		isDelayed = true;
 		isGameOver();
-		
+
 	}
 	public void isGameOver(){
 		if(humanScore >=5){
@@ -666,7 +666,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 			//prompt to play new game
 			timer.stop();
 		}
-		
+
 		gameGoing = false;
 	}
 	public void newGame(){
@@ -692,7 +692,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 				 humanPoints[i].setAppearance(compPoints[4].getAppearance());
 			}
 		}
-		
+
 		humanScore = 0;
 		computerScore = 0;
 	}
