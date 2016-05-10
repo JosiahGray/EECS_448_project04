@@ -60,7 +60,39 @@ public class GameCollection {
 		menu.add(menuNim);
 		menu.add(menuPong);
 		menu.add(menuShooty);
+
 		menuBar.add(menu);
+
+
+
+
+
+
+
+
+
+
+		//test menu:
+		JMenuBar menuBarTests = new JMenuBar();
+		JMenu menuTests = new JMenu("Tests");
+		JMenuItem menuNimTests = new JMenuItem("Nim Test");
+		JMenuItem menuPongTests = new JMenuItem("Pong Test");
+		JMenuItem menuShootyTests = new JMenuItem("Shooty Snake Test");
+		menuTests.add(menuNimTests);
+		menuTests.add(menuPongTests);
+		menuTests.add(menuShootyTests);
+		menuBarTests.add(menuTests);
+		menuNimTests.addActionListener(nimTestsListener());
+		menuPongTests.addActionListener(pongTestsListener());
+		menuShootyTests.addActionListener(shootyTestsListener());
+
+
+
+
+
+
+
+
 
 
 
@@ -75,7 +107,7 @@ public class GameCollection {
 		frame.setContentPane(new JLabel(new ImageIcon("GameCollectionBackground1.jpg")));
 		frame.setLayout(new FlowLayout());
 
-		
+
 		frame.setSize(200, 300);
 
 
@@ -83,6 +115,8 @@ public class GameCollection {
 		frame.add("Center", menuBar);
 		//frame.setJMenuBar(menuBar);
 		//frame.getContentPane().add(emptyPanel);
+		frame.add("Center", menuBarTests);
+
 
 		frame.pack();
 		frame.setVisible(true);
@@ -142,6 +176,48 @@ public class GameCollection {
 			{
 				//set up Shooty Snake game
 				ShootySnake shootyGame = new ShootySnake();
+			}
+		};
+
+		return listener;
+	}
+
+	private static ActionListener nimTestsListener()
+	{
+		ActionListener listener = new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				//set up Nim Tester
+				TestNim tester = new TestNim();
+			}
+		};
+
+		return listener;
+	}
+
+	private static ActionListener pongTestsListener()
+	{
+		ActionListener listener = new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				//set up Pong tester
+				PongTester test = new PongTester();
+			}
+		};
+
+		return listener;
+	}
+
+	private static ActionListener shootyTestsListener()
+	{
+		ActionListener listener = new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				//set up Shooty Snake tester
+				ShootySnakeTester test = new ShootySnakeTester();
 			}
 		};
 

@@ -10,7 +10,10 @@ public class ShootySnakeTester {
     * Constructor for ShootySnakeTester.  Will initialize and then print to console all the necessary tests of ShootySnakeGame, Ball and Enemy.
     * @post The ShootySnakeTester object is initialized which runs several methods, printing the test results to the console.
     */
-    public ShootySnakeTester(){}
+    public ShootySnakeTester(){
+      ShootySnakeGame game = new ShootySnakeGame();
+      test(game);
+    }
     /**
     * test The main test.  Incorporates all the other tests, and runs them one after another.
     * @post All tests in the test suite will be run.
