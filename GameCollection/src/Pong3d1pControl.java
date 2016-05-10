@@ -214,6 +214,8 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	 * An int representing the counter for number of games played
 	 */
 	int gameCount = 0;
+	Panel panel;
+	Label winner;
 	
 	//constructor
 	/**
@@ -234,9 +236,11 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 		//how fast everything updates
 		timer = new Timer(5,this); 
 		//add panel
-		Panel panel =new Panel();
+		panel =new Panel();
+		winner = new Label("                                      ");
 		//add buttons
 		panel.add(go);
+		panel.add(winner);
 		panel.add(test);
 		//put it at the top, lulz north...
 		add("North",panel);
@@ -257,6 +261,7 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 		for(int i =0; i<size; i++){
 			bBounce[i] = 1.0f;
 		}
+		
 
 	}
 	/**
@@ -501,49 +506,80 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	   return pongRoot;
 
 	}
+	/**
+	 * keyPressed()
+	 * @param e the KeyEvent detected and is compared to the character to move
+	 * @post If an indicated key is pressed, will move human paddle accordingly
+	 */
 	public void keyPressed(KeyEvent e) {
 		//this will take over for human paddle
-		
-		if (e.getKeyChar()=='s'){
-			if(hxloc < 0.45f){
-				hxloc = hxloc + .015f;
-			} else {
-				hxloc = 0.45f;
+		if(!isDelayed){
+			if (e.getKeyChar()=='s'){
+				if(hxloc < 0.45f){
+					hxloc = hxloc + .015f;
+				} else {
+					hxloc = 0.45f;
+				}
 			}
-		}
-		if (e.getKeyChar()=='a'){
-			if(hxloc > -0.45f){
-				hxloc = hxloc - .015f;
-			} else {
-				hxloc = -0.45f;
+			if (e.getKeyChar()=='a'){
+				if(hxloc > -0.45f){
+					hxloc = hxloc - .015f;
+				} else {
+					hxloc = -0.45f;
+				}	
 			}
 		}
 
 	}
+	/**
+	 * keyReleased()
+	 * Empty function, pairs with keyPressed
+	 */
 	public void keyReleased(KeyEvent e){}
+	/**
+	 * keyTyped()
+	 * Empty function, pairs with keyPressed
+	 */
 	public void keyTyped(KeyEvent e){}
+	/**
+	 * actionPerformed()
+	 * @param ActionEvent e
+	 * @post Based on action event, begins test, begins game, or continues executing game when timer is set
+	 * Drives the game, will conduct a test, begin a game, or updates each timer execution to move game along
+	 */
 	public void actionPerformed(ActionEvent e ) {
+		//if the button was to test
 		if(e.getSource() == test){
 			tester.test(this);
 			humanScore = 5;
 			newGame();
+			winner.setText("                                  ");
 		}
+		//otherwise gear towards game
 		else{
 		// start timer when button is pressed
 			if (e.getSource()==go){
-			
+				//if the timer isn't running and there's no game going
 				if (!timer.isRunning() && !gameGoing) {
+					//if a game has already happened, need to reconstruct playing field
 					if(gameCount > 0){
 						newGame();
+						winner.setText("                                  ");
 					}
+					//begin game
 					gameGoing = true;
 					timer.start();
 					gameCount ++;
 				}
+				//otherwise
 			} else {
+				//check for point score delay
 				if(!isDelayed){
+					//update board
 					update();
+					//update execution time
 					cLogic.executionTime ++;
+				//delay over, turn off flag, reset execution time to 5
 				} else {
 					isDelayed = false;
 					timer.setDelay(5);
@@ -552,6 +588,11 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 			}
 		}
 	}
+	/**
+	 * update()
+	 * @post calls all associated update functions to create next frame of the game
+	 * Calls updateSquish, checkScore, updateBall, updateHuman, updateComputer
+	 */
 	public void update(){
 		updateSquish();
 		checkScore();
@@ -560,6 +601,12 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 		updateComputer();
 
 	}
+	/**
+	 * updateSquish()
+	 * @post updates the squish and x axis direction of the ball if there is a wall collision
+	 * Checks the ball's boundaries and adjusts accordingly, squishes ball if it hits a wall and reverses
+	 * the direction
+	 */
 	public void updateSquish(){
 		if(depth > 2.0f){
 			xMAX = 0.4f;
@@ -584,6 +631,13 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 		}
 			
 	}
+	/**
+	 * checkScore()
+	 * @post checks to see if the ball is past the paddle location depth and sets points accordingly
+	 * Checks to see if a point was scored by a ball going past the paddle's depth
+	 * Updates score
+	 * Updates "lives lost" to the appropriate loser of the point
+	 */
 	public void checkScore(){
 		if(depth >= z + .5f){
 			
@@ -613,6 +667,13 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 
 		}
 	}
+	/**
+	 * updateBall()
+	 * @post updates the ball movement according to other game factors
+	 * Updates the ball's movement according to where the ball is relative to human paddle, computer paddle,
+	 * if there's a squish, and moves the ball by one coordinate in the appropriate z direction
+	 * updates the ball coordinates to reflect the locatino
+	 */
 	public void updateBall(){
 		bBounce = bLogic.move(bCoords, hCoords, cCoords);
 		sign = bBounce[1];
@@ -623,12 +684,24 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 		ballTrans.setTransform(bTrans);
 		bCoords.setCoordinates(xloc, ground, depth);
 	}
+	/**
+	 * updateHuman()
+	 * @post updates the human paddle location according to any key presses from the keyPressed function
+	 * Updates the new coordinates to reflect paddle movement
+	 * Sets the paddle location and vector to the current x axis location 
+	 */
 	public void updateHuman(){
 		hTrans.setTranslation(new Vector3f(hxloc, ground, z));
 		humanTrans.setTransform(hTrans);
 		hCoords.setCoordinates(hxloc, ground, z);
 	}
-	
+	/**
+	 * updateComputer()
+	 * @post updates the computer's paddle location
+	 * Calls the computer logic's move function to get it's new x axis location 
+	 * catches if computer moves out of bounds
+	 * sets location and associated coordinates accordingly
+	 */
 	public void updateComputer(){
 		float nextLoc = cLogic.move(bCoords, cCoords);	
 		computerX += nextLoc;
@@ -641,6 +714,13 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 		computerTrans.setTransform(cTrans);
 		cCoords.setCoordinates(computerX, ground, computerZ);
 	}
+	/**
+	 * reset()
+	 * @pre a point was scored
+	 * @post resets the board for a new point
+	 * Resets the ball's x location, depth, squish factor, bounce array, paddle locations, ball logic
+	 * and sets a pause and delay and checks to see if game's over
+	 */
 	public void reset(){
 		xloc = 0.0f;
 		depth = 0.0f;
@@ -656,19 +736,33 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 		isGameOver();
 		
 	}
+	/**
+	 * isGameOver()
+	 * @post checks scores to see if game is over and need to stop timer
+	 * Checks score to see if game is over, if so, stops timer
+	 */
 	public void isGameOver(){
 		if(humanScore >=5){
 			//display human won
+			winner.setText("YOU WIN!!! d^_^b");
 			//prompt to play new game
 			timer.stop();
 		} else if (computerScore >= 5){
 			//display computer won
+			winner.setText("you lose... (-_-)");
 			//prompt to play new game
 			timer.stop();
 		}
 		
 		gameGoing = false;
 	}
+	/**
+	 * newGame()
+	 * @post resets entire board for a game
+	 * Resets the entire board for a new game, sets computer increase difficulty to zero, excecution
+	 * time to zero, ball xyz location back to normal, bounce factors back to normal, paddles back to
+	 * default location, recolors appearacnes to the default of the "lives" and resets scores to zero
+	 */
 	public void newGame(){
 		cLogic.increaseDifficulty = 0.0f;
 		cLogic.executionTime = 0;
