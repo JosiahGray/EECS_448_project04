@@ -6,9 +6,15 @@
  *
  */
 public class ShootySnakeTester {
-    //public Random rn = new Random();
+    /**
+    * Constructor for ShootySnakeTester.  Will initialize and then print to console all the necessary tests of ShootySnakeGame, Ball and Enemy.
+    * @post The ShootySnakeTester object is initialized which runs several methods, printing the test results to the console.
+    */
     public ShootySnakeTester(){}
-
+    /**
+    * test The main test.  Incorporates all the other tests, and runs them one after another.
+    * @post All tests in the test suite will be run.
+    */
     public void test(ShootySnakeGame game) {
       if(test1())
         System.out.println("Result of normalX method: PASS");
@@ -30,9 +36,11 @@ public class ShootySnakeTester {
         System.out.println("Result of hit(): PASS");
       else
         System.out.println("Result of hit(): FAIL");
-
     }
-    //test for public double normalX(double x0, double y0)
+    /**
+    * test1 Tests the correctness of normalX, which should give the normalized x component of the vector between a ball and a point.
+    * @post Prints to console a series of tests confirming whether the method works as intended or fails.
+    */
     public Boolean test1() {
       double testDir1 = 1;
       double testDir2 = -1;
@@ -53,6 +61,10 @@ public class ShootySnakeTester {
       System.out.println("Expected: " + testDir3);
       return(result1 == testDir1 && result2 == testDir2 && result3 == testDir3);
     }
+    /**
+    * test2 Tests the correctness of normalY, which should give the normalized y component of the vector between a ball and a point.
+    * @post Prints to console a series of tests confirming whether the method works as intended or fails.
+    */
     public Boolean test2() {
       double testDir1 = 1;
       double testDir2 = -1;
@@ -73,6 +85,10 @@ public class ShootySnakeTester {
       System.out.println("Expected: " + testDir3);
       return(result1 == testDir1 && result2 == testDir2 && result3 == testDir3);
     }
+    /**
+    * test3 Tests whether the initFrame method functions correctly in making a visible frame of the appropriate dimension and prints the results to the console.
+    * @post The results of whether the initFrame method functioned correctly are printed to the conosle.
+    */
     public Boolean test3(ShootySnakeGame game) {
       Boolean isVisible = game.isVisible();
       System.out.println("Test Frame Initialization:");
@@ -91,7 +107,10 @@ public class ShootySnakeTester {
       game.setVisible(false);
       return isVisible && dimTest;
     }
-    //test initModel
+    /**
+    * test4 Tests the initialization of the game model's few important value's, printing the results to the console.
+    * @post Prints to the console confirming whether the initModel method is working correctly or failed.
+    */
     public Boolean test4(ShootySnakeGame game) {
       Boolean testLives = game.getLives() == 3;
       Boolean testGO = !game.getGameOver();
@@ -107,6 +126,10 @@ public class ShootySnakeTester {
       game.setVisible(false);
       return testLives && testGO;
     }
+    /**
+    * test5 Tests whether the ShootySnakeEnemy hit(*) method is working correctly and prints the result to the console.
+    * @post Prints the results of whether the hit(*) method worked correctly or failed to the console.
+    */
     public Boolean test5() {
       ShootySnakeEnemy enemy = new ShootySnakeEnemy(1.0, 1.0, 1.0, 1.0, 0.0);
       enemy.leader = true;
