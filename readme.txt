@@ -13,13 +13,4 @@ To play, select a game from the menu.  Multiple instances of each game may be op
 
 To test the games:
 
-Nim~
-From the terminal/command prompt, type:
-javac TestNim.java
-java TestNim
-(can clean out *.class files by typing: bash clean.sh on Linux, or clean.bat on Windows)
-
-Pong~
-Click the test button in the game window, the test will run in the terminal/command prompt used to launch the program.
-
-Shooty Snake~
+Select the game you would like to test from the menu to the right.
