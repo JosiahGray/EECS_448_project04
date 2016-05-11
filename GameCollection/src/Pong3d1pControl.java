@@ -209,7 +209,13 @@ public class Pong3d1pControl extends Applet implements ActionListener, KeyListen
 	 * An int representing the counter for number of games played
 	 */
 	int gameCount = 0;
+	/**
+	 * Panel to hold the new game button and message display
+	 */
 	Panel panel;
+	/**
+	 * label to act as a message display when you win or lose the game
+	 */
 	Label winner;
 
 	//constructor
