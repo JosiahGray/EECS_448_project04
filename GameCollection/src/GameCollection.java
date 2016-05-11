@@ -184,6 +184,10 @@ public class GameCollection {
 
 		return listener;
 	}
+	/**
+	 * Waits for action to implement nim test
+	 * @return Action listener listener
+	 */
 
 	private static ActionListener nimTestsListener()
 	{
@@ -198,6 +202,10 @@ public class GameCollection {
 
 		return listener;
 	}
+	/**
+	 * Waits for action to implement pong test
+	 * @return Action listener listener
+	 */
 
 	private static ActionListener pongTestsListener()
 	{
@@ -212,7 +220,10 @@ public class GameCollection {
 
 		return listener;
 	}
-
+	/**
+	 * Waits for action to implement shooty snake test
+	 * @return Action listener listener
+	 */
 	private static ActionListener shootyTestsListener()
 	{
 		ActionListener listener = new ActionListener()

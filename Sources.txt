@@ -15,3 +15,42 @@
     -probably most importantly- my original reason for looking at this example, is that it showed a looping method (executeGameLoop) that kept the game model up to date without running the Graphics side of things every frame.
  
  http://meatfighter.com/gametemplate/
+ 
+ 
+ GameCollection:
+ Adding picture to back
+ 
+ http://www.java2s.com/Code/Java/Swing-JFC/Panelwithbackgroundimage.htm
+ 
+ 
+ Pong3D sources:
+ 
+ Java3D Documentation
+
+ Using key listeners:
+ 
+https://docs.oracle.com/javase/tutorial/uiswing/events/keylistener.html
+
+Adding the 3d library to the project:
+
+http://www.oxfordmathcenter.com/drupal7/node/44
+
+Loading a background image: 
+https://docs.oracle.com/javase/tutorial/2d/images/loadimage.html
+
+Adding components:
+
+http://www.java3d.org/starting.html
+
+
+Figuring out how to set capabilities, BECAUSE THE SET CAPABILITIES FUNCTION DOESN'T WORK:
+
+https://community.oracle.com/thread/1275874?start=0&tstart=0
+
+Figuring out that MainFrame is more compatable with Java3D and how to use it:
+
+download.java.net/media/java3d/javadoc/1.3.2/com/sun/j3d/utils/applet/MainFrame.html
+
+How to use MainFrame Panels:
+
+https://docs.oracle.com/javase/7/docs/api/java/awt/Panel.html
