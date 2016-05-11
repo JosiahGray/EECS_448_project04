@@ -19,7 +19,9 @@ public class ShootySnakeBall {
   * The disabled state of a Ball object.
   */
   public Boolean disabled;
-
+  /**
+  * The radius of the Ball object.
+  */
   public double radius;
 
   /**
@@ -39,6 +41,12 @@ public class ShootySnakeBall {
     radius = mradius;
   }
 
+  /*
+  * normalX takes the location of the player and gives the x component of a unit length vector pointing from the ball to the player
+  * @param x0 The x component of the player's coordinates
+  * @param y0 The y component of the player's coordinates
+  * @return The x component of the unit length vector between the Ball and the Player
+  */
   public double normalX(double x0, double y0)
   {
     double xDiff = x0 - (x + radius);
@@ -50,7 +58,12 @@ public class ShootySnakeBall {
       temp = 0.0;
     return temp;
   }
-
+  /*
+  * normalY takes the location of the player and gives the y component of a unit length vector pointing from the ball to the player
+  * @param x0 The x component of the player's coordinates
+  * @param y0 The y component of the player's coordinates
+  * @return The y component of the unit length vector between the Ball and the Player
+  */
   public double normalY(double x0, double y0)
   {
     double xDiff = x0 - (x + radius);
